@@ -9,8 +9,11 @@ var app = angular.module('YunityMobile', [
   'mobile-angular-ui.gestures'
 ]);
 
+/*
+ * INIT
+ */
 app.run(function($transform) {
-  window.$transform = $transform;
+  window.$transform = $transform;  
 });
 
 /*
@@ -26,10 +29,6 @@ app.config(function($routeProvider) {
  * MAIN CONTROLLER
  */
 app.controller('MainController', function($rootScope, $scope){
-
-
-  // User agent displayed in home page
-  $scope.userAgent = navigator.userAgent;
   
   /*
    * LOADING SPINNER
@@ -41,14 +40,39 @@ app.controller('MainController', function($rootScope, $scope){
   $rootScope.$on('$routeChangeSuccess', function(){
     $rootScope.loading = false;
   });
-  /*
-   	Chat
-  */
   
-  $scope.chatUsers = [
-    { name: 'Matthias', online: true },
-    { name: 'Raphael', online: true },
-    { name: 'Jamos', online: true },
-    { name: 'Michael', online: true }
-  ];
+  
+});
+
+/*
+ * CHAT CONTROLLER
+ */
+app.controller('YunityChat', function($rootScope, $scope){
+	
+	 /*
+	  *	Chat
+	  */
+	  $scope.chatUsers = [
+	    { name: 'Matthias', online: true },
+	    { name: 'Raphael', online: true },
+	    { name: 'Jamos', online: true },
+	    { name: 'Michael', online: true },
+	    { name: 'Lisa', online: false }
+	  ];
+	
+});
+
+/*
+ * MAP CONTROLLER
+ */
+app.controller('YunityMap', function($rootScope, $scope){
+	
+	 /*
+	  * initialize map one time
+	  */
+	 yMap.init();
+	  
+	  
+	 $scope.test = 'Hallo Welt und so...';
+	
 });
