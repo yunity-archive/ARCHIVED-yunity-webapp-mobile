@@ -2,7 +2,7 @@
 // Here is how to define your module 
 // has dependent on mobile-angular-ui
 // 
-var app = angular.module('MobileAngularUiExamples', [
+var app = angular.module('YunityMobile', [
   'ngRoute',
   'mobile-angular-ui',
   
@@ -27,6 +27,8 @@ app.run(function($transform) {
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'home.html', reloadOnSearch: false});
   $routeProvider.when('/scroll',        {templateUrl: 'scroll.html', reloadOnSearch: false}); 
+  $routeProvider.when('/about',         {templateUrl: 'about.html', reloadOnSearch: false}); 
+  $routeProvider.when('/map',        	{templateUrl: 'map.html', reloadOnSearch: false}); 
   $routeProvider.when('/toggle',        {templateUrl: 'toggle.html', reloadOnSearch: false}); 
   $routeProvider.when('/tabs',          {templateUrl: 'tabs.html', reloadOnSearch: false}); 
   $routeProvider.when('/accordion',     {templateUrl: 'accordion.html', reloadOnSearch: false}); 
