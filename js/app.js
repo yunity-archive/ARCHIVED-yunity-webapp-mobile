@@ -9,6 +9,20 @@ var app = angular.module('YunityMobile', [
   'mobile-angular-ui.gestures'
 ]);
 
+app.directive('yMap', function() {
+	return {
+		restrict: 'A',
+		link: function($scope, $element, $attr) {
+			
+			//height = window.innerHeight;
+
+			//$element.css('height',window.innerHeight+'px');
+			yMap.init($element[0]);
+			
+		}
+	};
+});
+
 /*
  * INIT
  */
@@ -66,13 +80,9 @@ app.controller('YunityChat', function($rootScope, $scope){
  * MAP CONTROLLER
  */
 app.controller('YunityMap', function($rootScope, $scope){
-	
-	 /*
-	  * initialize map one time
-	  */
-	 yMap.init();
 	  
 	  
 	 $scope.test = 'Hallo Welt und so...';
 	
 });
+

@@ -1,22 +1,24 @@
 var yMap = {
 	
-	prefix : 'map-',
-	
 	container: null,
 	latitude: null,
 	longitude: null,
 	zoom: null,
 		
-	init : function(){
+	init : function(element){
 		
-		container.map = L.map('map').setView([container.latitude, container.longitude], container.zoom);
+		this.latitude = 51.505;
+		this.longitude = -0.09;
+		this.zoom = 13;
+		
+		this.container = L.map(element).setView([yMap.latitude, yMap.longitude], yMap.zoom);
 
-		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
 		    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-		}).addTo(container.map);
+		}).addTo(yMap.container);
 
-		L.marker([51.5, -0.09]).addTo(container.map)
-		    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+		L.marker([51.5, -0.09]).addTo(yMap.container)
+		    .bindPopup('I\'m a Marker, yeah!')
 		    .openPopup();
 		
 	}
