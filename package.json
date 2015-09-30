@@ -1,0 +1,31 @@
+{
+  "name": "yunity-webapp-mobile",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunity/yunity-webapp-mobile.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yunity/yunity-webapp-mobile/issues"
+  },
+  "homepage": "https://github.com/yunity/yunity-webapp-mobile#readme",
+  "dependencies": {
+    "angular-wamp": "^0.1.5",
+    "autobahn": "^0.9.6",
+    "leaflet": "^0.7.5",
+    "webpack": "^1.12.2",
+    "yunity-webapp-common": "github:yunity/yunity-webapp-common"
+  },
+  "devDependencies": {
+    "babel-loader": "^5.3.2",
+    "bower": "^1.5.3"
+  }
+}

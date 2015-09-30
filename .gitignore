@@ -1,3 +1,5 @@
 .buildpath
 .project
 .settings/**
+build
+node_modules

@@ -1,4 +1,8 @@
-var yMap = {
+import L from 'leaflet';
+
+L.Icon.Default.imagePath = '/vendor/leaflet-0.7.5/images'; // TODO: decide where/how to put/serve the images
+
+const yMap = {
 	
 	container: null,
 	latitude: null,
@@ -23,3 +27,5 @@ var yMap = {
 		
 	}
 };
+
+export default yMap;

@@ -1,3 +1,7 @@
+import yMap from './map';
+
+import 'yunity-webapp-common/api';
+
 /*
  * INIT APP
  */
@@ -6,7 +10,9 @@ var app = angular.module('YunityMobile', [
   'mobile-angular-ui',
   
   // drag features here
-  'mobile-angular-ui.gestures'
+  'mobile-angular-ui.gestures',
+
+  'yunityAPI'
 ]);
 
 app.directive('yMap', function() {
@@ -44,7 +50,7 @@ app.config(function($routeProvider) {
 /*
  * MAIN CONTROLLER
  */
-app.controller('MainController', function($rootScope, $scope){
+app.controller('MainController', function($rootScope, $scope, $yunityAPI){
   
 	
 	/*
@@ -69,6 +75,7 @@ app.controller('MainController', function($rootScope, $scope){
   
   $scope.login = function() {
 	  alert('You submitted the login form');
+    $yunityAPI.authenticate('foo', 'bar');
   };
   
   
