@@ -35,3 +35,5 @@ chatModule.config(['$wampProvider', $wampProvider => {
 chatModule.run(['$wamp', $wamp => {
   $wamp.open();
 }]);
+
+export default 'yunityChat';

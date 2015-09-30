@@ -21,3 +21,5 @@ apiModule.provider('$yunityAPI', [function(){
 apiModule.run(() => {
   
 });
+
+export default 'yunityAPI';
