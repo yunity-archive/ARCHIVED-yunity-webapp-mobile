@@ -19,7 +19,7 @@ $ ln -s /usr/bin/nodejs /usr/bin/node
 bower install
 ```
 
-## 4. very important! install webhook for push webcam picture
+## 4. very important install webhook for push webcam picture
 
 ```sh
 chmod +x scripts/picture-fswebcam
