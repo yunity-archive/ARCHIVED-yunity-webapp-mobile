@@ -1,6 +1,6 @@
 import L from 'leaflet';
 
-L.Icon.Default.imagePath = '/bower_components/leaflet/dist/images'; // TODO: decide where/how to put/serve the images
+L.Icon.Default.imagePath = '/images/leaflet';
 
 const yMap = {
 	

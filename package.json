@@ -18,14 +18,13 @@
   },
   "homepage": "https://github.com/yunity/yunity-webapp-mobile#readme",
   "dependencies": {
-    "angular-wamp": "^0.1.5",
-    "autobahn": "^0.9.6",
     "leaflet": "^0.7.5",
     "webpack": "^1.12.2",
     "yunity-webapp-common": "github:yunity/yunity-webapp-common"
   },
   "devDependencies": {
     "babel-loader": "^5.3.2",
-    "bower": "^1.5.3"
+    "bower": "^1.5.3",
+    "webpack-dev-server": "^1.12.0"
   }
 }
