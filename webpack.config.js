@@ -10,11 +10,15 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.json$/,
+        loaders: ['json-loader']
+      },
+      {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel-loader']
       }
-    ],
+    ]
   },
   plugins: []
 };
