@@ -1,0 +1,12 @@
+{
+	"name":"yunity-webapp-mobile",
+	"dependencies": {
+		"angular":"1.4.6",
+		"router":"http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular-route.min.js",
+		"mobile-angular-ui":"latest",
+		"leaflet":"latest",
+		"leaflet-google":"https://gist.github.com/2197042.git",
+		"Leaflet.markercluster":"https://github.com/Leaflet/Leaflet.markercluster.git"
+	}
+}
+
