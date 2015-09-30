@@ -18,11 +18,12 @@ var app = angular.module('YunityMobile', [
 app.directive('yMap', function() {
 	return {
 		restrict: 'A',
-		link: function($scope, $element, $attr) {
+		link:  function($scope, $element, $attr) {
 			
 			//height = window.innerHeight;
 
 			//$element.css('height',window.innerHeight+'px');
+			
 			yMap.init($element[0]);
 			
 		}
@@ -32,27 +33,44 @@ app.directive('yMap', function() {
 /*
  * INIT
  */
-app.run(function($transform) {
-  window.$transform = $transform;  
-});
+app.run(['$transform', '$rootScope', '$yunityAPI', function($transform, $rootScope, $yunityAPI){
+	
+	/*
+	 * API Configuration
+	 */
+	$yunityAPI.config({
+		url: '/api'
+	});
+
+	window.$transform = $transform;
+}]);
 
 /*
  * ROUTUNG
  */ 
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'home.html', reloadOnSearch: false});
-  $routeProvider.when('/login',         {templateUrl: 'login.html', reloadOnSearch: false});
+  $routeProvider.when('/login', {
+	  templateUrl: 'login.html', 
+	  reloadOnSearch: false, 
+	  controller: 'YunityLogin'
+  });
+  
   $routeProvider.when('/about',         {templateUrl: 'about.html', reloadOnSearch: false}); 
-  $routeProvider.when('/map',        	{templateUrl: 'map.html', reloadOnSearch: false}); 
+  $routeProvider.when('/map', {
+	  templateUrl: 'map.html', 
+	  reloadOnSearch: false, 
+	  controller: 'YunityMap'
+  }); 
   
 });
 
 /*
  * MAIN CONTROLLER
  */
-app.controller('MainController', function($rootScope, $scope, $yunityAPI){
+app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function($rootScope, $scope, $yunityAPI){
   
-	
+
 	/*
 	 * Login var
 	 */
@@ -69,22 +87,25 @@ app.controller('MainController', function($rootScope, $scope, $yunityAPI){
     $rootScope.loading = false;
   });
   
-  /*
-   * LOGIN STUFF
-   */
-  
-  $scope.login = function() {
-	  alert('You submitted the login form');
-    $yunityAPI.authenticate('foo', 'bar');
-  };
-  
-  
-});
+}]);
+
+/*
+ * LOGIN CONTROLLER
+ */
+app.controller('YunityLogin', ['$rootScope', '$scope', '$yunityAPI', function($rootScope, $scope, $yunityAPI){
+	
+	
+	$scope.login = function() {
+		
+		$yunityAPI.authenticate($scope.email, $scope.password);
+	};
+	
+}]);
 
 /*
  * CHAT CONTROLLER
  */
-app.controller('YunityChat', function($rootScope, $scope){
+app.controller('YunityChat', ['$rootScope', '$scope', function($rootScope, $scope){
 	
 	 /*
 	  *	Chat
@@ -97,16 +118,15 @@ app.controller('YunityChat', function($rootScope, $scope){
 	    { name: 'Lisa', online: false }
 	  ];
 	
-});
+}]);
 
 /*
  * MAP CONTROLLER
  */
-app.controller('YunityMap', function($rootScope, $scope){
-	  
+app.controller('YunityMap', ['$rootScope', '$scope', function($rootScope, $scope){
 	  
 	 $scope.test = 'Hallo Welt und so...';
 	
-});
+}]);
 
 
