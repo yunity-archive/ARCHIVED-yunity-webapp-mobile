@@ -1,7 +1,7 @@
 import yMap from './map';
 
-import 'yunity-webapp-common/api';
-import 'yunity-webapp-common/chat';
+import yunityAPI from 'yunity-webapp-common/api';
+import yunityChat from 'yunity-webapp-common/chat';
 
 /*
  * INIT APP
@@ -13,8 +13,8 @@ var app = angular.module('YunityMobile', [
   // drag features here
   'mobile-angular-ui.gestures',
 
-  'yunityAPI',
-  'yunityChat'
+  yunityAPI,
+  yunityChat
 ]);
 
 app.directive('yMap', function() {
