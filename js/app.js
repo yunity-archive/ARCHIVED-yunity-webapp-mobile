@@ -35,8 +35,10 @@ app.run(function($transform) {
  */ 
 app.config(function($routeProvider) {
   $routeProvider.when('/',              {templateUrl: 'home.html', reloadOnSearch: false});
+  $routeProvider.when('/login',         {templateUrl: 'login.html', reloadOnSearch: false});
   $routeProvider.when('/about',         {templateUrl: 'about.html', reloadOnSearch: false}); 
   $routeProvider.when('/map',        	{templateUrl: 'map.html', reloadOnSearch: false}); 
+  
 });
 
 /*
@@ -54,6 +56,14 @@ app.controller('MainController', function($rootScope, $scope){
   $rootScope.$on('$routeChangeSuccess', function(){
     $rootScope.loading = false;
   });
+  
+  /*
+   * LOGIN STUFF
+   */
+  
+  $scope.login = function() {
+	  alert('You submitted the login form');
+  };
   
   
 });
@@ -85,4 +95,5 @@ app.controller('YunityMap', function($rootScope, $scope){
 	 $scope.test = 'Hallo Welt und so...';
 	
 });
+
 
