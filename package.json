@@ -15,6 +15,11 @@
   },
   "homepage": "https://github.com/yunity/yunity-webapp-common#readme",
   "dependencies": {
-    "babel-loader": "^5.3.2"
+    "angular-wamp": "git+https://github.com/voryx/angular-wamp.git",
+    "autobahn": "^0.9.6"
+  },
+  "devDependencies": {
+    "babel-loader": "^5.3.2",
+    "json-loader": "^0.5.3"
   }
 }
