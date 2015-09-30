@@ -3,8 +3,10 @@
 ## 1. install node.js and bower for package management
 
 ```sh
-$ sudo apt-get install nodejs fswebcam
+$ sudo apt-get install nodejs node fswebcam imagemagick graphicsmagick
 $ sudo npm install -g bower
+$ sudo npm install -g cordova
+$ sudo npm install -g cordova-media-generator
 ```
 
 ## 2. bower has sometimes this link issue
