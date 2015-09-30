@@ -1,12 +1,14 @@
-const chatModule = angular.module('yunityChat', []);
+import angularWamp from 'angular-wamp';
+
+const chatModule = angular.module('yunityChat', [angularWamp]);
 
 chatModule.provider('$yunityChat', function(){
   
-  this.$get = ($rootScope, $q, $log, $injector) => {
+  this.$get = () => {
 
     return {
       
-      createMessage(message) {
+      sendMessage(message) {
         console.log('would send message :)');
       }
 
@@ -17,3 +19,21 @@ chatModule.provider('$yunityChat', function(){
   return this;
 
 });
+
+chatModule.config(['$wampProvider', $wampProvider => {
+
+  console.log('configuring wamp');
+
+  $wampProvider.init({
+    url: 'ws://localhost:8080/ws',
+    realm: 'realm1'
+    //Any other AutobahnJS options
+  });
+
+}]);
+
+chatModule.run(['$wamp', $wamp => {
+  $wamp.open();
+}]);
+
+export default 'yunityChat';
