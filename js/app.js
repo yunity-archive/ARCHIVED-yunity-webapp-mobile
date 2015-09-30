@@ -46,9 +46,15 @@ app.config(function($routeProvider) {
  */
 app.controller('MainController', function($rootScope, $scope){
   
-  /*
-   * LOADING SPINNER
-   */
+	
+	/*
+	 * Login var
+	 */
+	$rootScope.loggedin = false;
+	
+    /*
+     * LOADING SPINNER
+     */
   $rootScope.$on('$routeChangeStart', function(){
     $rootScope.loading = true;
   });
