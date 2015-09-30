@@ -1,6 +1,7 @@
 import yMap from './map';
 
 import 'yunity-webapp-common/api';
+import 'yunity-webapp-common/chat';
 
 /*
  * INIT APP
@@ -12,7 +13,8 @@ var app = angular.module('YunityMobile', [
   // drag features here
   'mobile-angular-ui.gestures',
 
-  'yunityAPI'
+  'yunityAPI',
+  'yunityChat'
 ]);
 
 app.directive('yMap', function() {
@@ -50,7 +52,7 @@ app.config(function($routeProvider) {
 /*
  * MAIN CONTROLLER
  */
-app.controller('MainController', function($rootScope, $scope, $yunityAPI){
+app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function($rootScope, $scope, $yunityAPI){
   
 	
 	/*
@@ -79,7 +81,7 @@ app.controller('MainController', function($rootScope, $scope, $yunityAPI){
   };
   
   
-});
+}]);
 
 /*
  * CHAT CONTROLLER

@@ -1,6 +1,7 @@
 import L from 'leaflet';
+import 'leaflet.markercluster';
 
-L.Icon.Default.imagePath = '/vendor/leaflet-0.7.5/images'; // TODO: decide where/how to put/serve the images
+L.Icon.Default.imagePath = '/images/leaflet';
 
 const yMap = {
 	
