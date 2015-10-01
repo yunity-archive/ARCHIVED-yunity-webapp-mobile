@@ -1,27 +1,37 @@
-const apiModule = angular.module('yunityAPI', []);
+import ngCookies from 'angular-cookies';
+
+const apiModule = angular.module('yunityAPI', [
+    ngCookies,
+]);
+
+apiModule.run(function($http, $cookies) {
+    $http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
+});
+
 
 apiModule.provider('$yunityAPI', [function(){
-	
+
 	this.$get = $http => {
 		return {
 			ApiUrl: '/api',
-			
+
 			/*
 			 * Configuration
 			 */
 			config(opt) {
-				
+
 				if(opt.url != undefined) {
 					this.ApiUrl = opt.url;
 				}
 
 			},
-    	
-    	
+
+
 			authenticate(email, password) {
-        
+
 				this.apiCall({
 					uri: '/login',
+                    method: 'POST',
 					data:{
 						email: email,
 						password: password
@@ -33,16 +43,16 @@ apiModule.provider('$yunityAPI', [function(){
 						console.log('error');
 					}
 				});
-        
+
 			},
-      
+
 			/*
 			 * Call the Api:
 			 * parameter Object { method, data, succes, error }
-			 * 
+			 *
 			 */
 			apiCall(opt) {
-				
+
 				/*
 				 * if no data and no method specified do GET othwist POST
 				 */
@@ -52,20 +62,20 @@ apiModule.provider('$yunityAPI', [function(){
 				else if(opt.method == undefined) {
 					opt.method = 'POST';
 				}
-				
+
 				/*
 				 * BASE API URL
 				 */
 				var ApiUrl = this.ApiUrl;
-				
+
 				if(opt.uri != undefined) {
 					ApiUrl += opt.uri;
 				}
-				
+
 				if(opt.data == undefined) {
 					opt.data = {};
 				}
-				
+
 				/*
 				 * RUN ANgulars HTTP CAll
 				 */
@@ -74,17 +84,17 @@ apiModule.provider('$yunityAPI', [function(){
 		    		  url: ApiUrl,
 		    		  data: opt.data
 		    	}).then(function successCallback(response) {
-		    		    
+
 		    		if(opt.success != undefined) {
-		    			opt.succes(response);
+		    			opt.success(response);
 		    		}
-		    		
+
 		    	}, function errorCallback(response) {
-		    		
+
 		    		if(opt.error != undefined) {
 		    			opt.error(response);
 		    		}
-		    		
+
 		    	}) ;
 			}
 		};
@@ -94,7 +104,7 @@ apiModule.provider('$yunityAPI', [function(){
 }]);
 
 apiModule.run(() => {
-  
+
 });
 
 export default 'yunityAPI';
