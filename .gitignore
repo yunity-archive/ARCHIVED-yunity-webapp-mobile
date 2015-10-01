@@ -1,6 +1,7 @@
 .buildpath
 .project
 .settings/**
+.idea/**
 build
 node_modules
 bower_components
