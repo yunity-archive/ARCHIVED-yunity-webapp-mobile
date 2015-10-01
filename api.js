@@ -1,4 +1,12 @@
-const apiModule = angular.module('yunityAPI', []);
+import ngCookies from 'angular-cookies';
+
+const apiModule = angular.module('yunityAPI', [
+    ngCookies,
+]);
+
+apiModule.run(function ($http, $cookies) {
+    $http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
+});
 
 apiModule.provider('$yunityAPI', [function () {
 
@@ -9,19 +17,20 @@ apiModule.provider('$yunityAPI', [function () {
             /*
              * Configuration
              */
-            config(opt)
-            {
+            config(opt) {
 
                 if (opt.url != undefined) {
                     this.ApiUrl = opt.url;
                 }
 
             },
-            authenticate(email, password)
-            {
+
+
+            authenticate(email, password) {
 
                 this.apiCall({
                     uri: '/login',
+                    method: 'POST',
                     data: {
                         email: email,
                         password: password
@@ -41,8 +50,7 @@ apiModule.provider('$yunityAPI', [function () {
              * parameter Object { method, data, succes, error }
              *
              */
-            apiCall(opt)
-            {
+            apiCall(opt) {
 
                 /*
                  * if no data and no method specified do GET othwist POST
@@ -77,7 +85,7 @@ apiModule.provider('$yunityAPI', [function () {
                 }).then(function successCallback(response) {
 
                     if (opt.success != undefined) {
-                        opt.succes(response);
+                        opt.success(response);
                     }
 
                 }, function errorCallback(response) {
@@ -92,6 +100,7 @@ apiModule.provider('$yunityAPI', [function () {
     };
 
     return this;
+
 }]);
 
 apiModule.run(() => {

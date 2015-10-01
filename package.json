@@ -20,6 +20,7 @@
     "leaflet": "^0.7.5"
   },
   "devDependencies": {
+    "angular-cookies": "^1.4.7",
     "babel-loader": "^5.3.2",
     "json-loader": "^0.5.3"
   }
