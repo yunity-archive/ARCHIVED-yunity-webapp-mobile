@@ -82,6 +82,39 @@ app.config(function ($routeProvider) {
 app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function ($rootScope, $scope, $yunityAPI) {
 
     /*
+     * handle categores
+     */
+    $scope.activeCategory = null;
+    $scope.categories = [
+        {
+            name: 'Booksharing',
+            icon:'book'
+        },
+        {
+            name: 'Carsharing',
+            icon: 'car'
+        },
+        {
+            name: 'Couchsurfing',
+            icon: 'bed'
+        },
+        {
+            name: 'Foodsharing',
+            icon: 'apple'
+        }
+    ];
+
+    $scope.showSubCategories = function(cat) {
+        $scope.activeCategory = cat;
+    };
+
+    $scope.sidebarLeft = 'menu';
+
+    $scope.session = {
+        loggedIn: false
+    };
+
+    /*
      * LOADING SPINNER
      */
     $rootScope.$on('$routeChangeStart', function () {
@@ -92,6 +125,21 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function
         $rootScope.loading = false;
     });
 
+    $scope.login = function () {
+
+        $yunityAPI.authenticate({
+            email: $scope.email,
+            password: $scope.password,
+            success: function(){
+                $scope.session.loggedIn = true;
+            },
+            error: function() {
+                $scope.session.loggedIn = true;
+            }
+        });
+
+    };
+
 }]);
 
 /*
@@ -100,10 +148,7 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function
 app.controller('YunityLogin', ['$rootScope', '$scope', '$yunityAPI', function ($rootScope, $scope, $yunityAPI) {
 
 
-    $scope.login = function () {
 
-        $yunityAPI.authenticate($scope.email, $scope.password);
-    };
 
 }]);
 
