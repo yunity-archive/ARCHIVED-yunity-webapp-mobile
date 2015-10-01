@@ -2,16 +2,12 @@ const apiModule = angular.module('yunityAPI', []);
 
 apiModule.provider('$yunityAPI', [function(){
 	
-  
-	
 	this.$get = $http => {
-
 		return {
-			
 			ApiUrl: '/api',
 			
 			/*
-			 * initial Configuration
+			 * Configuration
 			 */
 			config(opt) {
 				
@@ -91,12 +87,10 @@ apiModule.provider('$yunityAPI', [function(){
 		    		
 		    	}) ;
 			}
-      
-    };
-  };
+		};
+	};
 
-  return this;
-
+	return this;
 }]);
 
 apiModule.run(() => {
