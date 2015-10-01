@@ -22,15 +22,13 @@ app.directive('yMap', function() {
 		restrict: 'A',
 		link:  function($scope, $element, $attr) {
 			
-			//height = window.innerHeight;
-
-			//$element.css('height',window.innerHeight+'px');
-			
 			yMap.init($element[0]);
-			
+
 		}
 	};
 });
+
+
 
 /*
  * INIT
