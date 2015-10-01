@@ -41,7 +41,7 @@ This means you can develop this locally without having to push to github for eac
 ```sh
 cd ../yunity-webapp-common
 sudo npm link
-cd ../yunity-webapp-webapp
+cd ../yunity-webapp-mobile
 npm link yunity-webapp-common
 ```
 
