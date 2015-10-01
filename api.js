@@ -29,7 +29,7 @@ apiModule.provider('$yunityAPI', [function () {
             authenticate(email, password) {
 
                 this.apiCall({
-                    uri: '/login',
+                    uri: '/login/',
                     method: 'POST',
                     data: {
                         email: email,
