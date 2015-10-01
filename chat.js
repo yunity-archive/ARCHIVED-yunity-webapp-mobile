@@ -2,38 +2,38 @@ import angularWamp from 'angular-wamp';
 
 const chatModule = angular.module('yunityChat', [angularWamp]);
 
-chatModule.provider('$yunityChat', function(){
-  
-  this.$get = () => {
+chatModule.provider('$yunityChat', function () {
 
-    return {
-      
-      sendMessage(message) {
-        console.log('would send message :)');
-      }
+    this.$get = () => {
+
+        return {
+
+            sendMessage(message) {
+                console.log('would send message :)');
+            }
+
+        };
 
     };
 
-  };
-
-  return this;
+    return this;
 
 });
 
 chatModule.config(['$wampProvider', $wampProvider => {
 
-  console.log('configuring wamp');
+    console.log('configuring wamp');
 
-  $wampProvider.init({
-    url: 'ws://localhost:8080/ws',
-    realm: 'realm1'
-    //Any other AutobahnJS options
-  });
+    $wampProvider.init({
+        url: 'ws://localhost:8080/ws',
+        realm: 'realm1'
+        //Any other AutobahnJS options
+    });
 
 }]);
 
 chatModule.run(['$wamp', $wamp => {
-  $wamp.open();
+    $wamp.open();
 }]);
 
 export default 'yunityChat';
