@@ -25,7 +25,7 @@ chatModule.config(['$wampProvider', $wampProvider => {
     console.log('configuring wamp');
 
     $wampProvider.init({
-        url: 'ws://localhost:8080/ws',
+        url: 'ws://' + location.host + '/ws',
         realm: 'realm1'
         //Any other AutobahnJS options
     });
