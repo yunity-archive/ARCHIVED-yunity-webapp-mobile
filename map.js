@@ -1,4 +1,5 @@
 import L from 'leaflet';
+import 'leaflet.markercluster';
 
 L.Icon.Default.imagePath = '/assets/img/marker';
 
@@ -77,6 +78,23 @@ mapModule.provider('$yunityMap', [function () {
                 L.marker([51.5, -0.09]).addTo(yMap.container)
                     .bindPopup('I\'m a Marker, yeah!')
                     .openPopup();
+            },
+
+            /*
+             * draw marker on map and cluster it together
+             */
+            renderMarkerCluster(items) {
+                let yMap = this;
+
+                // init cluster group
+                var markers = new L.MarkerClusterGroup();
+
+                // add all recieved marker items to the map
+                items.forEach(item => {
+                    markers.addLayer( new L.Marker(item.ll) );
+                });
+                
+                yMap.container.addLayer(markers);
             }
 
         };

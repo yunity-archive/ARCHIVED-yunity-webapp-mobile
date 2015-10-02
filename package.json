@@ -17,7 +17,8 @@
   "dependencies": {
     "angular-wamp": "git+https://github.com/voryx/angular-wamp.git",
     "autobahn": "^0.9.6",
-    "leaflet": "^0.7.5"
+    "leaflet": "^0.7.5",
+    "leaflet.markercluster": "^0.4.0"
   },
   "devDependencies": {
     "angular-cookies": "^1.4.7",

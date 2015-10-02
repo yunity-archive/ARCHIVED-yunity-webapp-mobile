@@ -12,7 +12,8 @@ apiModule.provider('$yunityAPI', [function () {
 
     this.$get = $http => {
         return {
-            ApiUrl: '/api',
+            url: '/api',
+            urlSuffix: '',
 
             /*
              * Configuration
@@ -20,26 +21,64 @@ apiModule.provider('$yunityAPI', [function () {
             config(opt) {
 
                 if (opt.url != undefined) {
-                    this.ApiUrl = opt.url;
+                    this.url = opt.url;
+                }
+
+                if(opt.urlSuffix != undefined) {
+                    this.urlSuffix = opt.urlSuffix;
                 }
 
             },
 
+            /*
+             * list Mappable Items by Filter
+             * Param Object => {filter}
+             */
+            listMappable(opt) {
 
-            authenticate(email, password) {
+                this.apiCall({
+                    uri: '/listitems',
+                    method: 'GET',
+                    success: function(ret) {
+                        console.log('listmappables success');
+                        if(opt.success != undefined) {
+                            opt.success(ret);
+                        }
+                    },
+                    error: function(ret) {
+                        console.log('listmappables error');
+                        if(opt.error != undefined) {
+                            opt.error(ret);
+                        }
+                    }
+                });
+
+            },
+
+            /*
+             * Auth API call
+             * Param object => {email,password,[success],[error]}
+             */
+            authenticate(opt) {
 
                 this.apiCall({
                     uri: '/login/',
                     method: 'POST',
                     data: {
-                        email: email,
-                        password: password
+                        email: opt.email,
+                        password: opt.password
                     },
                     success: function (ret) {
-                        console.log('success');
+                        console.log('auth success');
+                        if(opt.success != undefined) {
+                            opt.success(ret);
+                        }
                     },
                     error: function (ret) {
-                        console.log('error');
+                        console.log('auth error');
+                        if(opt.error != undefined) {
+                            opt.error(ret);
+                        }
                     }
                 });
 
@@ -63,12 +102,12 @@ apiModule.provider('$yunityAPI', [function () {
                 }
 
                 /*
-                 * BASE API URL
+                 * make this accessable
                  */
-                var ApiUrl = this.ApiUrl;
+                let api = this;
 
                 if (opt.uri != undefined) {
-                    ApiUrl += opt.uri;
+                    api.url += opt.uri;
                 }
 
                 if (opt.data == undefined) {
@@ -76,16 +115,16 @@ apiModule.provider('$yunityAPI', [function () {
                 }
 
                 /*
-                 * RUN ANgulars HTTP CAll
+                 * RUN Angulars HTTP Call
                  */
                 $http({
                     method: opt.method,
-                    url: ApiUrl,
+                    url: api.url + api.urlSuffix,
                     data: opt.data
                 }).then(function successCallback(response) {
 
                     if (opt.success != undefined) {
-                        opt.success(response);
+                        opt.success(response.data);
                     }
 
                 }, function errorCallback(response) {
