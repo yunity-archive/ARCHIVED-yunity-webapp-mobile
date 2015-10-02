@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "sync assets"
+cp -r ./assets ../yunity-webapp/www/
+cp -r ./assets ../yunity-webapp-mobile/
+
