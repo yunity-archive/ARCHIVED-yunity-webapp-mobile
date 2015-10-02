@@ -1,5 +1,6 @@
 import L from 'leaflet';
-L.Icon.Default.imagePath = '/images/leaflet';
+
+L.Icon.Default.imagePath = '/assets/img/marker';
 
 const mapModule = angular.module('yunityMap', []);
 
