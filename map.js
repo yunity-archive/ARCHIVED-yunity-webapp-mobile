@@ -82,6 +82,7 @@ mapModule.provider('$yunityMap', [function () {
 
             /*
              * draw marker on map and cluster it together
+             * Param List of Items [{name,ll}]
              */
             renderMarkerCluster(items) {
                 let yMap = this;
@@ -93,7 +94,7 @@ mapModule.provider('$yunityMap', [function () {
                 items.forEach(item => {
                     markers.addLayer( new L.Marker(item.ll) );
                 });
-                
+
                 yMap.container.addLayer(markers);
             }
 
