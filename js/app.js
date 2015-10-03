@@ -7,7 +7,7 @@ import yunityWall from '../components/wall/wall.js';
 /*
  * INIT APP
  */
-var app = angular.module('YunityMobile', [
+var app = angular.module('yunity.mobile', [
     'ngRoute',
     'mobile-angular-ui',
     // drag features here
