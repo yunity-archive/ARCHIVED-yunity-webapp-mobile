@@ -1,6 +1,8 @@
 import yunityAPI from 'yunity-webapp-common/api';
 import yunityChat from 'yunity-webapp-common/chat';
 import yunityMap from 'yunity-webapp-common/map';
+import yunityWall from '../components/wall/wall.js';
+
 
 /*
  * INIT APP
@@ -13,7 +15,8 @@ var app = angular.module('YunityMobile', [
 
     yunityAPI,
     yunityChat,
-    yunityMap
+    yunityMap,
+    yunityWall,
 ]);
 
 
@@ -45,7 +48,9 @@ app.run(['$transform', '$rootScope', '$yunityAPI', function ($transform, $rootSc
      */
     $yunityAPI.config({
         url: '/testapi',
-        urlSuffix: '.json'
+        urlSuffix: '.json',
+        requestStart: function() { console.log('start'); },
+        requestComplete: function() { console.log('complete'); },
     });
 
     window.$transform = $transform;
@@ -55,7 +60,10 @@ app.run(['$transform', '$rootScope', '$yunityAPI', function ($transform, $rootSc
  * ROUTUNG
  */
 app.config(function ($routeProvider) {
-    $routeProvider.when('/', {templateUrl: 'home.html', reloadOnSearch: false});
+    $routeProvider.when('/', {
+        template: '<wall-page />',
+        reloadOnSearch: false
+    });
     $routeProvider.when('/login', {
         templateUrl: 'login.html',
         reloadOnSearch: false,
@@ -111,7 +119,7 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', '$yunity
     $scope.sidebarLeft = 'menu';
 
     $scope.session = {
-        loggedIn: false
+        loggedIn: true
     };
 
     /*
