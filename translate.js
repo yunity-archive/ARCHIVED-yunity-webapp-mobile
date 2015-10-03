@@ -3,7 +3,7 @@ const translateModule = angular.module('yunityTranslate', ['pascalprecht.transla
 translateModule.config(function ($translateProvider) {
 
   $translateProvider.useStaticFilesLoader({
-    prefix: 'lang-',
+    prefix: '/assets/lang/lang-',
     suffix: '.json'
   });
 
