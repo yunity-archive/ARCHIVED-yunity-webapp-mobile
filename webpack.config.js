@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'js/app.js'),
+  entry: path.resolve(__dirname, '_entry.js'),
   output: {
     path: path.resolve(__dirname, 'build/'),
     filename: 'app.js'

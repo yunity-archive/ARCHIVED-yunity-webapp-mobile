@@ -1,5 +1,5 @@
 
-angular.module('YunityWall', []).directive('wallPage', function() {
+angular.module('yunity.mobile').directive('wallPage', function() {
     return {
         scope: {},
         restrict: 'E',

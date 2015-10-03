@@ -1,7 +1,6 @@
 import yunityAPI from 'yunity-webapp-common/api';
 import yunityChat from 'yunity-webapp-common/chat';
 import yunityMap from 'yunity-webapp-common/map';
-import yunityWall from '../components/wall/wall.js';
 
 
 /*
@@ -15,9 +14,9 @@ var app = angular.module('yunity.mobile', [
 
     yunityAPI,
     yunityChat,
-    yunityMap,
-    yunityWall,
+    yunityMap
 ]);
+
 
 
 /*
@@ -210,5 +209,3 @@ app.controller('YunityMap', ['$rootScope', '$scope', 'yMapService', function ($r
    // yMapService.addMarker();
 
 }]);
-
-
