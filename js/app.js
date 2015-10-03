@@ -41,12 +41,12 @@ app.directive('showErrors', function () {
 /*
  * INIT
  */
-app.run(['$transform', '$rootScope', '$yunityAPI', function ($transform, $rootScope, $yunityAPI) {
+app.run(['$transform', '$rootScope', 'yAPI', function ($transform, $rootScope, yAPI) {
 
     /*
      * API Configuration
      */
-    $yunityAPI.config({
+    yAPI.config({
         url: '/testapi',
         urlSuffix: '.json',
         requestStart: function() { console.log('start'); },
@@ -87,7 +87,7 @@ app.config(function ($routeProvider) {
 /*
  * MAIN CONTROLLER
  */
-app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', '$yunityMap', function ($rootScope, $scope, $yunityAPI, $yunityMap) {
+app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', function ($rootScope, $scope, yAPI, yMapService) {
 
     /*
      * handle categores
@@ -135,7 +135,7 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', '$yunity
 
     $scope.login = function () {
 
-        $yunityAPI.authenticate({
+        yAPI.authenticate({
             email: $scope.email,
             password: $scope.password,
             success: function(){
@@ -150,13 +150,13 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', '$yunity
 
     $scope.filter = function() {
 
-        $yunityAPI.listMappable({
+        yAPI.listMappable({
             filter:{},
             success: function(ret){
                 console.log('show items on status > ' + ret.data.items.length);
 
                 if(ret.data.items != undefined && ret.data.items.length > 0) {
-                    $yunityMap.renderMarkerCluster(ret.data.items);
+                    yMapService.renderMarkerCluster(ret.data.items);
                 }
                 else {
                     alert('no items found');
@@ -177,7 +177,7 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', '$yunity
 /*
  * LOGIN CONTROLLER
  */
-app.controller('YunityLogin', ['$rootScope', '$scope', '$yunityAPI', function ($rootScope, $scope, $yunityAPI) {
+app.controller('YunityLogin', ['$rootScope', '$scope', 'yAPI', function ($rootScope, $scope, yAPI) {
 
 
 
@@ -205,9 +205,9 @@ app.controller('YunityChat', ['$rootScope', '$scope', function ($rootScope, $sco
 /*
  * MAP CONTROLLER
  */
-app.controller('YunityMap', ['$rootScope', '$scope', '$yunityMap', function ($rootScope, $scope, $yunityMap) {
+app.controller('YunityMap', ['$rootScope', '$scope', 'yMapService', function ($rootScope, $scope, yMapService) {
 
-   // $yunityMap.addMarker();
+   // yMapService.addMarker();
 
 }]);
 
