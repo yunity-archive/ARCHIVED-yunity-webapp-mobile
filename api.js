@@ -165,13 +165,14 @@ apiModule.factory('$yunityAPI', ['$http', function ($http) {
                  * make this accessable
                  */
                 let api = this;
+                let urlBase = api.url;
 
                 /*
                  * If opt is a string, use default values
                  */
                 if (typeof(opt) === 'string') {
                     opt = {
-                        url: opt,
+                        uri: opt,
                         method: 'GET'
                     };
                 }
@@ -187,7 +188,7 @@ apiModule.factory('$yunityAPI', ['$http', function ($http) {
                 }
 
                 if (opt.uri != undefined) {
-                    api.url += opt.uri;
+                    urlBase += opt.uri;
                 }
 
                 if (opt.data == undefined) {
@@ -201,7 +202,7 @@ apiModule.factory('$yunityAPI', ['$http', function ($http) {
                  */
                 return $http({
                     method: opt.method,
-                    url: api.url + api.urlSuffix,
+                    url: urlBase + api.urlSuffix,
                     data: opt.data
                 }).then(function (data) {
                     api.requestComplete();
