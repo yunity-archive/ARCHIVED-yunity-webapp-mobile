@@ -8,7 +8,6 @@ import yunityMap from 'yunity-webapp-common/map';
 var app = angular.module('YunityMobile', [
     'ngRoute',
     'mobile-angular-ui',
-
     // drag features here
     'mobile-angular-ui.gestures',
 
@@ -45,7 +44,8 @@ app.run(['$transform', '$rootScope', '$yunityAPI', function ($transform, $rootSc
      * API Configuration
      */
     $yunityAPI.config({
-        url: '/api'
+        url: '/testapi',
+        urlSuffix: '.json'
     });
 
     window.$transform = $transform;
@@ -79,7 +79,40 @@ app.config(function ($routeProvider) {
 /*
  * MAIN CONTROLLER
  */
-app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function ($rootScope, $scope, $yunityAPI) {
+app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', '$yunityMap', function ($rootScope, $scope, $yunityAPI, $yunityMap) {
+
+    /*
+     * handle categores
+     */
+    $scope.activeCategory = null;
+    $scope.categories = [
+        {
+            name: 'Booksharing',
+            icon:'book'
+        },
+        {
+            name: 'Carsharing',
+            icon: 'car'
+        },
+        {
+            name: 'Couchsurfing',
+            icon: 'bed'
+        },
+        {
+            name: 'Foodsharing',
+            icon: 'apple'
+        }
+    ];
+
+    $scope.showSubCategories = function(cat) {
+        $scope.activeCategory = cat;
+    };
+
+    $scope.sidebarLeft = 'menu';
+
+    $scope.session = {
+        loggedIn: false
+    };
 
     /*
      * LOADING SPINNER
@@ -92,6 +125,45 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function
         $rootScope.loading = false;
     });
 
+    $scope.login = function () {
+
+        $yunityAPI.authenticate({
+            email: $scope.email,
+            password: $scope.password,
+            success: function(){
+                $scope.session.loggedIn = true;
+            },
+            error: function() {
+                $scope.session.loggedIn = true;
+            }
+        });
+
+    };
+
+    $scope.filter = function() {
+
+        $yunityAPI.listMappable({
+            filter:{},
+            success: function(ret){
+                console.log('show items on status > ' + ret.data.items.length);
+
+                if(ret.data.items != undefined && ret.data.items.length > 0) {
+                    $yunityMap.renderMarkerCluster(ret.data.items);
+                }
+                else {
+                    alert('no items found');
+                }
+
+            },
+            error: function(ret) {
+                console.log(ret);
+            }
+        });
+
+    };
+
+
+
 }]);
 
 /*
@@ -100,10 +172,7 @@ app.controller('MainController', ['$rootScope', '$scope', '$yunityAPI', function
 app.controller('YunityLogin', ['$rootScope', '$scope', '$yunityAPI', function ($rootScope, $scope, $yunityAPI) {
 
 
-    $scope.login = function () {
 
-        $yunityAPI.authenticate($scope.email, $scope.password);
-    };
 
 }]);
 
