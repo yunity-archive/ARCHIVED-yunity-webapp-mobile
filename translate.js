@@ -11,14 +11,18 @@ translateModule.config(function ($translateProvider) {
   $translateProvider.useSanitizeValueStrategy('sanitize'); // http://angular-translate.github.io/docs/#/guide/19_security
 });
 
-translateModule.controller('LanguageCtrl', function ($scope, $translate) {
 
-  $scope.changeLang = function (key) {
-    $translate.use(key).then(function (key) {
-      console.log("Switched language to " + key + " .");
-    }, function (key) {
-      console.log("Something went wrong!");
-    });
+
+translateModule.directive('languageLinks', function () {
+return {
+        restrict: 'A',
+        templateUrl: 'assets/templates/languageLinks.html',
+        controller: function($scope, $translate)
+        {
+                        $scope.changeLang = function (key) {
+                                $translate.use(key);
+                }
+        }
   };
 });
 
