@@ -1,4 +1,5 @@
 
 import './js/app.js';
 
-import yunityWall from './components/wall/wall.js';
+import './components/map/map.js';
+import './components/wall/wall.js';
