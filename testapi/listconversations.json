@@ -1,0 +1,12 @@
+{
+  "status":1,
+  "data": {
+    "conversations": [
+      {"id":1,"name": "Matthias", "online": true},
+      {"id":1,"name": "Raphael", "online": true},
+      {"id":1,"name": "Jamos", "online": true},
+      {"id":1,"name": "Michael", "online": true},
+      {"id":1,"name": "Lisa", "online": false}
+    ]
+  }
+}
