@@ -14,6 +14,7 @@ socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
     let sessionId = $cookies.get(SESSION_COOKIE_NAME);
 
     if (!sessionId) {
+        console.log('no session cookie found, temporarily using pretend one');
         sessionId = 'mypretendsessionid';
     }
 
