@@ -74,6 +74,11 @@ app.config(function ($routeProvider) {
         reloadOnSearch: false
     });
 
+    $routeProvider.when('/chat', {
+        templateUrl: 'chat.html',
+        reloadOnSearch: false
+    });
+
     $routeProvider.when('/about', {templateUrl: 'about.html', reloadOnSearch: false});
     $routeProvider.when('/map', {
         templateUrl: 'map.html',
