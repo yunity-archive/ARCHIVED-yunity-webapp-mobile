@@ -66,7 +66,7 @@ apiModule.run(function ($http, $cookies) {
     $http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
 });
 
-apiModule.factory('$yunityAPI', ['$http', function ($http) {
+apiModule.factory('yAPI', ['$http', function ($http) {
 
         return {
             url: '/api',
@@ -212,12 +212,12 @@ apiModule.factory('$yunityAPI', ['$http', function ($http) {
         };
 }]);
 
-apiModule.factory('MapItemService', ['$q', '$yunityAPI', function($q, $yunityAPI) {
+apiModule.factory('MapItemService', ['$q', 'yAPI', function($q, yAPI) {
     return {
         getMapItemsAndUsers: function(opts) {
             return $q.all([
-                $yunityAPI.apiCall('/items'),
-                $yunityAPI.apiCall('/users'),
+                yAPI.apiCall('/items'),
+                yAPI.apiCall('/users'),
             ], function(items, users) {
                 return {
                     items: items,
@@ -226,7 +226,7 @@ apiModule.factory('MapItemService', ['$q', '$yunityAPI', function($q, $yunityAPI
             })
         },
         getMapItems: function(opts) {
-            return $yunityAPI.apiCall('/items');
+            return yAPI.apiCall('/items');
         }
     };
 }]);
