@@ -25,7 +25,7 @@ mapModule.factory('yMapService', [function () {
 
         },
 
-        init(element) {
+        init(element, latLngStart) {
 
             /*
              * make everything anywhere accessable workaround !? maybe good..
@@ -38,10 +38,11 @@ mapModule.factory('yMapService', [function () {
             if (!yMap.initiated) {
 
                 console.log('init map');
-                yMap.latLng = L.latLng(51.505, -0.09);
                 yMap.zoom = 13;
-
+                yMap.latLng = latLngStart;
             }
+
+            //L.map(element).setView(yMap.latLng, yMap.zoom);
 
             /*
              * Add Container and define Tile Layer Service
@@ -70,12 +71,12 @@ mapModule.factory('yMapService', [function () {
 
         },
 
-        addMarker() {
+        addMarker(latLng, label, type) {
 
             let yMap = this;
 
-            L.marker([51.5, -0.09]).addTo(yMap.container)
-                .bindPopup('I\'m a Marker, yeah!')
+            L.marker(latLng).addTo(yMap.container)
+                .bindPopup(label)
                 .openPopup();
         },
 
@@ -106,9 +107,14 @@ mapModule.directive('yMap', ['yMapService', function (yMapService) {
     return {
         restrict: 'A',
         link: function ($scope, $element, $attr) {
-
-            yMapService.init($element[0]);
-            yMapService.addMarker();
+            navigator.geolocation.getCurrentPosition( position => {
+                    let latLngStart = [position.coords.latitude, position.coords.longitude];
+                    yMapService.init($element[0], latLngStart);
+                    yMapService.addMarker(latLngStart, "You are here!", null );
+                }, positionError => {
+                    yMapService.init($element[0], [51.505, -0.09]);
+                    yMapService.addMarker([51.5, -0.09], "You are not here!", null );
+                });
 
         }
     };
