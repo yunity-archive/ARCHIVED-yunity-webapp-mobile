@@ -107,6 +107,11 @@ mapModule.directive('yMap', ['yMapService', function (yMapService) {
     return {
         restrict: 'A',
         link: function ($scope, $element, $attr) {
+            var options = { // https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions
+                enableHighAccuracy: true, // use e.g. GPS on smartphone
+                timeout: 0, // in ms
+                maximumAge: 0 
+            };
             navigator.geolocation.getCurrentPosition( position => {
                     let latLngStart = [position.coords.latitude, position.coords.longitude];
                     yMapService.init($element[0], latLngStart);
