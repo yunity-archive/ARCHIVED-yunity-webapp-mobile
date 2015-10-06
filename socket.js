@@ -19,6 +19,7 @@ socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
     }
 
     const socket = socketIOClient('http://' + location.host, {
+        path: '/socket',
         transports: ['websocket']
     });
 
