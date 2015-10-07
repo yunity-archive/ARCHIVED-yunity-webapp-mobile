@@ -63,7 +63,7 @@ apiModule.config(($httpProvider, PendingRequestsProvider) => {
 })
 
 apiModule.run(function ($http, $cookies) {
-    $http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
+    //$http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
 });
 
 apiModule.factory('yAPI', ['$http', function ($http) {
@@ -74,6 +74,11 @@ apiModule.factory('yAPI', ['$http', function ($http) {
             requestStart: function() {},
             requestComplete: function() {},
             requestFailed: function () {},
+            users: [],
+            session: {
+                loggedin: false,
+                user:{}
+            },
 
             /*
              * Configuration
@@ -103,6 +108,15 @@ apiModule.factory('yAPI', ['$http', function ($http) {
             },
 
             /*
+             * To do: Method checks server side is the user still logged in
+             */
+            checkLogin: function() {
+
+
+
+            },
+
+            /*
              * list Mappable Items by Filter
              * Param Object => {filter}
              */
@@ -124,15 +138,17 @@ apiModule.factory('yAPI', ['$http', function ($http) {
                 );
             },
 
-            /*
+            /**
              * Auth API call
-             * Param object => {email,password,[success],[error]}
+             * @param object => {email,password,[success],[error]}
              */
             authenticate(opt) {
 
+                let api = this;
+
                 return this.apiCall({
-                    uri: '/login',
-                    method: 'GET',
+                    uri: '/auth/login',
+                    method: 'POST',
                     data: {
                         email: opt.email,
                         password: opt.password
@@ -140,6 +156,12 @@ apiModule.factory('yAPI', ['$http', function ($http) {
                 }).then(
                     function (ret) {
                         console.log('auth success');
+
+                        /*
+                         * maker USER Data accessable after login
+                         */
+                        api.user = ret.data.user;
+
                         if(opt.success != undefined) {
                             opt.success(ret);
                         }
@@ -160,6 +182,11 @@ apiModule.factory('yAPI', ['$http', function ($http) {
              *
              */
             apiCall(opt) {
+
+
+                console.log($http.defaults.headers.common); //['X-CSRFToken'] = $cookies.get('csrftoken');
+
+
 
                 /*
                  * make this accessable
@@ -206,6 +233,10 @@ apiModule.factory('yAPI', ['$http', function ($http) {
                     data: opt.data
                 }).then(function (data) {
                     api.requestComplete();
+
+                    console.log(data);
+                    //$http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
+
                     return data;
                 });
             }
