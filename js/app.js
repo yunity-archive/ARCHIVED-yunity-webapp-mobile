@@ -80,10 +80,10 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when('/about', {templateUrl: 'about.html', reloadOnSearch: false});
+
     $routeProvider.when('/map', {
-        templateUrl: 'map.html',
+        template: '<map-page />',
         reloadOnSearch: false,
-        controller: 'YunityMap'
     });
 
 });
@@ -209,11 +209,3 @@ app.controller('YunityChat', ['$rootScope', '$scope', function ($rootScope, $sco
 
 }]);
 
-/*
- * MAP CONTROLLER
- */
-app.controller('YunityMap', ['$rootScope', '$scope', 'yMapService', function ($rootScope, $scope, yMapService) {
-
-   // yMapService.addMarker();
-
-}]);

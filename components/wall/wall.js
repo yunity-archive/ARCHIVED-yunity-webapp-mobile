@@ -18,5 +18,3 @@ angular.module('yunity.mobile').directive('wallPage', function() {
         // }
     }
 });
-
-export default 'YunityWall';
