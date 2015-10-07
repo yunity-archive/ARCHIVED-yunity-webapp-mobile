@@ -1,14 +1,25 @@
 {
-  "name":"Peter",
-  "messages":[
+  "messages": [
     {
-      "text":"text1"
+      "sender": 82,
+      "content": "Hi Peter, how are you?",
+      "created_at": "2007-12-24T18:21:00.003",
+      "type": "TEXT",
+      "id": 124624
     },
     {
-      "text":"text2"
+      "sender": 82,
+      "content": "blubb",
+      "created_at": "2007-12-24T18:21:00.003",
+      "type": "TEXT",
+      "id": 124624
     },
     {
-      "text":"text2"
+      "sender": 82,
+      "content": "bla bla?",
+      "created_at": "2007-12-24T18:21:00.003",
+      "type": "TEXT",
+      "id": 124624
     }
   ]
 }

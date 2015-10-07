@@ -1,0 +1,23 @@
+<div class="list-group text-center">
+    <div class="list-group-item">
+        <h3>{{chat.name}} <small>{{chat.last_activity}}</small></h3>
+        <button class="btn btn-top">show older messages</button>
+        <ul class="chat-messages">
+            <li ng-repeat="msg in chat.messages">
+                <a class="avatar" href="#/profile/{{ msg.sender }}">
+                    <img src="{{ avatar(msg.sender) }}" />
+                </a>
+                <span class="msg-wrapper">
+                    <h5><a href="#/profile/{{ msg.sender }}">{{ getUser(msg.sender).name }}</a></h5>
+                    <span class="content">{{ msg.content }}</span>
+                    <span class="small">{{ msg.created_at }}</span>
+                </span>
+
+            </li>
+        </ul>
+        <div class="chat-toolbar">
+            <textarea ng-model="inputtext"></textarea><button ng-click="sendmessage();" class="btn btn-primary btn-chat-send">send</button>
+        </div>
+    </div>
+</div>
+
