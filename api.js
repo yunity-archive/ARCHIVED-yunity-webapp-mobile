@@ -63,10 +63,15 @@ apiModule.config(($httpProvider, PendingRequestsProvider) => {
 })
 
 apiModule.run(function ($http, $cookies) {
-    //$http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
+    var token = $cookies.get('csrftoken');
+    if(token != undefined) {
+        $http.defaults.headers.common['X-CSRFToken'] = token;
+    }
 });
 
-apiModule.factory('yAPI', ['$http', function ($http) {
+apiModule.factory('yAPI', ['$http','$cookies','$rootScope', function ($http, $cookies, $rootScope) {
+
+
 
         return {
             url: '/api',
@@ -105,6 +110,21 @@ apiModule.factory('yAPI', ['$http', function ($http) {
                     this.requestFailed = opt.requestFailed;
                 }
 
+                this.checkLogin();
+
+            },
+
+            getSession() {
+                return this.session;
+            },
+
+            setSession(user) {
+
+                this.session = {
+                    loggedin:true,
+                    user:user
+                };
+                $rootScope.session = this.session;
             },
 
             /*
@@ -112,7 +132,30 @@ apiModule.factory('yAPI', ['$http', function ($http) {
              */
             checkLogin: function() {
 
+                let api = this;
 
+                api.apiCall({
+                    uri: '/auth/login',
+                    method: 'GET'
+                }).then(function(ret){
+
+                    if(ret.data.user.name != undefined) {
+                        console.log('check login success user is logged in');
+
+                        /*
+                         * User is logged in set vars
+                         */
+                        api.setSession(ret.data.user);
+
+
+                    } else {
+                        console.log('user is not logged in');
+                    }
+
+
+                },function(){
+                    console.log('check login failed');
+                });
 
             },
 
@@ -144,6 +187,8 @@ apiModule.factory('yAPI', ['$http', function ($http) {
              */
             authenticate(opt) {
 
+                console.log(opt);
+
                 let api = this;
 
                 return this.apiCall({
@@ -160,7 +205,10 @@ apiModule.factory('yAPI', ['$http', function ($http) {
                         /*
                          * maker USER Data accessable after login
                          */
-                        api.user = ret.data.user;
+                        /*
+                         * User is logged in set vars
+                         */
+                        api.setSession(ret.data.user);
 
                         if(opt.success != undefined) {
                             opt.success(ret);
@@ -184,9 +232,7 @@ apiModule.factory('yAPI', ['$http', function ($http) {
             apiCall(opt) {
 
 
-                console.log($http.defaults.headers.common); //['X-CSRFToken'] = $cookies.get('csrftoken');
-
-
+                //console.log($http.defaults.headers.common); //['X-CSRFToken'] = $cookies.get('csrftoken');
 
                 /*
                  * make this accessable
@@ -232,6 +278,12 @@ apiModule.factory('yAPI', ['$http', function ($http) {
                     url: urlBase + api.urlSuffix,
                     data: opt.data
                 }).then(function (data) {
+
+                    if(data.config.headers['X-CSRFToken'] != undefined) {
+                        console.log('set token');
+                        $http.defaults.headers.common['X-CSRFToken'] = data.config.headers['X-CSRFToken'];
+                    }
+
                     api.requestComplete();
 
                     console.log(data);

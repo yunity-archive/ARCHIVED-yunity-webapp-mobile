@@ -17,15 +17,23 @@ mapModule.factory('yMapService', [function () {
         zoom: null,
         element:null,
         initiated: false,
+        defaultLatLng: [51.505, -0.09],
+        defaultZoom: 13,
 
         /*
          * Configuration
          */
         config(opt) {
+            if(opt.defaultLatLng != undefined) {
+                this.defaultLatLng = opt.defaultLatLng;
+            }
 
+            if(opt.defaultZoom != undefined) {
+                this.defaultZoom = opt.defaultZoom;
+            }
         },
 
-        init(element, latLngStart) {
+        init(element) {
 
             /*
              * make everything anywhere accessable workaround !? maybe good..
@@ -38,8 +46,8 @@ mapModule.factory('yMapService', [function () {
             if (!yMap.initiated) {
 
                 console.log('init map');
-                yMap.zoom = 13;
-                yMap.latLng = latLngStart;
+                yMap.zoom = yMap.defaultZoom;
+                yMap.latLng = yMap.defaultLatLng;
             }
 
             //L.map(element).setView(yMap.latLng, yMap.zoom);
@@ -53,7 +61,6 @@ mapModule.factory('yMapService', [function () {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(yMap.container);
 
-
             /*
              * Save state of the map when anything has changed
              */
@@ -64,11 +71,34 @@ mapModule.factory('yMapService', [function () {
 
             });
 
+            yMap.container.on('locationfound', function(e) {
+                console.log(e);
+                yMap.addMarker(e.latlng, 'you are here!');
+            });
+
+            yMap.container.locate({
+                setView: true,
+                enableHighAccuracy: true
+            });
+
             /*
              * set initiated true to know that the map is initialized
              */
             yMap.initiated = true;
 
+        },
+
+        /*
+         * set view of the map
+         */
+        setView(LatLng, zoom) {
+
+            let yMap = this;
+
+            if(zoom == undefined) {
+                zoom = yMap.defaultZoom;
+            }
+            yMap.container.setView(LatLng, zoom);
         },
 
         addMarker(latLng, label, type) {
@@ -107,19 +137,8 @@ mapModule.directive('yMap', ['yMapService', function (yMapService) {
     return {
         restrict: 'A',
         link: function ($scope, $element, $attr) {
-            var options = { // https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions
-                enableHighAccuracy: true, // use e.g. GPS on smartphone
-                timeout: 0, // in ms
-                maximumAge: 0 
-            };
-            navigator.geolocation.getCurrentPosition( position => {
-                    let latLngStart = [position.coords.latitude, position.coords.longitude];
-                    yMapService.init($element[0], latLngStart);
-                    yMapService.addMarker(latLngStart, "You are here!", null );
-                }, positionError => {
-                    yMapService.init($element[0], [51.505, -0.09]);
-                    yMapService.addMarker([51.5, -0.09], "You are not here!", null );
-                });
+
+            yMapService.init($element[0]);
 
         }
     };
