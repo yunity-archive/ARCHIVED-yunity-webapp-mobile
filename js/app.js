@@ -2,7 +2,6 @@ import yunityAPI from 'yunity-webapp-common/api';
 import yunityChat from 'yunity-webapp-common/chat';
 import yunityMap from 'yunity-webapp-common/map';
 
-
 /*
  * INIT APP
  */
@@ -46,8 +45,8 @@ app.run(['$transform', '$rootScope', 'yAPI', function ($transform, $rootScope, y
      * API Configuration
      */
     yAPI.config({
-        url: '/testapi',
-        urlSuffix: '.json',
+        url: '/api',
+        urlSuffix: '',
         requestStart: function() { console.log('start'); },
         requestComplete: function() { console.log('complete'); },
     });
@@ -63,15 +62,16 @@ app.config(function ($routeProvider) {
         template: '<wall-page />',
         reloadOnSearch: false
     });
+
+    $routeProvider.when('/signup', {
+        template: '<signup-page />',
+        reloadOnSearch: false
+    });
+
     $routeProvider.when('/login', {
         templateUrl: 'login.html',
         reloadOnSearch: false,
         controller: 'YunityLogin'
-    });
-
-    $routeProvider.when('/signup', {
-        templateUrl: 'signup.html',
-        reloadOnSearch: false
     });
 
     $routeProvider.when('/chat', {
@@ -93,6 +93,7 @@ app.config(function ($routeProvider) {
  */
 app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', function ($rootScope, $scope, yAPI, yMapService) {
 
+
     /*
      * handle categores
      */
@@ -100,7 +101,7 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
     $scope.categories = [
         {
             name: 'Booksharing',
-            icon:'book'
+            icon: 'book'
         },
         {
             name: 'Carsharing',
@@ -123,7 +124,7 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
     $scope.sidebarLeft = 'menu';
 
     $scope.session = {
-        loggedIn: true
+        loggedIn: false
     };
 
     /*
@@ -144,9 +145,11 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
             password: $scope.password,
             success: function(){
                 $scope.session.loggedIn = true;
+                alert('yeah logged in');
             },
             error: function() {
-                $scope.session.loggedIn = true;
+                $scope.session.loggedIn = false;
+                alert('login failed');
             }
         });
 

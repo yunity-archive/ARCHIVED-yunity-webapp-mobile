@@ -15,13 +15,11 @@ module.exports = {
         loaders: ['json-loader']
       },
       {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'js'),
-        loader: 'babel'
-      },
-      {
-        test: /\.jsx?$/,
-        // TODO(ns): need to include the yunity-webapp-common when it is not npm link'd
+        test: /\.js?$/,
+        include: [
+          __dirname,
+          /yunity-webapp-common/
+        ],
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel-loader']
       }
