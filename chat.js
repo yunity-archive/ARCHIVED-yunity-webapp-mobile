@@ -1,26 +1,36 @@
 import yunityAPI from './api';
 import yunitySocket from './socket';
 
-console.log('creating yunityChat');
-
 const chatModule = angular.module('yunityChat', [
     yunityAPI,
     yunitySocket
 ]);
 
-chatModule.factory('yChat', ['$q', 'ySocket', 'yAPI', ($q, ySocket, yAPI) => {
+chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySocket, yAPI) => {
 
     let listeners = {}; // chatid -> [array, of listener functions]
 
+     // TODO: should obviously not do this...
+
+    console.log('WIP: authenticating with pretend user foo@foo.com / foo');
+
+    yAPI.authenticate({
+        email: 'foo@foo.com',
+        password: 'foo',
+        success: val => {
+            console.log('logged in!', val);
+        }
+    });
+
     ySocket.listen(data => {
 
-        // TODO: we didn't decide the format for the messages
+        let {type, payload} = data;
 
-        if (data.type === 'chat') {
-            let chatId = data.id;
-            let fns = listeners[chatId];
+        if (type === 'chat_message') {
+            let {chat_id, message} = payload;
+            let fns = listeners[chat_id];
             if (fns) {
-                fns.forEach(fn => fn(data.msgs));
+                fns.forEach(fn => fn([message]));
             }
         }
 
@@ -30,14 +40,23 @@ chatModule.factory('yChat', ['$q', 'ySocket', 'yAPI', ($q, ySocket, yAPI) => {
 
     function loadInitialMessages(chatId){
 
+        console.log('WIP: generating pretend initial chat messages');
+
         function generateMessages(n) {
             let msgs = [];
             for (let i = 0; i < n; i++) {
+
+                // see example message at
+                //   https://github.com/yunity/yunity-sockets/blob/master/README.md#chat-messages
+
                 msgs.push({
-                    type: "chat",
                     id: i + 1,
-                    body: "this is a nice message"
+                    sender: 82,
+                    created_at: new Date().toString(),
+                    type: "TEXT",
+                    content: "Hi John, how are you? " + (i)
                 });
+
             }
             return msgs;
         }
@@ -48,7 +67,7 @@ chatModule.factory('yChat', ['$q', 'ySocket', 'yAPI', ($q, ySocket, yAPI) => {
 
         setTimeout(() => {
             deferred.resolve(generateMessages(10));
-        }, 2000);
+        }, 500);
 
         return deferred.promise;
     }

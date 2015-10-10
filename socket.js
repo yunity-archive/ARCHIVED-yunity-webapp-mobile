@@ -1,4 +1,5 @@
 import socketIOClient from 'socket.io-client';
+
 import ngCookies from 'angular-cookies';
 
 const SESSION_COOKIE_NAME = 'sessionid';
@@ -7,26 +8,39 @@ const socketModule = angular.module('yunitySocket', [
     ngCookies
 ]);
 
+socketModule.factory('ySocketHttpInterceptor', ['$cookies', 'ySocket', ($cookies, ySocket) => {
+
+    return {
+        response: response => {
+            ySocket.setSessionId($cookies.get(SESSION_COOKIE_NAME));
+            return response;
+        }
+    };
+
+}]);
+
+socketModule.config(['$httpProvider', ($httpProvider) => {
+    $httpProvider.interceptors.push('ySocketHttpInterceptor');
+}])
+
 socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
 
     let listeners = [];
 
-    let sessionId = $cookies.get(SESSION_COOKIE_NAME);
-
-    if (!sessionId) {
-        console.log('no session cookie found, temporarily using pretend one');
-        sessionId = 'mypretendsessionid';
-    }
+    let currentSessionId = $cookies.get(SESSION_COOKIE_NAME);
 
     const socket = socketIOClient('http://' + location.host, {
         path: '/socket',
-        transports: ['websocket']
+        //transports: ['websocket']
     });
 
     let deferreds = [];
 
     socket.on('connect', () => {
-        socket.emit('authenticate', { sessionId: sessionId });
+        if (currentSessionId) {
+            console.log('emitting session id', currentSessionId);
+            socket.emit('authenticate', { sessionId: currentSessionId });
+        }
         deferreds.forEach(deferred => {
             deferred.resolve();
         });
@@ -48,6 +62,20 @@ socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
                 if (idx) listeners.splice(idx, 1);
             };
 
+        },
+
+        setSessionId(sessionId) {
+            if (sessionId !== currentSessionId) {
+                currentSessionId = sessionId;
+                if (socket.connected) {
+                    console.log('emitting session id', currentSessionId);
+                    socket.emit('authenticate', { sessionId: currentSessionId });
+                }
+            }
+        },
+
+        clearSession() {
+            console.log('would clear session');
         },
 
         ensureConnected() {
