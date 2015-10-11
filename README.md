@@ -4,7 +4,7 @@ Common functionality between yunity-webapp and yunity-webapp-mobile
 
 This is a collection of independent ES6 modules. You can use them in an angular app module like so:
 
-```
+```es6
 import yunityAPI from 'yunity-webapp-common/api';
 
 const fooModule = angular.module('foo', [
@@ -16,7 +16,7 @@ This works because each module exports a string with the name of the angular mod
 
 ## api
 
-```
+```es6
 import yunityAPI from 'yunity-webapp-common/api';
 
 const fooModule = angular.module('foo', [
