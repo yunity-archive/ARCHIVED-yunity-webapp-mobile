@@ -8,7 +8,8 @@ const chatModule = angular.module('yunityChat', [
 
 chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySocket, yAPI) => {
 
-    let listeners = {}; // chatid -> [array, of listener functions]
+    let chatListeners = {}; // chatid -> [array, of listener functions]
+    let allListeners = [];  // [array, of, listener, functions, for, all, chats]
 
      // TODO: should obviously not do this...
 
@@ -28,10 +29,11 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
 
         if (type === 'chat_message') {
             let {chat_id, message} = payload;
-            let fns = listeners[chat_id];
+            let fns = chatListeners[chat_id];
             if (fns) {
                 fns.forEach(fn => fn([message]));
             }
+            allListeners.forEach(fn => fn([message]));
         }
 
     });
@@ -74,6 +76,9 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
 
     return {
 
+        // TODO: add options, include how many historic messages to get
+        // default as none?
+
         listen(chatId, fn) {
 
             let loadedInitialMessages = false;
@@ -89,8 +94,8 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
                 }
             }
 
-            if (!listeners[chatId]) listeners[chatId] = [];
-            listeners[chatId].push(listener);
+            if (!chatListeners[chatId]) chatListeners[chatId] = [];
+            chatListeners[chatId].push(listener);
 
 
             ySocket.ensureConnected().then(() => {
@@ -118,14 +123,27 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
             });
 
             return () => { // unlisten fn
-                let fns = listeners[chatId];
+                let fns = chatListeners[chatId];
                 if (!fns) return;
                 let idx = fns.indexOf(listener);
                 if (idx) {
                     fns.splice(idx, 1);
                     if (fns.length === 0) {
-                        delete listeners[chatId];
+                        delete chatListeners[chatId];
                     }
+                }
+            };
+
+        },
+
+        listenAll(fn) {
+
+            allListeners.push(fn);
+
+            return () => { // unlisten fn
+                let idx = allListeners.indexOf(listener);
+                if (idx) {
+                    allListeners.splice(idx, 1);
                 }
             };
 
