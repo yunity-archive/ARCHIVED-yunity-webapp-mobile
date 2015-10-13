@@ -5,7 +5,7 @@
         <ul class="chat-messages">
             <li ng-repeat="msg in chat.messages">
                 <a class="avatar" href="#/profile/{{ msg.sender }}">
-                    <img src="{{ avatar(msg.sender) }}" />
+                    <!-- <img src="{{ avatar(msg.sender) }}" /> -->
                 </a>
                 <span class="msg-wrapper">
                     <h5><a href="#/profile/{{ msg.sender }}">{{ getUser(msg.sender).name }}</a></h5>

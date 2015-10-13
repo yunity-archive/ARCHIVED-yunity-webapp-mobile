@@ -7,13 +7,10 @@ angular.module('yunity.mobile').directive('yChatList', function() {
         templateUrl: 'components/chat/chat-list.html',
         controller: function ($scope, yAPI) {
 
-            $scope.chats = [
-                {
-                    id: 1,
-                    name: "Peter",
-                    online: true
-                },
-            ];
+            yAPI.apiCall('/chats').then(ret => {
+                console.log('chatlist', ret);
+                $scope.chats = ret.data.chats;
+            });
 
             /*
              * Initial API Call to gel list of conversations
@@ -32,25 +29,23 @@ angular.module('yunity.mobile').directive('yChatList', function() {
     }
 });
 
-angular.module('yunity.mobile').directive('yChat', function(yChat, $route) {
+angular.module('yunity.mobile').directive('yChat',
+    function(yChat, $route) {
     return {
         scope: {},
         restrict: 'E',
         templateUrl: 'components/chat/chat.html',
         controller: function ($scope, yAPI) {
 
-
-
-            /*
-             * init Conversation List
-             */
-            $scope.chat = {
-                id: 12,
-                name: "Uwe",
-                last_activity: "before 1 minute",
-                messages: []
-            };
-
+            let chatId = $route.current.params.id;
+            console.log(`/chats/${chatId}/messages`);
+            yAPI.apiCall(`/chats/${chatId}/messages`).then((ret) => {
+                console.log("ret", ret);
+                let messages = ret.data.messages;
+                $scope.chat = {
+                    messages: messages,
+                };
+            });
 
             /**
              * send chat TEXT message function
@@ -108,6 +103,62 @@ angular.module('yunity.mobile').directive('yChat', function(yChat, $route) {
                     id: 12,
                     name: "Uwe"
                 };
+            };
+
+        }
+    }
+});
+
+
+
+angular.module('yunity.mobile').directive('yChatNew', function(yChat, $route) {
+    return {
+        scope: {},
+        restrict: 'E',
+        templateUrl: 'components/chat/chat.html',
+        controller: function ($scope, yAPI, $location) {
+
+            let userIds = $route.current.params.userids.split(',').map(uid => parseInt(uid, 10));
+
+            yAPI.getUsers(userIds).then((ret) => {
+                console.log("USERS", ret);
+            });
+
+            let createChat = (participants, message) => {
+                return yAPI.apiCall({
+                    uri: '/chats/',
+                    method: 'POST',
+                    data: {
+                        participants: participants,
+                        message: message,
+                    }
+                });
+            };
+
+            /**
+             * send chat TEXT message function
+             */
+            $scope.sendmessage = function() {
+                if($scope.inputtext !== undefined) {
+                    let message = {
+                        content: $scope.inputtext,
+                        type: "TEXT",
+                    }
+                    let allUserIds = [yAPI.session.user.id].concat(userIds);
+                    console.log(' ALL USER IDS ', allUserIds);
+                    createChat(allUserIds, message).then((ret) => {
+                        let chatId = ret.data.id;
+                        console.log("chat return", ret.data);
+                        $location.path(`/chat/${chatId}`);
+                    });
+                }
+            };
+
+            /**
+             * TO DO: returning correct path to avatar image
+             */
+            $scope.avatar = function(user_id) {
+                return '/img/avatar.png';
             };
 
         }

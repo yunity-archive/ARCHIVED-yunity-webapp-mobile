@@ -87,13 +87,13 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when('/chat/:id', {
-        templateUrl: 'chat.html',
+        template: `<y-chat />`,
         reloadOnSearch: false
     });
 
     $routeProvider.when('/chat/new/:userids', {
         template: function(params){
-            return `<chat-page userids="${params.userids}" />`;
+            return `<y-chat-new userids="${params.userids}" />`;
         },
         reloadOnSearch: false
     });
