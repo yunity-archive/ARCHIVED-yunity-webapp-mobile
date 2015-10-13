@@ -224,6 +224,11 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
                 );
             },
 
+            getUsers(userIds) {
+                let userIdsString = userIds.join(',');
+                return this.apiCall('/user/' + userIdsString);
+            },
+
             /*
              * Call the Api:
              * parameter Object { method, data, succes, error }
