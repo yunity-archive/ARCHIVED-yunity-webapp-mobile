@@ -81,9 +81,9 @@
         <div class="btn-group justified">
             <a href="#/map" class="btn btn-navbar"><i class="fa fa-map-marker fa-navbar"></i> Map</a>
             <a href="#/" class="btn btn-navbar"><i class="fa fa-bars fa-navbar"></i> Wall</a>
-            <a ng-show="session.loggedIn" href ui-toggle="uiSidebarRight" class="btn btn-navbar"><i
+            <a ng-show="session.loggedin" href ui-toggle="uiSidebarRight" class="btn btn-navbar"><i
                     class="fa fa-comment fa-navbar"></i> Chat</a>
-            <a ng-hide="session.loggedIn" href="#/login" class="btn btn-navbar"><i class="fa fa-user fa-navbar"></i>
+            <a ng-hide="session.loggedin" href="#/login" class="btn btn-navbar"><i class="fa fa-user fa-navbar"></i>
                 Login</a>
         </div>
     </div>
@@ -94,6 +94,7 @@
         </div>
         <div class="app-content">
             <ng-view></ng-view>
+
         </div>
     </div>
 

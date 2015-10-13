@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/yunity/yunity-webapp-mobile#readme",
   "dependencies": {
+    "toastr": "^2.1.2",
     "webpack": "^1.12.2",
     "yunity-webapp-common": "github:yunity/yunity-webapp-common"
   },

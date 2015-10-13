@@ -10,13 +10,16 @@ angular.module('yunity.mobile').directive('signupPage', function() {
 
                 yAPI.apiCall({
                     uri: '/user',
+                    method: 'POST',
                     data: {
                         email: $scope.email,
                         password: $scope.password,
-                        displayname: $scope.displayname
+                        display_name: $scope.displayname
                     }
-                }).then(res => {
-                    $scope.state.posts = res.data.data.posts;
+                }).then(function(res){
+
+                        alert('signup successfull :)');
+
                 });
             }
 

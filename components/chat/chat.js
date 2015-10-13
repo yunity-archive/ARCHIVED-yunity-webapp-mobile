@@ -6,36 +6,49 @@ angular.module('yunity.mobile').directive('yChatList', function() {
         //template: '<h2>Hello Universe!</h2>',
         templateUrl: 'components/chat/chat-list.html',
         controller: function ($scope, yAPI) {
-            $scope.conversations = [];
+
+            $scope.chats = [
+                {
+                    id: 1,
+                    name: "Peter",
+                    online: true
+                },
+            ];
 
             /*
              * Initial API Call to gel list of conversations
              */
-            yAPI.apiCall('/chats').then(function(ret){
+            console.log('get all chats');
+            console.log(yAPI.session);
+            if(yAPI.session.loggedin) {
+                console.log('get all chats');
+                yAPI.apiCall('/chats').then(function(ret){
 
-               // console.log(ret);
+                    $scope.chats = ret.data.chats;
+                });
+            }
 
-                $scope.conversations = ret.data.data.conversations;
-            });
         }
     }
 });
 
-angular.module('yunity.mobile').directive('yChat', function() {
+angular.module('yunity.mobile').directive('yChat', function(yChat, $route) {
     return {
         scope: {},
         restrict: 'E',
         templateUrl: 'components/chat/chat.html',
         controller: function ($scope, yAPI) {
 
+
+
             /*
              * init Conversation List
              */
             $scope.chat = {
-                id:12,
-                name:"Uwe",
-                last_activity:"before 1 minute",
-                messages:[]
+                id: 12,
+                name: "Uwe",
+                last_activity: "before 1 minute",
+                messages: []
             };
 
 
@@ -94,17 +107,9 @@ angular.module('yunity.mobile').directive('yChat', function() {
                 return {
                     id: 12,
                     name: "Uwe"
-
                 };
             };
 
-
-            /*
-             * Initial API Call to get list of messages..
-             */
-            yAPI.apiCall('/chats/' + $scope.chat.id + '/messages').then(function(ret){
-                $scope.chat.messages = ret.data.messages;
-            });
         }
     }
 });
