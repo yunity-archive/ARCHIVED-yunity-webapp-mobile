@@ -79,15 +79,12 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when('/profile/:id', {
-
-        template: function(params){
-            return `<profile-page userid="${params.id}" />`;
-        },
+        template: params => `<profile-page userid="${params.id}" />`,
         reloadOnSearch: false
     });
 
     $routeProvider.when('/chat/:id', {
-        template: `<y-chat />`,
+        template: params => `<y-chat chatid="${params.id}"/>`,
         reloadOnSearch: false
     });
 

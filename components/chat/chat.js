@@ -24,20 +24,21 @@ angular.module('yunity.mobile').directive('yChatList', function() {
                     $scope.chats = ret.data.chats;
                 });
             }
-
         }
     }
 });
 
 angular.module('yunity.mobile').directive('yChat',
-    function(yChat, $route) {
+    function(yChat) {
     return {
-        scope: {},
+        scope: {
+            chatid: '@',
+        },
         restrict: 'E',
         templateUrl: 'components/chat/chat.html',
         controller: function ($scope, yAPI) {
 
-            let chatId = $route.current.params.id;
+            let chatId = $scope.chatid;
             console.log(`/chats/${chatId}/messages`);
             yAPI.apiCall(`/chats/${chatId}/messages`).then((ret) => {
                 console.log("ret", ret);
@@ -111,14 +112,16 @@ angular.module('yunity.mobile').directive('yChat',
 
 
 
-angular.module('yunity.mobile').directive('yChatNew', function(yChat, $route) {
+angular.module('yunity.mobile').directive('yChatNew', function(yChat) {
     return {
-        scope: {},
+        scope: {
+            userids: '@userids',
+        },
         restrict: 'E',
         templateUrl: 'components/chat/chat.html',
         controller: function ($scope, yAPI, $location) {
 
-            let userIds = $route.current.params.userids.split(',').map(uid => parseInt(uid, 10));
+            let userIds = $scope.userids.split(',').map(uid => parseInt(uid, 10));
 
             yAPI.getUsers(userIds).then((ret) => {
                 console.log("USERS", ret);

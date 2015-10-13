@@ -4,17 +4,18 @@ angular.module('yunity.mobile').directive('profilePage', function() {
     console.log('profile init');
 
     return {
-        scope: {},
+        scope: {
+            userid: '@'
+        },
         restrict: 'E',
         templateUrl: 'components/profile/profile.html',
         controller: function ($scope, yAPI, yChat, $route, $location) {
-            console.log($route.current.params);
 
             $scope.error = false;
             $scope.error_message = '';
 
             var user = {
-                id: $route.current.params.id,
+                id: $scope.userid,
                 loaded: false
             };
 
@@ -37,18 +38,6 @@ angular.module('yunity.mobile').directive('profilePage', function() {
                 }
 
             };
-        },
-        link: function($scope, element, attr, yAPI){
-            //console.log('link => ' + attr.userid);
-
-            $scope.userid = attr.userid;
-
-            /*
-            yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-                console.log(ret.data);
-            });
-            */
-
         }
     }
 });
