@@ -1,3 +1,4 @@
+//import './js/message.js';
 import yunityAPI from 'yunity-webapp-common/api';
 import yunityChat from 'yunity-webapp-common/chat';
 import yunityMap from 'yunity-webapp-common/map';
@@ -15,8 +16,6 @@ var app = angular.module('yunity.mobile', [
     yunityChat,
     yunityMap
 ]);
-
-
 
 /*
  * FORM VALIDATION DIRECTIVE
@@ -47,8 +46,14 @@ app.run(['$transform', '$rootScope', 'yAPI', function ($transform, $rootScope, y
     yAPI.config({
         url: '/api',
         urlSuffix: '',
-        requestStart: function() { console.log('start'); },
-        requestComplete: function() { console.log('complete'); },
+        requestStart: function() {
+            $rootScope.loading = true;
+            console.log('start');
+        },
+        requestComplete: function() {
+            console.log('complete');
+            $rootScope.loading = false;
+        },
     });
 
     window.$transform = $transform;
@@ -69,13 +74,27 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when('/login', {
-        templateUrl: 'login.html',
-        reloadOnSearch: false,
-        controller: 'YunityLogin'
+        template: '<login-page />',
+        reloadOnSearch: false
     });
 
-    $routeProvider.when('/chat', {
+    $routeProvider.when('/profile/:id', {
+
+        template: function(params){
+            return `<profile-page userid="${params.id}" />`;
+        },
+        reloadOnSearch: false
+    });
+
+    $routeProvider.when('/chat/:id', {
         templateUrl: 'chat.html',
+        reloadOnSearch: false
+    });
+
+    $routeProvider.when('/chat/new/:userids', {
+        template: function(params){
+            return `<chat-page userids="${params.userids}" />`;
+        },
         reloadOnSearch: false
     });
 
@@ -91,8 +110,13 @@ app.config(function ($routeProvider) {
 /*
  * MAIN CONTROLLER
  */
-app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', function ($rootScope, $scope, yAPI, yMapService) {
+app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', 'ySocket', function ($rootScope, $scope, yAPI, yMapService) {
 
+
+   // $scope.session = yAPI.getSession;
+
+   // console.log('session');
+   // console.log($scope.session);
 
     /*
      * handle categores
@@ -123,10 +147,6 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
 
     $scope.sidebarLeft = 'menu';
 
-    $scope.session = {
-        loggedIn: false
-    };
-
     /*
      * LOADING SPINNER
      */
@@ -138,22 +158,7 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
         $rootScope.loading = false;
     });
 
-    $scope.login = function () {
 
-        yAPI.authenticate({
-            email: $scope.email,
-            password: $scope.password,
-            success: function(){
-                $scope.session.loggedIn = true;
-                alert('yeah logged in');
-            },
-            error: function() {
-                $scope.session.loggedIn = false;
-                alert('login failed');
-            }
-        });
-
-    };
 
     $scope.filter = function() {
 
@@ -174,38 +179,9 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
                 console.log(ret);
             }
         });
-
     };
 
 
-
-}]);
-
-/*
- * LOGIN CONTROLLER
- */
-app.controller('YunityLogin', ['$rootScope', '$scope', 'yAPI', function ($rootScope, $scope, yAPI) {
-
-
-
-
-}]);
-
-/*
- * CHAT CONTROLLER
- */
-app.controller('YunityChat', ['$rootScope', '$scope', function ($rootScope, $scope) {
-
-    /*
-     *	Chat
-     */
-    $scope.chatUsers = [
-        {name: 'Matthias', online: true},
-        {name: 'Raphael', online: true},
-        {name: 'Jamos', online: true},
-        {name: 'Michael', online: true},
-        {name: 'Lisa', online: false}
-    ];
 
 }]);
 
