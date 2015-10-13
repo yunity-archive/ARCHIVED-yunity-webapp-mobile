@@ -15,6 +15,7 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
 
     console.log('WIP: authenticating with pretend user foo@foo.com / foo');
 
+    /*
     yAPI.authenticate({
         email: 'foo@foo.com',
         password: 'foo',
@@ -22,6 +23,7 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
             console.log('logged in!', val);
         }
     });
+    */
 
     ySocket.listen(data => {
 
@@ -136,6 +138,46 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
 
         },
 
+        /**
+         * checks if 1 to 1 chat with given user id exists already
+         *
+         * @param userId
+         * @param chats[]
+         *
+         * @return null | object chat
+         */
+        getExistingChat(userId,chats) {
+
+            for(let chat of chats) {
+                if(chat.participants.length == 2) {
+
+                    for(let part of chat.participants) {
+                        if(part == userId) {
+                            return chat;
+                        }
+                    }
+
+                }
+            }
+
+            return null;
+        },
+
+        initChats() {
+            let chat = this;
+
+            console.log('init chats');
+            yAPI.apiCall('/chats').then(function(ret){
+                yAPI.session.chats = ret.data.chats;
+
+                chat.listenAll((msgs) => {
+                    console.log('todo: sync messages');
+                    // TO DO: sync messages with yApi.Session messages...
+                });
+
+            });
+        },
+
         listenAll(fn) {
 
             allListeners.push(fn);
@@ -146,6 +188,12 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
                     allListeners.splice(idx, 1);
                 }
             };
+
+        },
+
+        getAllChats() {
+
+            return yAPI.apiCall('/chats');
 
         }
     };

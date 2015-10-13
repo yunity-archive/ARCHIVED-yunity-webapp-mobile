@@ -69,7 +69,7 @@ apiModule.run(function ($http, $cookies) {
     }
 });
 
-apiModule.factory('yAPI', ['$http','$cookies','$rootScope', function ($http, $cookies, $rootScope) {
+apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $cookies, $rootScope) {
 
 
 
@@ -82,7 +82,8 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope', function ($http, $co
             users: [],
             session: {
                 loggedin: false,
-                user:{}
+                user:{},
+                chats:[]
             },
 
             /*
@@ -221,7 +222,6 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope', function ($http, $co
                         }
                     }
                 );
-
             },
 
             /*

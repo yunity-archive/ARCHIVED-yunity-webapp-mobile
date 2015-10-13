@@ -33,6 +33,13 @@ mapModule.factory('yMapService', [function () {
             }
         },
 
+        /**
+         * initialize map by given HTML Element
+         *
+         * @param element <HTMLElement>
+         */
+
+
         init(element) {
 
             /*
