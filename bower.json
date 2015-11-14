@@ -1,7 +1,7 @@
 {
 	"name":"yunity-webapp-mobile",
 	"dependencies": {
-		"angular":"1.4.6",
+		"angular":"http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js",
 		"router":"http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular-route.min.js",
 		"mobile-angular-ui":"latest",
 		"leaflet":"latest",
