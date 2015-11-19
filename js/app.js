@@ -196,3 +196,12 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
     };
     
 }]);
+
+
+function success(msg) {
+    alert(msg);
+}
+
+function error(msg) {
+    alert(msg)
+}

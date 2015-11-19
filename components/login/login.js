@@ -12,13 +12,13 @@ angular.module('yunity.mobile').directive('loginPage', function() {
                 yAPI.authenticate({
                     email: $scope.email,
                     password: $scope.password,
-                    success: function(){
+                    success: function(res){
                         console.log('login success');
-                        $location.path('/map');
+                        $location.path('/profile/' + res.data.user.id);
                         yChat.initChats();
                     },
                     error: function() {
-                        console.log('login failed');
+                        alert('login failed');
                     }
                 });
 
