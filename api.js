@@ -140,7 +140,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
                     method: 'GET'
                 }).then(function(ret){
 
-                    if(ret.data.user.name != undefined) {
+                    if(ret.data.user) {
                         console.log('check login success user is logged in');
 
                         /*
