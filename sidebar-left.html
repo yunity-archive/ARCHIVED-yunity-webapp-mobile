@@ -6,7 +6,7 @@
             <a class="list-group-item" href ng-click='Ui.turnOff("uiSidebarLeft")'>Back <i class="fa fa-chevron-right pull-right"></i></a>
             <a class="list-group-item" ng-hide="session.loggedin" href="#/login" >Login</a>
             <a class="list-group-item" ng-hide="session.loggedin" href="#/signup" >Signup</a>
-            <a class="list-group-item" ng-hide="session.loggedin" href="#/chat/1" >Chat</a>
+            <a class="list-group-item" ng-show="session.loggedin" href="#/chat/1" >Chat</a>
             <a class="list-group-item" ng-show="session.loggedin" href="#/create/item" >Share Item</a>
             <a class="list-group-item" ng-show="session.loggedin" href="#/list/items" >List of shared items</a>
             <!--<a class="list-group-item" href ng-click="filter();">Filter Test</a>-->
