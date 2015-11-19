@@ -13,6 +13,11 @@ angular.module('yunity.mobile').directive('yChatList', function() {
                     name: "Peter",
                     online: true
                 },
+                {
+                    id: 2,
+                    name: "Petra",
+                    online: false
+                },
             ];
 
             /*

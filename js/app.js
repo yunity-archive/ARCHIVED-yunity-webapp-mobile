@@ -11,7 +11,6 @@ var app = angular.module('yunity.mobile', [
     'mobile-angular-ui',
     // drag features here
     'mobile-angular-ui.gestures',
-
     yunityAPI,
     yunityChat,
     yunityMap
@@ -98,11 +97,27 @@ app.config(function ($routeProvider) {
         reloadOnSearch: false
     });
 
+
     $routeProvider.when('/about', {templateUrl: 'about.html', reloadOnSearch: false});
 
     $routeProvider.when('/map', {
         template: '<map-page />',
         reloadOnSearch: false,
+    });
+
+    $routeProvider.when('/create/item', {
+        template:'<create-item-page />',
+        reloadOnSearch: false
+    });
+
+    $routeProvider.when('/list/items', {
+        template:'<list-items-page />',
+        reloadOnSearch: false
+    });
+
+    $routeProvider.when('/item/:id', {
+        template: '<item-detail-page />',
+        reloadOnSearch: false
     });
 
 });
@@ -111,7 +126,6 @@ app.config(function ($routeProvider) {
  * MAIN CONTROLLER
  */
 app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', 'ySocket', function ($rootScope, $scope, yAPI, yMapService) {
-
 
    // $scope.session = yAPI.getSession;
 
@@ -181,7 +195,9 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
         });
     };
 
+ 
+
+
 
 
 }]);
-
