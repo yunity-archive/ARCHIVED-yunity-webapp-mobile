@@ -22,12 +22,12 @@ angular.module('yunity.mobile').directive('profilePage', function() {
                 $scope.user = ret.data.users[0];
                 $scope.user.loaded = true;
                 $scope.ownprofile = false;
-                
+
                 if($scope.user.id == yAPI.session.user.id) {
                     $scope.ownprofile = true;
                 }
 
-                
+
             },function(ret){
                 $scope.error = true;
                 $scope.error_message = 'user not found';
@@ -55,6 +55,23 @@ angular.module('yunity.mobile').directive('profilePage', function() {
                 console.log(ret.data);
             });
             */
+
+        }
+    }
+});
+
+angular.module('yunity.mobile').directive('listUsersPage', function() {
+
+
+    return {
+        scope: {},
+        restrict: 'E',
+        templateUrl: 'components/profile/list-users.html',
+        controller: function ($scope, $rootScope, yAPI, yChat, $route, $location) {
+                yAPI.apiCall('/users/').then(function(ret) {
+                        console.log(ret.data.users);
+                        $scope.users = ret.data.users;
+                });
 
         }
     }
