@@ -68,6 +68,7 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', function($tr
         });
 
         window.$transform = $transform;
+
 }]);
 
 /*

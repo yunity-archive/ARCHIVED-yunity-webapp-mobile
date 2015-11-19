@@ -28,7 +28,7 @@ angular.module('yunity.mobile').directive('yChatList', function() {
             if(yAPI.session.loggedin) {
                 console.log('get all chats');
                 yAPI.apiCall('/chats').then(function(ret){
-
+                    console.log('got chats', ret);
                     $scope.chats = ret.data.chats;
                 });
             }
@@ -37,48 +37,39 @@ angular.module('yunity.mobile').directive('yChatList', function() {
     }
 });
 
-angular.module('yunity.mobile').directive('yChat', function(yChat, $route) {
+angular.module('yunity.mobile').directive('yChat', function(yChat, yAPI, $route, $routeParams, $timeout) {
     return {
         scope: {},
         restrict: 'E',
         templateUrl: 'components/chat/chat.html',
-        controller: function ($scope, yAPI) {
+        link: ($scope, el, attrs) => {
 
+            let containerEl = document.getElementById('chat-container'); // FIXME(ns) this should not be find-by-id...
+            let scrollable = angular.element(containerEl).controller('scrollableContent');
 
+            let userId = $routeParams.id;
 
-            /*
-             * init Conversation List
-             */
-            $scope.chat = {
-                id: 12,
-                name: "Uwe",
-                last_activity: "before 1 minute",
-                messages: []
-            };
+            $scope.messages = [];
 
-
-            /**
-             * send chat TEXT message function
-             */
-            $scope.sendMessage = function() {
-                if($scope.inputtext !== undefined) {
-                    yAPI.apiCall({
-                        uri: '/chats/' + $scope.chat.id + '/messages',
-                        method: 'POST',
-                        data: {
-                            chatid: $scope.chat.id,
-                            body: {
-                                type: 'TEXT',
-                                content: $scope.inputtext
-                            }
-                        }
-                    }).then(function(ret) {
-                        console.log('chat send success');
-                        console.log(ret);
-                    }, function(ret) {
-                        console.log('chat send failed');
-                        console.log(ret);
+            yChat.getChatForUser(userId).then(chat => {
+                $scope.chat = chat;
+                yChat.listen($scope.chat.id, msgs => {
+                    $timeout(() => {
+                        msgs.forEach(msg => {
+                            $scope.messages.push(msg);
+                        });
+                        $timeout(() => {
+                            scrollable.scrollTo(containerEl.scrollHeight);
+                        });
                     });
+                });
+            });
+
+            $scope.sendMessage = function() {
+                if ($scope.content) {
+                    let msg = { content: $scope.content };
+                    $scope.content = '';
+                    yChat.sendMessage($scope.chat.id, msg);
                 }
             };
 
