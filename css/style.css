@@ -292,14 +292,13 @@ a.bg-primary:focus {
 /* CHAT */
 
 #chat-container {
-  padding: 1em 2.5em;
+  padding: 1em;
   height: calc(100% - 5em);
 }
 
 .chat-bubble {
-  padding: 1em 2.5em;
+  padding: 1em 1.25em;
   position: relative;
-  margin-bottom: 2em;
 }
 
 .chat-bubble:last-of-type {
@@ -307,8 +306,8 @@ a.bg-primary:focus {
 }
 
 .chat-avatar {
-  width: 5em;
-  border: .5em solid white;
+  width: 2.5em;
+  border: .25em solid white;
   border-radius: 100%;
   position: absolute;
   top: 0;
@@ -328,8 +327,8 @@ a.bg-primary:focus {
   background-color: rgb(57, 148, 204);
   border-radius: .25em;
   color: white;
-  padding: 1em 2em;
-  font-size: 2em;
+  padding: .5em 1.5em;
+  font-size: 1em;
   font-weight: 700;
 }
 
@@ -356,12 +355,12 @@ a.bg-primary:focus {
 }
 
 #chat-form input[type="text"] {
-  font-size: 2em;
+  font-size: 1em;
   height: auto;
 }
 
 #chat-form button[type="submit"] {
-  font-size: 2em;
+  font-size: 1em;
   background: transparent;
   border: none;
 }
