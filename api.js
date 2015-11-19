@@ -69,7 +69,7 @@ apiModule.run(function ($http, $cookies) {
     }
 });
 
-apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $cookies, $rootScope) {
+apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($http, $cookies, $rootScope , $q) {
 
 
 
@@ -111,7 +111,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
                     this.requestFailed = opt.requestFailed;
                 }
 
-                this.checkLogin();
+                //this.checkLogin();
 
             },
 
@@ -135,17 +135,23 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
 
                 let api = this;
 
-                api.apiCall({
+                console.log('checklogin session is: ' , api.getSession());
+
+                if(api.getSession().loggedin){
+                        return $q.resolve();
+                }
+                return api.apiCall({
                     uri: '/auth/login',
                     method: 'GET'
                 }).then(function(ret){
 
-                    if(ret.data.user.name != undefined) {
+                    if(ret.data.user.id !== undefined) {
                         console.log('check login success user is logged in');
 
                         /*
                          * User is logged in set vars
                          */
+
                         api.setSession(ret.data.user);
 
 
@@ -166,7 +172,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
              */
             listMappable(opt) {
 
-                return this.apiCall('/list/items').then(
+                return this.apiCall('/items').then(
                     function(ret) {
                         console.log('listmappables success');
                         if(opt.success != undefined) {
