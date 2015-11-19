@@ -7,7 +7,7 @@ angular.module('yunity.mobile').directive('profilePage', function() {
         scope: {},
         restrict: 'E',
         templateUrl: 'components/profile/profile.html',
-        controller: function ($scope, yAPI, yChat, $route, $location) {
+        controller: function ($scope, $rootScope, yAPI, yChat, $route, $location) {
             console.log($route.current.params);
 
             $scope.error = false;
@@ -21,6 +21,13 @@ angular.module('yunity.mobile').directive('profilePage', function() {
             yAPI.apiCall('/users/' + user.id).then(function(ret){
                 $scope.user = ret.data.users[0];
                 $scope.user.loaded = true;
+                $scope.ownprofile = false;
+                
+                if($scope.user.id == yAPI.session.user.id) {
+                    $scope.ownprofile = true;
+                }
+
+                
             },function(ret){
                 $scope.error = true;
                 $scope.error_message = 'user not found';
