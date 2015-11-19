@@ -166,7 +166,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
              */
             listMappable(opt) {
 
-                return this.apiCall('/listitems').then(
+                return this.apiCall('/list/items').then(
                     function(ret) {
                         console.log('listmappables success');
                         if(opt.success != undefined) {
@@ -284,15 +284,17 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
                     data: opt.data
                 }).then(function (data) {
 
-                    if(data.config.headers['X-CSRFToken'] != undefined) {
-                        console.log('set token');
-                        $http.defaults.headers.common['X-CSRFToken'] = data.config.headers['X-CSRFToken'];
-                    }
+                //     if(data.config.headers['X-CSRFToken'] != undefined) {
+                //         console.log('set token');
+                //         $http.defaults.headers.common['X-CSRFToken'] = data.config.headers['X-CSRFToken'];
+                //}
 
                     api.requestComplete();
 
-                    console.log(data);
-                    //$http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
+                    //console.log(data);
+                    //set token everytime as default token
+                    $http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
+                     //console.log('set token to: ' + $http.defaults.headers.common['X-CSRFToken']);
 
                     return data;
                 });
@@ -300,6 +302,8 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope',function ($http, $coo
         };
 }]);
 
+
+//why is it called service when is factory?
 apiModule.factory('MapItemService', ['$q', 'yAPI', function($q, yAPI) {
     return {
         getMapItemsAndUsers: function(opts) {
