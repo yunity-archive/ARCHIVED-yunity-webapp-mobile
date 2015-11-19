@@ -11,20 +11,6 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
     let chatListeners = {}; // chatid -> [array, of listener functions]
     let allListeners = [];  // [array, of, listener, functions, for, all, chats]
 
-     // TODO: should obviously not do this...
-
-    console.log('WIP: authenticating with pretend user foo@foo.com / foo');
-
-    /*
-    yAPI.authenticate({
-        email: 'foo@foo.com',
-        password: 'foo',
-        success: val => {
-            console.log('logged in!', val);
-        }
-    });
-    */
-
     ySocket.listen(data => {
 
         let {type, payload} = data;
@@ -40,43 +26,22 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
 
     });
 
-    // TODO: replace with real method to load messages from API
-
     function loadInitialMessages(chatId){
-
-        console.log('WIP: generating pretend initial chat messages');
-
-        function generateMessages(n) {
-            let msgs = [];
-            for (let i = 0; i < n; i++) {
-
-                // see example message at
-                //   https://github.com/yunity/yunity-sockets/blob/master/README.md#chat-messages
-
-                msgs.push({
-                    id: i + 1,
-                    sender: 82,
-                    created_at: new Date().toString(),
-                    type: "TEXT",
-                    content: "Hi John, how are you? " + (i)
-                });
-
-            }
-            return msgs;
-        }
-
-        let deferred = $q.defer();
-
-        // simulate api request delay
-
-        setTimeout(() => {
-            deferred.resolve(generateMessages(10));
-        }, 500);
-
-        return deferred.promise;
+        return yAPI.apiCall(`/chats/${chatId}/messages/`).then(response => {
+            return response.data.messages;
+        });
     }
 
     return {
+
+        getChatForUser(userId, fn) {
+            return yAPI.apiCall({
+                uri: `/users/${userId}/chat/`,
+                method: 'POST'
+            }).then(response => {
+                return response.data.chat;
+            });
+        },
 
         // TODO: add options, include how many historic messages to get
         // default as none?
@@ -108,6 +73,7 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
                 // before socket connect will not be seen
 
                 loadInitialMessages(chatId).then(msgs => {
+
                     if (incoming.length > 0) {
                         let minimumId = incoming[0].id;
                         msgs = msgs.filter(msg => msg.id < minimumId);
@@ -136,6 +102,20 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
                 }
             };
 
+        },
+
+        sendMessage(chatId, msg) {
+            return yAPI.apiCall({
+                uri: `/chats/${chatId}//messages`,
+                method: 'POST',
+                data: msg
+            }).then(response => {
+                console.log('sent message!', response.data);
+                return;
+            }, err => {
+                console.log('error sending chat message', err);
+                return;
+            });
         },
 
         /**
