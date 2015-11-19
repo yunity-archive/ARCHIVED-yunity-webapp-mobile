@@ -15,6 +15,8 @@ import yunityItem  from './components/item/item.js';
 
 import yunityProfile from './components/profile/profile.js';
 
+import yunityGroups from './components/groups/groups.js';
+
 import './components/map/map.js';
 
 

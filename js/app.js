@@ -75,50 +75,68 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', function($tr
 
                         }]);
 
-                /*
-                 * ROUTUNG
-                 */
-                app.config(function($routeProvider) {
-                        $routeProvider.when('/', {
-                                template: '<wall-page />',
-                                reloadOnSearch: false
-                        });
+/*
+ * ROUTUNG
+ */
+app.config(function($routeProvider) {
+        $routeProvider.when('/', {
+                template: '<wall-page />',
+                reloadOnSearch: false
+        });
 
-                        $routeProvider.when('/signup', {
-                                template: '<signup-page />',
-                                reloadOnSearch: false
-                        });
+        $routeProvider.when('/signup', {
+                template: '<signup-page />',
+                reloadOnSearch: false
+        });
 
-                        $routeProvider.when('/login', {
-                                template: '<login-page />',
-                                reloadOnSearch: false
-                        });
+        $routeProvider.when('/login', {
+                template: '<login-page />',
+                reloadOnSearch: false
+        });
 
-                        $routeProvider.when('/profile/:id', {
+        $routeProvider.when('/groups', {
+                template: '<groups />',
+                reloadOnSearch: false
+        });
 
-                                template: function(params) {
-                                        return `<profile-page userid="${params.id}" />`;
-                                },
-                                reloadOnSearch: false
-                        });
+        $routeProvider.when('/group/:id', {
 
-                        $routeProvider.when('/chat/:id', {
-                                templateUrl: 'chat.html',
-                                reloadOnSearch: false,
-                                access: {
-                                        requiresLogin: true
-                                }
-                        });
+                template: function(params) {
+                        return `<group-page groupid="${params.id}" />`;
+                },
+                reloadOnSearch: false
+        });
 
-                        $routeProvider.when('/chat/new/:userids', {
-                                template: function(params) {
-                                        return `<chat-page userids="${params.userids}" />`;
-                                },
-                                reloadOnSearch: false,
-                                access: {
-                                        requiresLogin: true
-                                }
-                        });
+        $routeProvider.when('/groups/add', {
+                template: '<groups-add />',
+                reloadOnSearch: false
+        });
+
+        $routeProvider.when('/profile/:id', {
+
+                template: function(params) {
+                        return `<profile-page userid="${params.id}" />`;
+                },
+                reloadOnSearch: false
+        });
+
+        $routeProvider.when('/chat/:id', {
+                templateUrl: 'chat.html',
+                reloadOnSearch: false,
+                access: {
+                        requiresLogin: true
+                }
+        });
+
+        $routeProvider.when('/chat/new/:userids', {
+                template: function(params) {
+                        return `<chat-page userids="${params.userids}" />`;
+                },
+                reloadOnSearch: false,
+                access: {
+                        requiresLogin: true
+                }
+        });
 
 
                         $routeProvider.when('/about', {
