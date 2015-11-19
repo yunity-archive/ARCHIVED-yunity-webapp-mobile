@@ -4,11 +4,8 @@ angular.module('yunity.mobile').directive('createItemPage', function() {
                 restrict: 'E',
                 templateUrl: 'components/item/create-item.html',
                 controller: function($scope, yAPI, $location) {
+                                $scope.createItem = function() {
 
-
-
-                        $scope.createItem = function() {
-                                //if (yAPI.session.loggedin) {
                                         yAPI.apiCall({
                                                 uri: '/items',
                                                 method: 'POST',
@@ -23,13 +20,8 @@ angular.module('yunity.mobile').directive('createItemPage', function() {
                                                 function(ret) {
                                                         alert('cannot create item ' + ret.data.reason);
                                                 });
-                                // } else {
-                                //         alert('cannot create item ' + 'not loged in');
-                                // }
-                        };
 
-
-
+                                };
                 }
         };
 });
@@ -41,13 +33,10 @@ angular.module('yunity.mobile').directive('listItemsPage', function() {
                 restrict: 'E',
                 templateUrl: 'components/item/list-items.html',
                 controller: function($scope, yAPI, $location) {
+                                yAPI.apiCall('/items').then(function(ret) {
 
-                        yAPI.apiCall('/items').then(function(ret) {
-
-                                $scope.items = ret.data.items;
-                        });
-
-
+                                        $scope.items = ret.data.items;
+                                });
                 }
         };
 });
@@ -71,10 +60,7 @@ angular.module('yunity.mobile').directive('itemDetailPage', function() {
 
                                 $scope.item = ret.data;
                         });
-
-
                 }
-
         }
 });
 
