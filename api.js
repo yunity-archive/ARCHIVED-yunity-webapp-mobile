@@ -146,6 +146,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
                 }).then(function(ret){
 
                     if(ret.data.user.id !== undefined) {
+
                         console.log('check login success user is logged in');
 
                         /*
