@@ -30,7 +30,6 @@
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js"></script>
 
-
     <!--
     <script src="bower_components/Leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script src="bower_components/leaflet/dist/leaflet.js"></script>
@@ -61,22 +60,21 @@
 
     <!-- Navbars -->
 
-    <div class="navbar navbar-app navbar-absolute-top">
+    <div class="navbar navbar-app navbar-absolute-top" id="searchbox">
+        
+            
+                <div ui-toggle="uiSidebarLeft" class="btn-group">
+                    <div class="btn btn-menu">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+                <input class="searchinput" type="text" placeholder="Search for..." />
+            
 
-        <div class="btn-group pull-left">
-            <div class="btn">
-                <i class="fa fa-search"></i>
-            </div>
-        </div>
-
-
-        <div ng-repeat="cat in categories" class="btn-group pull-right" ng-click="showSubCategories(cat)" ui-yield-to="navbarAction">
-            <div ui-toggle="uiSidebarLeft" class="btn">
-                <i class="fa fa-{{cat.icon}}"></i>
-            </div>
-        </div>
+       
     </div>
-
+    
+    <!--
     <div class="navbar navbar-app navbar-absolute-bottom">
         <div class="btn-group justified">
             <a href="#/map" class="btn btn-navbar"><i class="fa fa-map-marker fa-navbar"></i> Map</a>
@@ -87,7 +85,8 @@
                 Login</a>
         </div>
     </div>
-
+    -->
+    
     <div class="app-body" ng-class="{loading: loading}">
         <div ng-show="loading" class="app-content-loading">
             <i class="fa fa-spinner fa-spin loading-spinner"></i>

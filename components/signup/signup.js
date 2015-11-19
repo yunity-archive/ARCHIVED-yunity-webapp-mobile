@@ -9,7 +9,7 @@ angular.module('yunity.mobile').directive('signupPage', function() {
             $scope.signup = function() {
 
                 yAPI.apiCall({
-                    uri: '/user',
+                    uri: '/user/',
                     method: 'POST',
                     data: {
                         email: $scope.email,
