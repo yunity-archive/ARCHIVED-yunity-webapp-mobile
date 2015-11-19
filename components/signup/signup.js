@@ -4,7 +4,7 @@ angular.module('yunity.mobile').directive('signupPage', function() {
         scope: {},
         restrict: 'E',
         templateUrl: 'components/signup/signup.html',
-        controller: function ($scope, yAPI) {
+        controller: function ($scope, yAPI, $location) {
 
             $scope.signup = function() {
 
@@ -14,12 +14,29 @@ angular.module('yunity.mobile').directive('signupPage', function() {
                     data: {
                         email: $scope.email,
                         password: $scope.password,
-                        display_name: $scope.displayname
+                        display_name: $scope.displayname,
+                        first_name: $scope.firstname,
+                        last_name: $scope.lastname
                     }
                 }).then(function(res){
 
-                        alert('signup successfull :)');
+                        //success('signup successfull :)');
+                        //alert(res.data.id);
+                       yAPI.authenticate({
+                            email: $scope.email,
+                            password: $scope.password,
+                            success: function(){
+                                console.log('login success');
+                                $location.path('/profile/' + res.data.id);
+                                yChat.initChats();
+                            },
+                            error: function() {
+                                alert('login failed');
+                            }
+                        });
 
+                },function(){
+                    alert('error while signup');
                 });
             }
 

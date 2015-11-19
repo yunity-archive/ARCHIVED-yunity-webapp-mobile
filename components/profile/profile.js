@@ -18,8 +18,8 @@ angular.module('yunity.mobile').directive('profilePage', function() {
                 loaded: false
             };
 
-            yAPI.apiCall('/user/' + user.id).then(function(ret){
-                $scope.user = ret.data.user;
+            yAPI.apiCall('/users/' + user.id).then(function(ret){
+                $scope.user = ret.data.users[0];
                 $scope.user.loaded = true;
             },function(ret){
                 $scope.error = true;
