@@ -137,18 +137,12 @@ app.config(function($routeProvider) {
         $routeProvider.when('/list/items', {
                 template: '<list-items-page />',
                 reloadOnSearch: false,
-                access: {
-                        requiresLogin: true
-                }
 
         });
 
         $routeProvider.when('/item/:id', {
                 template: '<item-detail-page />',
                 reloadOnSearch: false,
-                access: {
-                        requiresLogin: true
-                }
 
         });
 
