@@ -35,7 +35,7 @@ angular.module('yunity.mobile').directive('listItemsPage', function() {
                 controller: function($scope, yAPI, $location) {
                                 yAPI.apiCall('/items').then(function(ret) {
 
-                                        $scope.items = ret.data.items;
+                                        $scope.items = ret.data.items.reverse();
                                 });
                 }
         };

@@ -8,11 +8,10 @@
             <a class="list-group-item" ng-hide="session.loggedin" href="#/signup" >Signup</a>
             <a class="list-group-item" ng-show="session.loggedin" ng-href="#/profile/{{session.user.id}}" >Profile</a>
             <a class="list-group-item" ng-show="session.loggedin" href="#/chat/1" >Chat</a>
-            <a class="list-group-item" ng-show="session.loggedin" href="#/create/item" >Share Item</a>
-            <a class="list-group-item" ng-show="session.loggedin" href="#/groups" >groups</a>
-            <a class="list-group-item" href="#/list/items" >List of shared items</a>
+            <a class="list-group-item" ng-show="session.loggedin" href="#/groups" >Groups</a>
+            <a class="list-group-item" ng-show="session.loggedin" href="#/create/item" >Share a banana</a>
+            <a class="list-group-item" href="#/list/items" >List of bananas</a>
             <a class="list-group-item" ng-show="session.loggedin"  href="#/list/users" >List of users</a>
-
             <!--<a class="list-group-item" href ng-click="filter();">Filter Test</a>-->
 
         </div>

@@ -84,7 +84,7 @@ angular.module('yunity.mobile').directive('groupsAdd', function() {
     }
 });
 
-angular.module('yunity.mobile').directive('groupPage', function() {
+angular.module('yunity.mobile').directive('groupPage', function($route, $routeParams, yAPI) {
 
     console.log('profile init');
 
@@ -111,10 +111,25 @@ angular.module('yunity.mobile').directive('groupPage', function() {
                 alert('group could not be loaded');
             });
         },
-        link: function($scope, element, attr, yAPI){
-            //console.log('link => ' + attr.userid);
+        link: function($scope, element, attr){
+
+            let groupId = $routeParams.id;
 
             $scope.userid = attr.userid;
+
+            $scope.joinGroup = () => {
+                console.log('joining group');
+
+                yAPI.apiCall({
+                    uri: `/groups/${groupId}/members`,
+                    method: 'POST',
+                    data: {
+                        users: [yAPI.session.user.id]
+                    }
+                }).then(() => {
+                    $route.reload();
+                });
+            };
 
             /*
             yAPI.apiCall('/user/' + attr.userid).then(function(ret){
