@@ -3,5 +3,6 @@ node_modules
 .idea/**
 .project
 .settings/**
+nbproject/**
 
-
+/nbproject/private/
