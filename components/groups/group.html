@@ -1,0 +1,11 @@
+<div class="scrollable">
+    <div class="scrollable-content section">
+            
+            <h1>group page: {{group.name}}</h1>
+            <p>{{group.description}}</p>
+            <h3>members</h3>
+            <ul>
+                <li ng-repeat="member in group.members"><a href="#/profile/{{member.user_id}}">user #{{member.user_id}}</a></li>
+            </ul>
+    </div>
+</div>

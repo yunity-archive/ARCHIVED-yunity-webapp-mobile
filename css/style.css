@@ -282,6 +282,11 @@ a.bg-primary:focus {
 .switch.active .switch-handle {
     border-color: #FF5A60;
 }
+.list-group-item.active, .list-group-item.active:focus, 
+.list-group-item.active:hover {
+    background-color: #FF5A5F;
+    border-color: #FF5A5F;
+}
 
 /* MAP STUFF */
 .map-container {

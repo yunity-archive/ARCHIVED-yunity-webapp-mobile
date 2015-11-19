@@ -89,6 +89,24 @@ app.config(function($routeProvider) {
                 template: '<login-page />',
                 reloadOnSearch: false
         });
+        
+        $routeProvider.when('/groups', {
+                template: '<groups />',
+                reloadOnSearch: false
+        });
+        
+        $routeProvider.when('/group/:id', {
+
+                template: function(params) {
+                        return `<group-page groupid="${params.id}" />`;
+                },
+                reloadOnSearch: false
+        });
+        
+        $routeProvider.when('/groups/add', {
+                template: '<groups-add />',
+                reloadOnSearch: false
+        });
 
         $routeProvider.when('/profile/:id', {
 
