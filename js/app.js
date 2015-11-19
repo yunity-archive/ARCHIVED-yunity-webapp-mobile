@@ -194,13 +194,5 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
             }
         });
     };
-
- 
-
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> dabfdbe298d4771dc17568bd22d02f30bc534387
+    
 }]);
