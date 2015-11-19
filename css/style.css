@@ -287,3 +287,77 @@ a.bg-primary:focus {
 	
 }
 
+
+/* CHAT */
+
+#chat-container {
+  padding: 1em 2.5em;
+}
+
+.chat-bubble {
+  padding: 1em 2.5em;
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.chat-bubble:last-of-type {
+  margin: 0;
+}
+
+.chat-avatar {
+  width: 5em;
+  border: .5em solid white;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.chat-bubble:nth-child(odd) .chat-avatar {
+  left: 0;
+}
+
+.chat-bubble:nth-child(even) .chat-avatar {
+  left: auto;
+  right: 0;
+}
+
+.chat-message {
+  background-color: rgb(57, 148, 204);
+  border-radius: .25em;
+  color: white;
+  padding: 1em 2em;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+#chat-form {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  padding: .5em;
+}
+
+#chat-form .form-group, #chat-form fieldset {
+  width: 100%;
+}
+
+#chat-form .form-group {
+  display: table;
+  position: relative;
+}
+
+#chat-form input {
+  display: table-cell;
+  position: relative;
+}
+
+#chat-form input[type="text"] {
+  font-size: 2em;
+  height: auto;
+}
+
+#chat-form input[type="submit"] {
+  font-size: 2em;
+}

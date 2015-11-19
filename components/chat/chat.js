@@ -60,7 +60,7 @@ angular.module('yunity.mobile').directive('yChat', function(yChat, $route) {
             /**
              * send chat TEXT message function
              */
-            $scope.sendmessage = function() {
+            $scope.sendMessage = function() {
                 if($scope.inputtext !== undefined) {
                     yAPI.apiCall({
                         uri: '/chats/' + $scope.chat.id + '/messages',
