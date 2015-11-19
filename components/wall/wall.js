@@ -8,10 +8,11 @@ angular.module('yunity.mobile').directive('wallPage', function() {
             $scope.state = {
                 posts: []
             };
-
+            /*
             yAPI.apiCall('/wall-posts').then(res => {
                 $scope.state.posts = res.data.data.posts;
             });
+            */
         },
         // link: function (element, $scope, attrs) {
 
