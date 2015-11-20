@@ -28,7 +28,7 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
 
     function loadInitialMessages(chatId){
         return yAPI.apiCall(`/chats/${chatId}/messages/`).then(response => {
-            return response.data.messages;
+            return response.data.messages.reverse();
         });
     }
 
