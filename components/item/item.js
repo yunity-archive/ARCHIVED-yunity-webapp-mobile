@@ -46,7 +46,7 @@ angular.module('yunity.mobile').directive('itemDetailPage', function() {
                 scope: {},
                 restrict: 'E',
                 templateUrl: 'components/item/item.html',
-                controller: function($scope, yAPI, $routeParams, $location) {
+                controller: function($scope, yAPI, $routeParams, $location, $rootScope) {
 
                         $scope.requestItem = function() {
 
@@ -55,6 +55,10 @@ angular.module('yunity.mobile').directive('itemDetailPage', function() {
                                 $location.path('/list/items');
 
                         };
+
+                        // TODO(ns) this is needed because directive has an isolate scope
+                        // not sure what is the best practise here.... 
+                        $scope.session = $rootScope.session;
 
                         yAPI.apiCall('/items/' + $routeParams.id).then(function(ret) {
 
