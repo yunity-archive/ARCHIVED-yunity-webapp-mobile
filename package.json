@@ -16,8 +16,6 @@
   "homepage": "https://github.com/yunity/yunity-webapp-common#readme",
   "dependencies": {
     "angular-cookies": "^1.4.7",
-    "angular-wamp": "git+https://github.com/voryx/angular-wamp.git",
-    "autobahn": "^0.9.6",
     "leaflet": "^0.7.5",
     "leaflet.markercluster": "^0.4.0",
     "socket.io-client": "^1.3.7"
