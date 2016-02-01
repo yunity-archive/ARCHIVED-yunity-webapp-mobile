@@ -156,3 +156,5 @@ mapModule.run(() => {
 });
 
 export default 'yunityMap';
+
+/* a comment from Doug */
