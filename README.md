@@ -1,5 +1,7 @@
 # yunity-webapp-mobile
 
+
+
 ## 1. install a recent nodejs
 
 We are mostly using >v4 but 0.12.x probably works ok too. You can install via https://github.com/nodesource/distributions:
@@ -12,12 +14,14 @@ sudo apt-get install -y nodejs
 # Using Debian, as root
 curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get install -y nodejs
+
+# Using Arch Linux, as root
+pacman -S nodejs
 ```
 
 ## 2. install bower and a few other deps
 
 ```sh
-$ sudo apt-get install fswebcam
 $ sudo npm install -g bower
 ```
 
