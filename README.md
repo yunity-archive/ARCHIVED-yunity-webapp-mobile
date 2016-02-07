@@ -46,10 +46,3 @@ npm link yunity-webapp-common
 ```
 
 (note: you might have to chown `yunity-webapp-common/node_modules` back to yourself after this)
-
-## 6. very important install webhook for push webcam picture
-
-```sh
-chmod +x scripts/picture-fswebcam
-ln -sr scripts/picture-fswebcam .git/hooks/pre-push
-```
