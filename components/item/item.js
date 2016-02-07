@@ -11,6 +11,8 @@ angular.module('yunity.mobile').directive('createItemPage', function() {
                                                 method: 'POST',
                                                 data: {
                                                         description: $scope.description,
+                                                        longitude: 0.0,
+                                                        latitude: 0.0
                                                 }
                                         }).then(function(res) {
 
@@ -18,7 +20,7 @@ angular.module('yunity.mobile').directive('createItemPage', function() {
 
                                                 },
                                                 function(ret) {
-                                                        alert('cannot create item ' + ret.data.reason);
+                                                        alert('cannot create item: ' + ret.data.reason);
                                                 });
 
                                 };
