@@ -1,17 +1,17 @@
 <a class="list-group-item media" href="#/chat/{{chat.id}}" ng-repeat="chat in chats">
-    <div class="pull-left">
-        <i class="fa fa-user chat-user-avatar"></i>
-    </div>
-    <div class="media-body">
-        <h5 class="media-heading">{{ chat.name }}</h5>
-        <small ng-switch on="chat.online">
-              <span ng-switch-when="true">
-                  <span class="label label-success">ONLINE</span>
-              </span>
-              <span ng-switch-default>
-                  <span class="label label-default"><i>OFFLINE</i>
-                  </span>
-              </span>
-        </small>
-    </div>
+  <div class="pull-left">
+    <i class="fa fa-user chat-user-avatar"></i>
+  </div>
+  <div class="media-body">
+    <h5 class="media-heading">{{ chat.name }}</h5>
+    <small ng-switch on="chat.online">
+      <span ng-switch-when="true">
+        <span class="label label-success">ONLINE</span>
+      </span>
+      <span ng-switch-default>
+        <span class="label label-default"><i>OFFLINE</i>
+        </span>
+      </span>
+    </small>
+  </div>
 </a>

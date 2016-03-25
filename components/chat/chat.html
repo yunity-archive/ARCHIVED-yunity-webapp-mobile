@@ -1,20 +1,20 @@
 <div class="scrollable">
-    <div id="chat-container" class="scrollable-content">
-        <div class="chat-bubble" ng-repeat="message in messages">
-            <img class="chat-avatar" src="/images/Isabella.png">
-            <div class="chat-message">{{ message.content }}</div>
+  <div id="chat-container" class="scrollable-content">
+    <div class="chat-bubble" ng-repeat="message in messages">
+      <img class="chat-avatar" src="/images/Isabella.png">
+      <div class="chat-message">{{ message.content }}</div>
+    </div>
+  </div>
+  <div class="scrollable-footer">
+    <form id="chat-form" role="form" ng-submit='sendMessage()'>
+      <fieldset>
+        <div class="input-group">
+          <input type="text" ng-model="content" class="form-control" placeholder="Message">
+          <span class="input-group-addon" id="basic-addon2">
+            <button type="submit">Send</button>
+          </span>
         </div>
-    </div>
-    <div class="scrollable-footer">
-        <form id="chat-form" role="form" ng-submit='sendMessage()'>
-            <fieldset>
-                <div class="input-group">
-                  <input type="text" ng-model="content" class="form-control" placeholder="Message">
-                    <span class="input-group-addon" id="basic-addon2">
-                        <button type="submit">Send</button>
-                    </span>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+      </fieldset>
+    </form>
+  </div>
 </div>

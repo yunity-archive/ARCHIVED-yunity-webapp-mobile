@@ -1,15 +1,15 @@
 <div class="scrollable">
-    <div class="scrollable-content section">
-            
-            <h1>group page: {{group.name}} <button ng-click="joinGroup()" class="btn btn-primary">Join <i class="fa fa-plus"></i></button>
-            </h1>
+  <div class="scrollable-content section">
 
-            <p>{{group.description}}</p>
-            <h3>members</h3>
-            <ul>
-                <li ng-repeat="member in group.members">
-                  <a href="#/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a>
-                </li>
-            </ul>
-    </div>
+    <h1>group page: {{group.name}} <button ng-click="joinGroup()" class="btn btn-primary">Join <i class="fa fa-plus"></i></button>
+    </h1>
+
+    <p>{{group.description}}</p>
+    <h3>members</h3>
+    <ul>
+      <li ng-repeat="member in group.members">
+        <a href="#/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -1,26 +1,26 @@
 <div class="scrollable">
-    <div class="scrollable-content section">
-            
-            <h1>yunity groups <a href="#/groups/add" class="btn btn-primary">Create a group <i class="fa fa-plus"></i></a></h1>
-            
-            <div class="panel-group" ui-state="myAccordion" ui-default="1">
+  <div class="scrollable-content section">
 
-                <div class="panel panel-default" ng-repeat="group in groups">
-                  <div class="panel-heading" ui-set="{'myAccordion': group.id}">        
-                    <h4 class="panel-title">
+    <h1>yunity groups <a href="#/groups/add" class="btn btn-primary">Create a group <i class="fa fa-plus"></i></a></h1>
+
+    <div class="panel-group" ui-state="myAccordion" ui-default="1">
+
+      <div class="panel panel-default" ng-repeat="group in groups">
+        <div class="panel-heading" ui-set="{'myAccordion': group.id}">
+          <h4 class="panel-title">
                         {{group.name}}
                     </h4>
-                  </div>
-                  <div ui-if="myAccordion == {{group.id}}">
-                    <div class="panel-body">
-                        <p>{{group.description}}</p>
-                        <p><a href="#/group/{{group.id}}" class="btn btn-primary">go to group <i class="fa fa-arrow-right"></i></a></p>
-                      
-                    </div>
-                  </div>
-                </div>
-                
-            </div>
+        </div>
+        <div ui-if="myAccordion == {{group.id}}">
+          <div class="panel-body">
+            <p>{{group.description}}</p>
+            <p><a href="#/group/{{group.id}}" class="btn btn-primary">go to group <i class="fa fa-arrow-right"></i></a></p>
+
+          </div>
+        </div>
+      </div>
 
     </div>
+
+  </div>
 </div>
