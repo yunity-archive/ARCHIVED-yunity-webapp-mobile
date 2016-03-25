@@ -17,8 +17,7 @@ module.exports = {
       {
         test: /\.js?$/,
         include: [
-          __dirname,
-          /yunity-webapp-common/
+          __dirname
         ],
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel-loader']

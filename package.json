@@ -20,10 +20,14 @@
   "dependencies": {
     "toastr": "^2.1.2",
     "webpack": "^1.12.2",
-    "yunity-webapp-common": "github:yunity/yunity-webapp-common"
+    "angular-cookies": "^1.4.7",
+    "leaflet": "^0.7.5",
+    "leaflet.markercluster": "^0.4.0",
+    "socket.io-client": "^1.3.7"
   },
   "devDependencies": {
     "babel-loader": "^5.3.2",
+    "json-loader": "^0.5.3",
     "bower": "^1.5.3",
     "webpack-dev-server": "^1.12.0"
   }

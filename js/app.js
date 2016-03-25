@@ -1,7 +1,7 @@
 //import './js/message.js';
-import yunityAPI from 'yunity-webapp-common/api';
-import yunityChat from 'yunity-webapp-common/chat';
-import yunityMap from 'yunity-webapp-common/map';
+import yunityAPI from '../common/api';
+import yunityChat from '../common/chat';
+import yunityMap from '../common/map';
 
 /*
  * INIT APP
