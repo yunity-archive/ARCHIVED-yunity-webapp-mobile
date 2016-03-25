@@ -2,6 +2,8 @@ import angular from 'angular';
 import yunityAPI from './api';
 import yunitySocket from './socket';
 
+let debug = require('debug')('yunity:chat');
+
 const chatModule = angular.module('yunityChat', [
   yunityAPI,
   yunitySocket
@@ -111,10 +113,10 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
         method: 'POST',
         data: msg
       }).then(response => {
-        console.log('sent message!', response.data);
+        debug('sent message!', response.data);
         return;
       }, err => {
-        console.log('error sending chat message', err);
+        debug('error sending chat message', err);
         return;
       });
     },
@@ -147,12 +149,12 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
     initChats() {
       let chat = this;
 
-      console.log('init chats');
+      debug('init chats');
       yAPI.apiCall('/chats').then((ret) => {
         yAPI.session.chats = ret.data.chats;
 
         chat.listenAll((msgs) => {
-          console.log('todo: sync messages');
+          debug('todo: sync messages');
           // TO DO: sync messages with yApi.Session messages...
         });
 

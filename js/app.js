@@ -8,6 +8,8 @@ import yunityMap from '../common/map';
 
 import routes from './routes';
 
+let debug = require('debug')('yunity:main');
+
 /*
 * INIT APP
 */
@@ -26,6 +28,8 @@ var app = angular.module('yunity.mobile', [
 */
 app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform, $rootScope, yAPI, $location, $route) => {
 
+  debug('running app!');
+
   /*
   * API Configuration
   */
@@ -34,21 +38,21 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform,
     urlSuffix: '',
     requestStart: () => {
       $rootScope.loading = true;
-      console.log('start');
+      debug('start');
     },
     requestComplete: () => {
-      console.log('complete');
+      debug('complete');
       $rootScope.loading = false;
     }
   });
   $rootScope.$on('$routeChangeStart', (event, next) =>  {
-    console.log('routeChangeStart next is:', next);
+    debug('routeChangeStart next is:', next);
     yAPI.checkLogin().then(() =>  {}, () =>  {
 
       if (next.access !== undefined) {
         if (next.access.requiresLogin) {
           if (!yAPI.session.loggedin) {
-            console.log('access not allowed');
+            debug('access not allowed');
             event.preventDefault();
             $location.path('/login');
             $route.reload();
@@ -111,7 +115,7 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
     yAPI.listMappable({
       filter: {},
       success: (ret) => {
-        console.log('show items on status > ' + ret.data.items.length);
+        debug('show items on status > ' + ret.data.items.length);
 
         if (ret.data.items != undefined && ret.data.items.length > 0) {
           yMapService.renderMarkerCluster(ret.data.items);
@@ -121,7 +125,7 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
 
       },
       error: (ret) => {
-        console.log(ret);
+        debug(ret);
       }
     });
   };

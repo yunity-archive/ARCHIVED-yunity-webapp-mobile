@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+let debug = require('debug')('yunity:component:signup');
+
 angular.module('yunity.mobile').directive('signupPage', () => {
   return {
     scope: {},
@@ -27,7 +29,7 @@ angular.module('yunity.mobile').directive('signupPage', () => {
             email: $scope.email,
             password: $scope.password,
             success: () => {
-              console.log('login success');
+              debug('login success');
               $location.path('/profile/' + res.data.id);
               yChat.initChats();
             },

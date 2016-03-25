@@ -1,6 +1,8 @@
 import angular from 'angular';
 import ngCookies from 'angular-cookies';
 
+let debug = require('debug')('yunity:api');
+
 const apiModule = angular.module('yunityAPI', [
   ngCookies
 ]);
@@ -136,7 +138,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
 
       let api = this;
 
-      console.log('checklogin session is: ' , api.getSession());
+      debug('checklogin session is: ' , api.getSession());
 
       if(api.getSession().loggedin){
         return $q.resolve();
@@ -148,7 +150,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
 
         if(ret.data.user.id !== undefined) {
 
-          console.log('check login success user is logged in');
+          debug('check login success user is logged in');
 
           /*
           * User is logged in set vars
@@ -158,12 +160,12 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
 
 
         } else {
-          console.log('user is not logged in');
+          debug('user is not logged in');
         }
 
 
       }, () => {
-        console.log('check login failed');
+        debug('check login failed');
       });
 
     },
@@ -176,13 +178,13 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
 
       return this.apiCall('/items').then(
         (ret) => {
-          console.log('listmappables success');
+          debug('listmappables success');
           if(opt.success != undefined) {
             opt.success(ret);
           }
         },
         (ret) => {
-          console.log('listmappables error');
+          debug('listmappables error');
           if(opt.error != undefined) {
             opt.error(ret);
           }
@@ -196,7 +198,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
     */
     authenticate(opt) {
 
-      console.log(opt);
+      debug(opt);
 
       let api = this;
 
@@ -209,7 +211,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
         }
       }).then(
         (ret) => {
-          console.log('auth success');
+          debug('auth success');
 
           /*
           * maker USER Data accessable after login
@@ -224,7 +226,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
           }
         },
         (ret) => {
-          console.log('auth error');
+          debug('auth error');
           if(opt.error != undefined) {
             opt.error(ret);
           }
@@ -245,7 +247,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
     apiCall(opt) {
 
 
-      //console.log($http.defaults.headers.common); //['X-CSRFToken'] = $cookies.get('csrftoken');
+      //debug($http.defaults.headers.common); //['X-CSRFToken'] = $cookies.get('csrftoken');
 
       /*
       * make this accessable
@@ -293,16 +295,16 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $coo
       }).then((data) => {
 
         //     if(data.config.headers['X-CSRFToken'] != undefined) {
-        //         console.log('set token');
+        //         debug('set token');
         //         $http.defaults.headers.common['X-CSRFToken'] = data.config.headers['X-CSRFToken'];
         //}
 
         api.requestComplete();
 
-        //console.log(data);
+        //debug(data);
         //set token everytime as default token
         $http.defaults.headers.common['X-CSRFToken'] = $cookies.get('csrftoken');
-        //console.log('set token to: ' + $http.defaults.headers.common['X-CSRFToken']);
+        //debug('set token to: ' + $http.defaults.headers.common['X-CSRFToken']);
 
         return data;
       });

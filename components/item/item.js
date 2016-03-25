@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+let debug = require('debug')('yunity:component:item');
+
 angular.module('yunity.mobile').directive('createItemPage', () => {
   return {
     scope: {},

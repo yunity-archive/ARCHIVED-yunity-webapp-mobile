@@ -1,8 +1,10 @@
 import angular from 'angular';
 
+let debug = require('debug')('yunity:component:groups');
+
 angular.module('yunity.mobile').directive('groups', () => {
 
-  console.log('groups init');
+  debug('groups init');
 
   return {
     scope: {},
@@ -23,13 +25,13 @@ angular.module('yunity.mobile').directive('groups', () => {
 
     },
     link: ($scope, element, attr, yAPI) => {
-      //console.log('link => ' + attr.userid);
+      //debug('link => ' + attr.userid);
 
       $scope.userid = attr.userid;
 
       /*
       yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-      console.log(ret.data);
+      debug(ret.data);
     });
     */
 
@@ -71,13 +73,13 @@ angular.module('yunity.mobile').directive('groupsAdd', () => {
 
     },
     link: ($scope, element, attr, yAPI) => {
-      //console.log('link => ' + attr.userid);
+      //debug('link => ' + attr.userid);
 
       $scope.userid = attr.userid;
 
       /*
       yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-      console.log(ret.data);
+      debug(ret.data);
     });
     */
 
@@ -87,14 +89,14 @@ angular.module('yunity.mobile').directive('groupsAdd', () => {
 
 angular.module('yunity.mobile').directive('groupPage', ($route, $routeParams, yAPI) => {
 
-  console.log('profile init');
+  debug('profile init');
 
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/groups/group.html',
     controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
-      console.log($route.current.params);
+      debug($route.current.params);
 
       var group = {
         id: $route.current.params.id,
@@ -105,7 +107,7 @@ angular.module('yunity.mobile').directive('groupPage', ($route, $routeParams, yA
         $scope.group = ret.data;
         $scope.group.loaded = true;
 
-        console.log(ret);
+        debug(ret);
 
 
       }, (ret) => {
@@ -119,7 +121,7 @@ angular.module('yunity.mobile').directive('groupPage', ($route, $routeParams, yA
       $scope.userid = attr.userid;
 
       $scope.joinGroup = () => {
-        console.log('joining group');
+        debug('joining group');
 
         yAPI.apiCall({
           uri: `/groups/${groupId}/members`,
@@ -134,7 +136,7 @@ angular.module('yunity.mobile').directive('groupPage', ($route, $routeParams, yA
 
       /*
       yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-      console.log(ret.data);
+      debug(ret.data);
     });
     */
 

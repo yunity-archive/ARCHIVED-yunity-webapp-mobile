@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+let debug = require('debug')('yunity:component:chat');
+
 angular.module('yunity.mobile').directive('yChatList', () => {
   return {
     scope: {},
@@ -24,12 +26,12 @@ angular.module('yunity.mobile').directive('yChatList', () => {
       /*
       * Initial API Call to gel list of conversations
       */
-      console.log('get all chats');
-      console.log(yAPI.session);
+      debug('get all chats');
+      debug(yAPI.session);
       if(yAPI.session.loggedin) {
-        console.log('get all chats');
+        debug('get all chats');
         yAPI.apiCall('/chats').then((ret) => {
-          console.log('got chats', ret);
+          debug('got chats', ret);
           $scope.chats = ret.data.chats;
         });
       }

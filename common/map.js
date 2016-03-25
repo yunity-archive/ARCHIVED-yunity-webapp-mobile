@@ -3,6 +3,8 @@ import angular from 'angular';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 
+let debug = require('debug')('yunity:map');
+
 L.Icon.Default.imagePath = '/assets/img/marker';
 
 const mapModule = angular.module('yunityMap', []);
@@ -54,7 +56,7 @@ mapModule.factory('yMapService', [() => {
       */
       if (!yMap.initiated) {
 
-        console.log('init map');
+        debug('init map');
         yMap.zoom = yMap.defaultZoom;
         yMap.latLng = yMap.defaultLatLng;
       }
@@ -81,7 +83,7 @@ mapModule.factory('yMapService', [() => {
       });
 
       yMap.container.on('locationfound', (e) => {
-        console.log(e);
+        debug(e);
         yMap.addMarker(e.latlng, 'you are here!');
       });
 

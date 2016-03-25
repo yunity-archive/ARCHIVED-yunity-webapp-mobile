@@ -1,15 +1,17 @@
 import angular from 'angular';
 
+let debug = require('debug')('yunity:component:profile');
+
 angular.module('yunity.mobile').directive('profilePage', () => {
 
-  console.log('profile init');
+  debug('profile init');
 
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/profile/profile.html',
     controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
-      console.log($route.current.params);
+      debug($route.current.params);
 
       $scope.error = false;
       $scope.error_message = '';
@@ -47,13 +49,13 @@ angular.module('yunity.mobile').directive('profilePage', () => {
       };
     },
     link: ($scope, element, attr, yAPI) => {
-      //console.log('link => ' + attr.userid);
+      //debug('link => ' + attr.userid);
 
       $scope.userid = attr.userid;
 
       /*
       yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-      console.log(ret.data);
+      debug(ret.data);
     });
     */
 
@@ -70,7 +72,7 @@ angular.module('yunity.mobile').directive('listUsersPage', () => {
     templateUrl: 'components/profile/list-users.html',
     controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
       yAPI.apiCall('/users/').then((ret) => {
-        console.log(ret.data.users);
+        debug(ret.data.users);
         $scope.users = ret.data.users;
       });
 

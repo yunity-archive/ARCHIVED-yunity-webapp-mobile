@@ -3,6 +3,8 @@ import socketIOClient from 'socket.io-client';
 
 import ngCookies from 'angular-cookies';
 
+let debug = require('debug')('yunity:socket');
+
 const SESSION_COOKIE_NAME = 'sessionid';
 
 const socketModule = angular.module('yunitySocket', [
@@ -39,7 +41,7 @@ socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
 
   socket.on('connect', () => {
     if (currentSessionId) {
-      console.log('emitting session id', currentSessionId);
+      debug('emitting session id', currentSessionId);
       socket.emit('authenticate', { sessionId: currentSessionId });
     }
     deferreds.forEach(deferred => {
@@ -69,14 +71,14 @@ socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
       if (sessionId !== currentSessionId) {
         currentSessionId = sessionId;
         if (socket.connected) {
-          console.log('emitting session id', currentSessionId);
+          debug('emitting session id', currentSessionId);
           socket.emit('authenticate', { sessionId: currentSessionId });
         }
       }
     },
 
     clearSession() {
-      console.log('would clear session');
+      debug('would clear session');
     },
 
     ensureConnected() {
