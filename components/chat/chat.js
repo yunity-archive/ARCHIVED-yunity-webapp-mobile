@@ -1,12 +1,12 @@
 import angular from 'angular';
 
-angular.module('yunity.mobile').directive('yChatList', function() {
+angular.module('yunity.mobile').directive('yChatList', () => {
   return {
     scope: {},
     restrict: 'E',
     //template: '<h2>Hello Universe!</h2>',
     templateUrl: 'components/chat/chat-list.html',
-    controller: function ($scope, yAPI) {
+    controller: ($scope, yAPI) => {
 
       $scope.chats = [
         {
@@ -28,7 +28,7 @@ angular.module('yunity.mobile').directive('yChatList', function() {
       console.log(yAPI.session);
       if(yAPI.session.loggedin) {
         console.log('get all chats');
-        yAPI.apiCall('/chats').then(function(ret){
+        yAPI.apiCall('/chats').then((ret) => {
           console.log('got chats', ret);
           $scope.chats = ret.data.chats;
         });
@@ -38,7 +38,7 @@ angular.module('yunity.mobile').directive('yChatList', function() {
   };
 });
 
-angular.module('yunity.mobile').directive('yChat', function(yChat, yAPI, $route, $routeParams, $timeout) {
+angular.module('yunity.mobile').directive('yChat', (yChat, yAPI, $route, $routeParams, $timeout) => {
   return {
     scope: {},
     restrict: 'E',
@@ -66,7 +66,7 @@ angular.module('yunity.mobile').directive('yChat', function(yChat, yAPI, $route,
         });
       });
 
-      $scope.sendMessage = function() {
+      $scope.sendMessage = () => {
         if ($scope.content) {
           let msg = { content: $scope.content };
           $scope.content = '';
@@ -77,7 +77,7 @@ angular.module('yunity.mobile').directive('yChat', function(yChat, yAPI, $route,
       /**
       * TO DO: returning correct path to avatar image
       */
-      $scope.avatar = function(user_id) {
+      $scope.avatar = (user_id) => {
         return '/img/avatar.png';
       };
 
@@ -86,7 +86,7 @@ angular.module('yunity.mobile').directive('yChat', function(yChat, yAPI, $route,
       *
       * @param id
       */
-      $scope.getUser = function(id) {
+      $scope.getUser = (id) => {
 
         /*
         so like

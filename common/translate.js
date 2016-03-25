@@ -2,7 +2,7 @@ import angular from 'angular';
 
 const translateModule = angular.module('yunityTranslate', ['pascalprecht.translate']);
 
-translateModule.config(function ($translateProvider) {
+translateModule.config(($translateProvider) => {
 
   $translateProvider.useStaticFilesLoader({
     prefix: '/assets/lang/lang-',
@@ -15,13 +15,12 @@ translateModule.config(function ($translateProvider) {
 
 
 
-translateModule.directive('languageLinks', function () {
+translateModule.directive('languageLinks', () => {
   return {
     restrict: 'A',
     templateUrl: 'assets/templates/languageLinks.html',
-    controller: function($scope, $translate)
-    {
-      $scope.changeLang = function (key) {
+    controller: ($scope, $translate) => {
+      $scope.changeLang = (key) => {
         $translate.use(key);
       };
     }

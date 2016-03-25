@@ -1,11 +1,11 @@
 import angular from 'angular';
 
-angular.module('yunity.mobile').directive('wallPage', function() {
+angular.module('yunity.mobile').directive('wallPage', () => {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/wall/wall.html',
-    controller: function ($scope, yAPI) {
+    controller: ($scope, yAPI) => {
       $scope.state = {
         posts: []
       };

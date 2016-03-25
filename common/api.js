@@ -5,7 +5,7 @@ const apiModule = angular.module('yunityAPI', [
   ngCookies
 ]);
 
-apiModule.provider('PendingRequests', function() {
+apiModule.provider('PendingRequests', () => {
 
   let pendingRequests = {};
 
@@ -63,23 +63,23 @@ apiModule.config(($httpProvider, PendingRequestsProvider) => {
   $httpProvider.interceptors.push(requestTracker);
 });
 
-apiModule.run(function ($http, $cookies) {
+apiModule.run(($http, $cookies) => {
   var token = $cookies.get('csrftoken');
   if(token != undefined) {
     $http.defaults.headers.common['X-CSRFToken'] = token;
   }
 });
 
-apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($http, $cookies, $rootScope , $q) {
+apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' , ($http, $cookies, $rootScope , $q) => {
 
 
 
   return {
     url: '/api',
     urlSuffix: '',
-    requestStart: function() {},
-    requestComplete: function() {},
-    requestFailed: function () {},
+    requestStart: () => {},
+    requestComplete: () => {},
+    requestFailed: () => {},
     users: [],
     session: {
       loggedin: false,
@@ -132,7 +132,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
     /*
     * To do: Method checks server side is the user still logged in
     */
-    checkLogin: function() {
+    checkLogin() {
 
       let api = this;
 
@@ -144,7 +144,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
       return api.apiCall({
         uri: '/auth/login',
         method: 'GET'
-      }).then(function(ret){
+      }).then((ret) => {
 
         if(ret.data.user.id !== undefined) {
 
@@ -162,7 +162,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
         }
 
 
-      },function(){
+      }, () => {
         console.log('check login failed');
       });
 
@@ -175,13 +175,13 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
     listMappable(opt) {
 
       return this.apiCall('/items').then(
-        function(ret) {
+        (ret) => {
           console.log('listmappables success');
           if(opt.success != undefined) {
             opt.success(ret);
           }
         },
-        function(ret) {
+        (ret) => {
           console.log('listmappables error');
           if(opt.error != undefined) {
             opt.error(ret);
@@ -208,7 +208,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
           password: opt.password
         }
       }).then(
-        function (ret) {
+        (ret) => {
           console.log('auth success');
 
           /*
@@ -223,7 +223,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
             opt.success(ret);
           }
         },
-        function (ret) {
+        (ret) => {
           console.log('auth error');
           if(opt.error != undefined) {
             opt.error(ret);
@@ -290,7 +290,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
         method: opt.method,
         url: urlBase + api.urlSuffix,
         data: opt.data
-      }).then(function (data) {
+      }).then((data) => {
 
         //     if(data.config.headers['X-CSRFToken'] != undefined) {
         //         console.log('set token');
@@ -312,20 +312,20 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
 
 
 //why is it called service when is factory?
-apiModule.factory('MapItemService', ['$q', 'yAPI', function($q, yAPI) {
+apiModule.factory('MapItemService', ['$q', 'yAPI', ($q, yAPI) => {
   return {
-    getMapItemsAndUsers: function(opts) {
+    getMapItemsAndUsers: (opts) => {
       return $q.all([
         yAPI.apiCall('/items'),
         yAPI.apiCall('/users')
-      ], function(items, users) {
+      ], (items, users) => {
         return {
           items: items,
           users: users
         };
       });
     },
-    getMapItems: function(opts) {
+    getMapItems: (opts) => {
       return yAPI.apiCall('/items');
     }
   };

@@ -1,11 +1,11 @@
 //import toastr from 'toastr';
 
 export var yMsg = {
-  success: function(msg, title) {
+  success: (msg, title) => {
     //toastr.success(msg, title);
     alert(msg);
   },
-  error: function(msg, title) {
+  error: (msg, title) => {
     //toastr.error(msg, title);
     alert(msg);
   }

@@ -7,7 +7,7 @@ L.Icon.Default.imagePath = '/assets/img/marker';
 
 const mapModule = angular.module('yunityMap', []);
 
-mapModule.factory('yMapService', [function () {
+mapModule.factory('yMapService', [() => {
 
   return {
 
@@ -73,14 +73,14 @@ mapModule.factory('yMapService', [function () {
       /*
       * Save state of the map when anything has changed
       */
-      yMap.container.on('moveend zoomend', function (ev) {
+      yMap.container.on('moveend zoomend', (ev) => {
 
         yMap.zoom = yMap.container.getZoom();
         yMap.latLng = yMap.container.getCenter();
 
       });
 
-      yMap.container.on('locationfound', function(e) {
+      yMap.container.on('locationfound', (e) => {
         console.log(e);
         yMap.addMarker(e.latlng, 'you are here!');
       });
@@ -142,10 +142,10 @@ mapModule.factory('yMapService', [function () {
 }]);
 
 
-mapModule.directive('yMap', ['yMapService', function (yMapService) {
+mapModule.directive('yMap', ['yMapService', (yMapService) => {
   return {
     restrict: 'A',
-    link: function ($scope, $element, $attr) {
+    link: ($scope, $element, $attr) => {
 
       yMapService.init($element[0]);
 

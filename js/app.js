@@ -20,11 +20,11 @@ var app = angular.module('yunity.mobile', [
 /*
 * FORM VALIDATION DIRECTIVE
 */
-app.directive('showErrors', function() {
+app.directive('showErrors', () => {
   return {
     restrict: 'A',
-    link: function(scope, el) {
-      el.bind('blur', function() {
+    link: (scope, el) => {
+      el.bind('blur', () => {
 
         var valid = false;
 
@@ -38,7 +38,7 @@ app.directive('showErrors', function() {
 /*
 * INIT
 */
-app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', function($transform, $rootScope, yAPI, $location, $route) {
+app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform, $rootScope, yAPI, $location, $route) => {
 
   /*
   * API Configuration
@@ -46,18 +46,18 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', function($tr
   yAPI.config({
     url: '/api',
     urlSuffix: '',
-    requestStart: function() {
+    requestStart: () => {
       $rootScope.loading = true;
       console.log('start');
     },
-    requestComplete: function() {
+    requestComplete: () => {
       console.log('complete');
       $rootScope.loading = false;
     }
   });
-  $rootScope.$on('$routeChangeStart', function(event, next) {
+  $rootScope.$on('$routeChangeStart', (event, next) =>  {
     console.log('routeChangeStart next is:', next);
-    yAPI.checkLogin().then(function() {}, function() {
+    yAPI.checkLogin().then(() =>  {}, () =>  {
 
       if (next.access !== undefined) {
         if (next.access.requiresLogin) {
@@ -79,7 +79,7 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', function($tr
 /*
 * ROUTUNG
 */
-app.config(function($routeProvider) {
+app.config(($routeProvider) =>  {
   $routeProvider.when('/', {
     template: '<wall-page />',
     reloadOnSearch: false
@@ -102,7 +102,7 @@ app.config(function($routeProvider) {
 
   $routeProvider.when('/group/:id', {
 
-    template: function(params) {
+    template: (params) =>  {
       return `<group-page groupid="${params.id}" />`;
     },
     reloadOnSearch: false
@@ -115,7 +115,7 @@ app.config(function($routeProvider) {
 
   $routeProvider.when('/profile/:id', {
 
-    template: function(params) {
+    template: (params) =>  {
       return `<profile-page userid="${params.id}" />`;
     },
     reloadOnSearch: false
@@ -130,7 +130,7 @@ app.config(function($routeProvider) {
   });
 
   $routeProvider.when('/chat/new/:userids', {
-    template: function(params) {
+    template: (params) =>  {
       return `<chat-page userids="${params.userids}" />`;
     },
     reloadOnSearch: false,
@@ -194,7 +194,7 @@ app.config(function($routeProvider) {
 /*
 * MAIN CONTROLLER
 */
-app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', 'ySocket', function($rootScope, $scope, yAPI, yMapService) {
+app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', 'ySocket', ($rootScope, $scope, yAPI, yMapService) => {
 
   // $scope.session = yAPI.getSession;
 
@@ -219,7 +219,7 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
     icon: 'apple'
   }];
 
-  $scope.showSubCategories = function(cat) {
+  $scope.showSubCategories = (cat) => {
     $scope.activeCategory = cat;
   };
 
@@ -228,21 +228,21 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
   /*
   * LOADING SPINNER
   */
-  $rootScope.$on('$routeChangeStart', function() {
+  $rootScope.$on('$routeChangeStart', () => {
     $rootScope.loading = true;
   });
 
-  $rootScope.$on('$routeChangeSuccess', function() {
+  $rootScope.$on('$routeChangeSuccess', () => {
     $rootScope.loading = false;
   });
 
 
 
-  $scope.filter = function() {
+  $scope.filter = () => {
 
     yAPI.listMappable({
       filter: {},
-      success: function(ret) {
+      success: (ret) => {
         console.log('show items on status > ' + ret.data.items.length);
 
         if (ret.data.items != undefined && ret.data.items.length > 0) {
@@ -252,7 +252,7 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
         }
 
       },
-      error: function(ret) {
+      error: (ret) => {
         console.log(ret);
       }
     });

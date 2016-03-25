@@ -27,7 +27,7 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
 
   });
 
-  function loadInitialMessages(chatId){
+  let loadInitialMessages = (chatId) => {
     return yAPI.apiCall(`/chats/${chatId}/messages/`).then(response => {
       return response.data.messages.reverse();
     });
@@ -54,7 +54,7 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
       // store messages from socket here until we've loaded existing via API
       let incoming = [];
 
-      function listener(msgs) {
+      let listener = (msgs) => {
         if (loadedInitialMessages) {
           fn(msgs);
         } else {
@@ -148,7 +148,7 @@ chatModule.factory('yChat', ['$q', '$http', 'ySocket', 'yAPI', ($q, $http, ySock
       let chat = this;
 
       console.log('init chats');
-      yAPI.apiCall('/chats').then(function(ret){
+      yAPI.apiCall('/chats').then((ret) => {
         yAPI.session.chats = ret.data.chats;
 
         chat.listenAll((msgs) => {

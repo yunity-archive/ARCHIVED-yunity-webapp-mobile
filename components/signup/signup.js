@@ -1,13 +1,13 @@
 import angular from 'angular';
 
-angular.module('yunity.mobile').directive('signupPage', function() {
+angular.module('yunity.mobile').directive('signupPage', () => {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/signup/signup.html',
-    controller: function ($scope, yAPI, $location) {
+    controller: ($scope, yAPI, $location) => {
 
-      $scope.signup = function() {
+      $scope.signup = () => {
 
         yAPI.apiCall({
           uri: '/users',
@@ -19,24 +19,24 @@ angular.module('yunity.mobile').directive('signupPage', function() {
             first_name: $scope.firstname,
             last_name: $scope.lastname
           }
-        }).then(function(res){
+        }).then((res) => {
 
           //success('signup successfull :)');
           //alert(res.data.id);
           yAPI.authenticate({
             email: $scope.email,
             password: $scope.password,
-            success: function(){
+            success: () => {
               console.log('login success');
               $location.path('/profile/' + res.data.id);
               yChat.initChats();
             },
-            error: function() {
+            error: () => {
               alert('login failed');
             }
           });
 
-        },function(){
+        }, () => {
           alert('error while signup');
         });
       };

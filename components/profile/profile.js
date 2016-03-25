@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-angular.module('yunity.mobile').directive('profilePage', function() {
+angular.module('yunity.mobile').directive('profilePage', () => {
 
   console.log('profile init');
 
@@ -8,7 +8,7 @@ angular.module('yunity.mobile').directive('profilePage', function() {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/profile/profile.html',
-    controller: function ($scope, $rootScope, yAPI, yChat, $route, $location) {
+    controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
       console.log($route.current.params);
 
       $scope.error = false;
@@ -19,7 +19,7 @@ angular.module('yunity.mobile').directive('profilePage', function() {
         loaded: false
       };
 
-      yAPI.apiCall('/users/' + user.id).then(function(ret){
+      yAPI.apiCall('/users/' + user.id).then((ret) => {
         $scope.user = ret.data.users[0];
         $scope.user.loaded = true;
         $scope.ownprofile = false;
@@ -29,12 +29,12 @@ angular.module('yunity.mobile').directive('profilePage', function() {
         }
 
 
-      },function(ret){
+      }, (ret) => {
         $scope.error = true;
         $scope.error_message = 'user not found';
       });
 
-      $scope.sendMessage = function() {
+      $scope.sendMessage = () => {
 
         var chat = yChat.getExistingChat($scope.user.id,yAPI.session.chats);
 
@@ -46,7 +46,7 @@ angular.module('yunity.mobile').directive('profilePage', function() {
 
       };
     },
-    link: function($scope, element, attr, yAPI){
+    link: ($scope, element, attr, yAPI) => {
       //console.log('link => ' + attr.userid);
 
       $scope.userid = attr.userid;
@@ -61,15 +61,15 @@ angular.module('yunity.mobile').directive('profilePage', function() {
 }
 });
 
-angular.module('yunity.mobile').directive('listUsersPage', function() {
+angular.module('yunity.mobile').directive('listUsersPage', () => {
 
 
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/profile/list-users.html',
-    controller: function ($scope, $rootScope, yAPI, yChat, $route, $location) {
-      yAPI.apiCall('/users/').then(function(ret) {
+    controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
+      yAPI.apiCall('/users/').then((ret) => {
         console.log(ret.data.users);
         $scope.users = ret.data.users;
       });

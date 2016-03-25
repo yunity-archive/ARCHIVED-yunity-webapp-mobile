@@ -1,24 +1,24 @@
 import angular from 'angular';
 
-angular.module('yunity.mobile').directive('loginPage', function() {
+angular.module('yunity.mobile').directive('loginPage', () => {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/login/login.html',
-    controller: function ($scope, yAPI, yChat, $location) {
+    controller: ($scope, yAPI, yChat, $location) => {
 
-      $scope.login = function () {
+      $scope.login = () => {
 
         console.log($scope);
         yAPI.authenticate({
           email: $scope.email,
           password: $scope.password,
-          success: function(res){
+          success: (res) => {
             console.log('login success');
             $location.path('/profile/' + res.data.user.id);
             yChat.initChats();
           },
-          error: function() {
+          error: () => {
             alert('login failed');
           }
         });

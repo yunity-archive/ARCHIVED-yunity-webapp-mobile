@@ -1,16 +1,16 @@
 import angular from 'angular';
 
-angular.module('yunity.mobile').directive('mapPage', function() {
+angular.module('yunity.mobile').directive('mapPage', () => {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/map/map.html',
-    controller: function ($scope, yAPI) {
+    controller: ($scope, yAPI) => {
       $scope.state = {
         pins: []
       };
     },
-    link: function (element, $scope, attrs) {
+    link: (element, $scope, attrs) => {
 
     }
   };

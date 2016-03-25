@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-angular.module('yunity.mobile').directive('groups', function() {
+angular.module('yunity.mobile').directive('groups', () => {
 
   console.log('groups init');
 
@@ -8,21 +8,21 @@ angular.module('yunity.mobile').directive('groups', function() {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/groups/groups.html',
-    controller: function ($scope, yAPI) {
+    controller: ($scope, yAPI) => {
 
       $scope.groups = [];
 
       yAPI.apiCall({
         uri: '/groups',
         method: 'GET'
-      }).then(function(res){
+      }).then((res) => {
 
         $scope.groups = res.data.groups;
 
       });
 
     },
-    link: function($scope, element, attr, yAPI){
+    link: ($scope, element, attr, yAPI) => {
       //console.log('link => ' + attr.userid);
 
       $scope.userid = attr.userid;
@@ -37,15 +37,15 @@ angular.module('yunity.mobile').directive('groups', function() {
 }
 });
 
-angular.module('yunity.mobile').directive('groupsAdd', function() {
+angular.module('yunity.mobile').directive('groupsAdd', () => {
 
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/groups/groups-add.html',
-    controller: function ($scope, yAPI, $location) {
+    controller: ($scope, yAPI, $location) => {
 
-      $scope.addgroup = function() {
+      $scope.addgroup = () => {
 
         if($scope.name != '') {
           yAPI.apiCall({
@@ -55,7 +55,7 @@ angular.module('yunity.mobile').directive('groupsAdd', function() {
               description: $scope.description,
               name: $scope.name
             }
-          }).then(function(res){
+          }).then((res) => {
 
             $location.path('/groups');
 
@@ -70,7 +70,7 @@ angular.module('yunity.mobile').directive('groupsAdd', function() {
 
 
     },
-    link: function($scope, element, attr, yAPI){
+    link: ($scope, element, attr, yAPI) => {
       //console.log('link => ' + attr.userid);
 
       $scope.userid = attr.userid;
@@ -85,7 +85,7 @@ angular.module('yunity.mobile').directive('groupsAdd', function() {
 }
 });
 
-angular.module('yunity.mobile').directive('groupPage', function($route, $routeParams, yAPI) {
+angular.module('yunity.mobile').directive('groupPage', ($route, $routeParams, yAPI) => {
 
   console.log('profile init');
 
@@ -93,7 +93,7 @@ angular.module('yunity.mobile').directive('groupPage', function($route, $routePa
     scope: {},
     restrict: 'E',
     templateUrl: 'components/groups/group.html',
-    controller: function ($scope, $rootScope, yAPI, yChat, $route, $location) {
+    controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
       console.log($route.current.params);
 
       var group = {
@@ -101,18 +101,18 @@ angular.module('yunity.mobile').directive('groupPage', function($route, $routePa
         loaded: false
       };
 
-      yAPI.apiCall('/groups/' + group.id).then(function(ret){
+      yAPI.apiCall('/groups/' + group.id).then((ret) => {
         $scope.group = ret.data;
         $scope.group.loaded = true;
 
         console.log(ret);
 
 
-      },function(ret){
+      }, (ret) => {
         alert('group could not be loaded');
       });
     },
-    link: function($scope, element, attr){
+    link: ($scope, element, attr) => {
 
       let groupId = $routeParams.id;
 
