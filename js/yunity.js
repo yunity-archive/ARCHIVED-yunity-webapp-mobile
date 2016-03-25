@@ -2,9 +2,9 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
 
-import yunityAPI from '../common/api';
-import yunityChat from '../common/chat';
-import yunityMap from '../common/map';
+import yAPI from './yunity.yAPI';
+import yChat from './yunity.yChat';
+import yMap from './yunity.yMap';
 
 import routes from './routes';
 
@@ -21,12 +21,12 @@ const debug = require('debug')('yunity:app');
 /*
 * INIT APP
 */
-var app = angular.module('yunity.mobile', [
+var app = angular.module('yunity', [
   ngRoute,
   'mobile-angular-ui',
   // drag features here
   'mobile-angular-ui.gestures',
-  yunityAPI, yunityChat, yunityMap,
+  yAPI, yChat, yMap,
   groups, chat, item, login, map, profile, signup
 ]);
 

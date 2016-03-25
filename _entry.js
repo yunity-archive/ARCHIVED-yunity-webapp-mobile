@@ -1,3 +1,3 @@
 localStorage.debug = 'yunity:*'
 
-import './js/app.js';
+import './js/yunity.js';

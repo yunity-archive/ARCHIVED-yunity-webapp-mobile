@@ -1,7 +1,7 @@
 import angular from 'angular';
 import ngCookies from 'angular-cookies';
 
-const debug = require('debug')('yunity:api');
+const debug = require('debug')('yunity:yAPI');
 
 function initialize($http, $cookies) {
   var token = $cookies.get('csrftoken');
@@ -10,7 +10,7 @@ function initialize($http, $cookies) {
   }
 }
 
-class yAPI {
+class YAPI {
 
   constructor($http, $cookies, $rootScope , $q) {
     Object.assign(this, {
@@ -248,6 +248,6 @@ class yAPI {
 }
 
 export default angular.module('yunity.yAPI', [ngCookies])
-  .service('yAPI2', yAPI)
+  .service('yAPI', YAPI)
   .run(initialize)
   .name;
