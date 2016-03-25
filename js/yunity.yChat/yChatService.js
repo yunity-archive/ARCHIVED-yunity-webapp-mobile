@@ -1,4 +1,4 @@
-const debug = require('debug')('yunity:chat');
+const debug = require('debug')('yunity:yChat');
 
 export default class YChat {
 

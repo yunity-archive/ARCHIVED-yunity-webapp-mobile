@@ -3,7 +3,7 @@ import 'leaflet.markercluster';
 
 L.Icon.Default.imagePath = '/assets/img/marker';
 
-const debug = require('debug')('yunity:map');
+const debug = require('debug')('yunity:yMap');
 
 export default class YMapService {
 

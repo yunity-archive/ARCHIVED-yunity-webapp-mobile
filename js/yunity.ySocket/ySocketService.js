@@ -2,7 +2,7 @@ import socketIOClient from 'socket.io-client';
 
 import { SESSION_COOKIE_NAME } from './settings';
 
-const debug = require('debug')('yunity:socket');
+const debug = require('debug')('yunity:ySocket');
 
 export default class YSocket {
 

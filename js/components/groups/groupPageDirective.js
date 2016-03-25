@@ -1,6 +1,6 @@
 import groupPageTemplate from './groupPage.html';
 
-const debug = require('debug')('yunity:component:group-page');
+const debug = require('debug')('yunity:component:groupPage');
 
 export default function($route, $routeParams, yAPI) {
   'ngInject';

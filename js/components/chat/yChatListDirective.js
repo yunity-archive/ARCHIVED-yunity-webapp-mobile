@@ -1,6 +1,6 @@
 import yChatListTemplate from './yChatList.html';
 
-const debug = require('debug')('yunity:component:y-chat-list');
+const debug = require('debug')('yunity:component:yChatList');
 
 export default function() {
   return {
