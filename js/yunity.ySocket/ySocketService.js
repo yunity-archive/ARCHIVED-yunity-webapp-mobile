@@ -1,13 +1,10 @@
-import angular from 'angular';
 import socketIOClient from 'socket.io-client';
 
-import ngCookies from 'angular-cookies';
+import { SESSION_COOKIE_NAME } from './settings';
 
 const debug = require('debug')('yunity:socket');
 
-const SESSION_COOKIE_NAME = 'sessionid';
-
-class YSocket {
+export default class YSocket {
 
   constructor($q, $cookies) {
     Object.assign(this, {
@@ -74,21 +71,3 @@ class YSocket {
   }
 
 }
-
-function httpInterceptor($cookies, ySocket) {
-  return {
-    response: response => {
-      ySocket.setSessionId($cookies.get(SESSION_COOKIE_NAME));
-      return response;
-    }
-  };
-}
-
-function httpConfig($httpProvider) {
-  $httpProvider.interceptors.push(httpInterceptor);
-}
-
-export default angular.module('yunity.ySocket', [ngCookies])
-  .service('ySocket', YSocket)
-  .config(httpConfig)
-  .name;

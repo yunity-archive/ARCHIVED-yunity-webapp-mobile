@@ -1,11 +1,6 @@
-import angular from 'angular';
-
-import yAPI from './yunity.yAPI';
-import ySocket from './yunity.ySocket';
-
 const debug = require('debug')('yunity:chat');
 
-class YChat {
+export default class YChat {
 
   constructor($q, $http, ySocket, yAPI) {
     Object.assign(this, {
@@ -182,7 +177,3 @@ class YChat {
   }
 
 }
-
-export default angular.module('yunity.yChat', [yAPI, ySocket])
-  .service('yChat', YChat)
-  .name;

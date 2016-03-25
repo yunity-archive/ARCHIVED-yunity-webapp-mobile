@@ -1,16 +1,6 @@
-import angular from 'angular';
-import ngCookies from 'angular-cookies';
-
 const debug = require('debug')('yunity:yAPI');
 
-function initialize($http, $cookies) {
-  var token = $cookies.get('csrftoken');
-  if(token != undefined) {
-    $http.defaults.headers.common['X-CSRFToken'] = token;
-  }
-}
-
-class YAPI {
+export default class YAPI {
 
   constructor($http, $cookies, $rootScope , $q) {
     Object.assign(this, {
@@ -246,8 +236,3 @@ class YAPI {
   }
 
 }
-
-export default angular.module('yunity.yAPI', [ngCookies])
-  .service('yAPI', YAPI)
-  .run(initialize)
-  .name;

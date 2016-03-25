@@ -1,22 +1,11 @@
-import angular from 'angular';
-
 import L from 'leaflet';
 import 'leaflet.markercluster';
 
-const debug = require('debug')('yunity:map');
-
 L.Icon.Default.imagePath = '/assets/img/marker';
 
-function yMapDirective(yMapService) {
-  return {
-    restrict: 'A',
-    link: ($scope, $element) => {
-      yMapService.init($element[0]);
-    }
-  };
-}
+const debug = require('debug')('yunity:map');
 
-class YMapService {
+export default class YMapService {
 
   constructor() {
     Object.assign(this, {
@@ -137,8 +126,3 @@ class YMapService {
   }
 
 }
-
-export default angular.module('yunity.yMap', [])
-  .service('yMapService', YMapService)
-  .directive('yMap', yMapDirective)
-  .name;
