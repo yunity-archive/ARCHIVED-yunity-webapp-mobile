@@ -1,4 +1,4 @@
-import itemDetailPageTemplate from './item-detail-page.html';
+import itemDetailPageTemplate from './itemDetailPage.html';
 
 export default function() {
   return {

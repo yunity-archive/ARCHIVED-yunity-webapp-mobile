@@ -1,7 +1,7 @@
 import angular from 'angular';
 
-import profilePage from './profile-page';
-import listUsersPage from './list-users-page';
+import profilePage from './profilePageDirective';
+import listUsersPage from './listUsersPageDirective';
 
 export default angular.module('yunity.profile', [])
   .directive('profilePage', profilePage)

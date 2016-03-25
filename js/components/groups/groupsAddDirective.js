@@ -1,4 +1,4 @@
-import groupsAddTemplate from './groups-add.html';
+import groupsAddTemplate from './groupsAdd.html';
 
 export default function() {
 

@@ -1,4 +1,4 @@
-import chatListTemplate from './chat-list.html';
+import yChatListTemplate from './yChatList.html';
 
 const debug = require('debug')('yunity:component:y-chat-list');
 
@@ -6,7 +6,7 @@ export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: chatListTemplate,
+    templateUrl: yChatListTemplate,
     controller: ($scope, yAPI) => {
 
       $scope.chats = [

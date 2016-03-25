@@ -1,4 +1,4 @@
-import profileTemplate from './profile.html';
+import profileTemplate from './profilePage.html';
 
 const debug = require('debug')('yunity:profile-page');
 

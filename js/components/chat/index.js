@@ -1,7 +1,7 @@
 import angular from 'angular';
 
-import yChatList from './y-chat-list';
-import yChat from './y-chat';
+import yChatList from './yChatListDirective';
+import yChat from './yChatDirective';
 
 export default angular.module('yunity.chat', [])
   .directive('yChatList', yChatList)

@@ -1,4 +1,4 @@
-import groupPageTemplate from './group-page';
+import groupPageTemplate from './groupPage.html';
 
 const debug = require('debug')('yunity:component:group-page');
 

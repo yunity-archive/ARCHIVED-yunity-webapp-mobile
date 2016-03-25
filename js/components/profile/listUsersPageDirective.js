@@ -1,4 +1,4 @@
-import listUsersTemplate from './list-users.html';
+import listUsersTemplate from './listUsersPage.html';
 
 const debug = require('debug')('yunity:list-users-page');
 

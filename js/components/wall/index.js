@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import wallPage from './wall-page';
+import wallPage from './wallPageDirective';
 
 export default angular.module('yunity.wall', [])
   .directive('wallPage', wallPage)

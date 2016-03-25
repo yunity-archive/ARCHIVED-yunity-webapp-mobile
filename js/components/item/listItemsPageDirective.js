@@ -1,4 +1,4 @@
-import listItemsTemplate from './list-items.html';
+import listItemsTemplate from './listItemsPage.html';
 
 export default function() {
   return {

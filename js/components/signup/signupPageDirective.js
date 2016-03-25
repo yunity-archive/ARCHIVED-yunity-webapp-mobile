@@ -1,4 +1,4 @@
-import signupTemplate from './signup.html';
+import signupTemplate from './signupPage.html';
 
 const debug = require('debug')('yunity:signup-page');
 

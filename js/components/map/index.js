@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import mapPage from './map-page';
+import mapPage from './mapPageDirective';
 
 export default angular.module('yunity.map', [])
   .directive('mapPage', mapPage)

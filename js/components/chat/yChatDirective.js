@@ -1,13 +1,13 @@
 import angular from 'angular';
 
-import chatTemplate from './chat.html';
+import yChatTemplate from './yChat.html';
 
 export default function(yChat, yAPI, $route, $routeParams, $timeout) {
 
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: chatTemplate,
+    templateUrl: yChatTemplate,
     link: ($scope, el, attrs) => {
 
       let containerEl = document.getElementById('chat-container'); // FIXME(ns) this should not be find-by-id...

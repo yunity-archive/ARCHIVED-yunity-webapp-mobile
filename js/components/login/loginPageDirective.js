@@ -1,4 +1,4 @@
-import loginTemplate from './login.html';
+import loginTemplate from './loginPage.html';
 
 const debug = require('debug')('yunity:component:login-page');
 

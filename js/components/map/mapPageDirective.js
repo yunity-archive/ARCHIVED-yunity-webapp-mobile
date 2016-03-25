@@ -1,14 +1,14 @@
-import wallTemplate from './wall.html';
+import mapTemplate from './mapPage.html';
 
 export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: wallTemplate,
+    templateUrl: mapTemplate,
     controller: ($scope) => {
       $scope.state = {
-        posts: []
+        pins: []
       };
     }
-  }
+  };
 }

@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import loginPage from './login-page';
+import loginPage from './loginPageDirective';
 
 export default angular.module('yunity.login', [])
   .directive('loginPage', loginPage)

@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-import createItemPage from './create-item-page';
-import listItemsPage from './list-items-page';
-import itemDetailPage from './item-detail-page';
+import createItemPage from './createItemPageDirective';
+import listItemsPage from './listItemsPageDirective';
+import itemDetailPage from './itemDetailPageDirective';
 
 export default angular.module('yunity.item', [])
   .directive('createItemPage', createItemPage)

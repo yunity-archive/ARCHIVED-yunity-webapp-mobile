@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import signupPage from './signup-page';
+import signupPage from './signupPageDirective';
 
 export default angular.module('yunity.signup', [])
   .directive('signupPage', signupPage)

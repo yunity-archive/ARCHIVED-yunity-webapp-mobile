@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-import groups from './groups';
-import groupPage from './group-page';
-import groupsAdd from './group-add';
+import groups from './groupsDirective';
+import groupPage from './groupPageDirective';
+import groupsAdd from './groupsAddDirective';
 
 export default angular.module('yunity.groups', [])
   .directive('groups', groups)
