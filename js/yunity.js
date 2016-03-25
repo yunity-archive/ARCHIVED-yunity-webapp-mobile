@@ -34,7 +34,8 @@ var app = angular.module('yunity', [
 /*
 * INIT
 */
-app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform, $rootScope, yAPI, $location, $route) => {
+app.run(($transform, $rootScope, yAPI, $location, $route) => {
+  'ngInject';
 
   debug('running app!');
 
@@ -72,14 +73,15 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform,
 
   window.$transform = $transform;
 
-}]);
+});
 
 app.config(routes);
 
 /*
 * MAIN CONTROLLER
 */
-app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', 'ySocket', ($rootScope, $scope, yAPI, yMapService) => {
+app.controller('MainController', ($rootScope, $scope, yAPI, yMapService) => {
+  'ngInject';
 
   /*
   * handle categores
@@ -141,4 +143,4 @@ app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService',
 
 
 
-}]);
+});
