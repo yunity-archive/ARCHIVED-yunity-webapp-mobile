@@ -3,6 +3,7 @@ import groupPageTemplate from './groupPage.html';
 const debug = require('debug')('yunity:component:group-page');
 
 export default function($route, $routeParams, yAPI) {
+  'ngInject';
 
   debug('group page init');
 
@@ -11,6 +12,7 @@ export default function($route, $routeParams, yAPI) {
     restrict: 'E',
     templateUrl: groupPageTemplate,
     controller: ($scope, $rootScope, yAPI, yChat, $route) => {
+      'ngInject';
       debug($route.current.params);
 
       var group = {

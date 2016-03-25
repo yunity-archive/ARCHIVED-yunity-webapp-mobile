@@ -3,6 +3,7 @@ const debug = require('debug')('yunity:yAPI');
 export default class YAPI {
 
   constructor($http, $cookies, $rootScope , $q) {
+    'ngInject';
     Object.assign(this, {
 
       $http, $cookies, $rootScope , $q,

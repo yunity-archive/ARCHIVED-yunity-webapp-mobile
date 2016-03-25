@@ -3,6 +3,7 @@ import angular from 'angular';
 import yChatTemplate from './yChat.html';
 
 export default function(yChat, yAPI, $route, $routeParams, $timeout) {
+  'ngInject';
 
   return {
     scope: {},

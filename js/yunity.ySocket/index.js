@@ -6,6 +6,7 @@ import ySocketService from './ySocketService';
 import { SESSION_COOKIE_NAME } from './settings';
 
 function httpInterceptor($cookies, ySocket) {
+  'ngInject';
   return {
     response: response => {
       ySocket.setSessionId($cookies.get(SESSION_COOKIE_NAME));
@@ -15,6 +16,7 @@ function httpInterceptor($cookies, ySocket) {
 }
 
 function httpConfig($httpProvider) {
+  'ngInject';
   $httpProvider.interceptors.push(httpInterceptor);
 }
 

@@ -6,6 +6,7 @@ export default function() {
     restrict: 'E',
     templateUrl: createItemPageTemplate,
     controller: ($scope, yAPI, $location) => {
+      'ngInject';
 
       $scope.a = 'foo';
       $scope.createItem = () => {

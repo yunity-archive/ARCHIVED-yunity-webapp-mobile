@@ -21,7 +21,7 @@ module.exports = {
           __dirname
         ],
         exclude: /(node_modules|bower_components)/,
-        loaders: ['babel-loader']
+        loaders: ['ng-annotate', 'babel-loader']
       }, {
         test: /\.html$/,
         loaders: ['ngtemplate', 'html'],

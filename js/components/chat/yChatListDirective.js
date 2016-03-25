@@ -8,6 +8,7 @@ export default function() {
     restrict: 'E',
     templateUrl: yChatListTemplate,
     controller: ($scope, yAPI) => {
+      'ngInject';
 
       $scope.chats = [
         {

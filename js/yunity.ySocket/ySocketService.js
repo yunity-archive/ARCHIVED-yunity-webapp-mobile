@@ -7,6 +7,7 @@ const debug = require('debug')('yunity:socket');
 export default class YSocket {
 
   constructor($q, $cookies) {
+    'ngInject';
     Object.assign(this, {
       $q, $cookies,
 

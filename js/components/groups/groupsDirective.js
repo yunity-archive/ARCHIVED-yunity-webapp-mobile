@@ -11,6 +11,7 @@ export default function() {
     restrict: 'E',
     templateUrl: groupsTemplate,
     controller: ($scope, yAPI) => {
+      'ngInject';
 
       $scope.groups = [];
 

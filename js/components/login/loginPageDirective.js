@@ -8,6 +8,7 @@ export default function() {
     restrict: 'E',
     templateUrl: loginTemplate,
     controller: ($scope, yAPI, yChat, $location) => {
+      'ngInject';
 
       $scope.login = () => {
 

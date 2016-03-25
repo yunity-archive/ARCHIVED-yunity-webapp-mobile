@@ -8,6 +8,7 @@ export default function() {
     restrict: 'E',
     templateUrl: listUsersTemplate,
     controller: ($scope, yAPI) => {
+      'ngInject';
       yAPI.apiCall('/users/').then((ret) => {
         debug(ret.data.users);
         $scope.users = ret.data.users;

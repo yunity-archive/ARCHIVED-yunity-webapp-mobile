@@ -3,6 +3,7 @@ const debug = require('debug')('yunity:chat');
 export default class YChat {
 
   constructor($q, $http, ySocket, yAPI) {
+    'ngInject';
     Object.assign(this, {
       $q, $http, ySocket, yAPI,
 

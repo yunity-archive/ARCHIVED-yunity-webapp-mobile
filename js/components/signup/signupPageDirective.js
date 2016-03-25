@@ -15,6 +15,7 @@ export default function() {
 class SignupPageCtrl {
 
   constructor($scope, yAPI, yChat, $location) {
+    'ngInject';
     Object.assign(this, { $scope, yAPI, yChat, $location });
     this.data = {};
   }

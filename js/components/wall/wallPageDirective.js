@@ -6,6 +6,7 @@ export default function() {
     restrict: 'E',
     templateUrl: wallTemplate,
     controller: ($scope) => {
+      'ngInject';
       $scope.state = {
         posts: []
       };

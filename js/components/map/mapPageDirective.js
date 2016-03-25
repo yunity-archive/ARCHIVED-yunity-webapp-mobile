@@ -6,6 +6,7 @@ export default function() {
     restrict: 'E',
     templateUrl: mapTemplate,
     controller: ($scope) => {
+      'ngInject';
       $scope.state = {
         pins: []
       };

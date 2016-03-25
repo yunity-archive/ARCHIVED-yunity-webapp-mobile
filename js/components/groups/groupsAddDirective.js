@@ -7,6 +7,7 @@ export default function() {
     restrict: 'E',
     templateUrl: groupsAddTemplate,
     controller: ($scope, yAPI, $location) => {
+      'ngInject';
 
       $scope.addgroup = () => {
 

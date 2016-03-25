@@ -11,6 +11,7 @@ export default function() {
     restrict: 'E',
     templateUrl: profileTemplate,
     controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
+      'ngInject';
       debug($route.current.params);
 
       $scope.error = false;
