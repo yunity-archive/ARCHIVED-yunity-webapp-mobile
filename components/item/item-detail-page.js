@@ -1,9 +1,10 @@
+import itemDetailPageTemplate from './item-detail-page.html';
 
 export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/item/item.html',
+    templateUrl: itemDetailPageTemplate,
     controller: ($scope, yAPI, $routeParams, $location, $rootScope) => {
 
       $scope.requestItem = () => {

@@ -1,11 +1,11 @@
-
+import groupsAddTemplate from './groups-add.html';
 
 export default function() {
 
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/groups/groups-add.html',
+    templateUrl: groupsAddTemplate,
     controller: ($scope, yAPI, $location) => {
 
       $scope.addgroup = () => {

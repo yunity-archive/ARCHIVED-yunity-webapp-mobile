@@ -1,8 +1,10 @@
+import mapTemplate from './map.html';
+
 export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/map/map.html',
+    templateUrl: mapTemplate,
     controller: ($scope) => {
       $scope.state = {
         pins: []

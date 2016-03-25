@@ -1,3 +1,4 @@
+import profileTemplate from './profile.html';
 
 let debug = require('debug')('yunity:profile:profile-page');
 
@@ -8,7 +9,7 @@ export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/profile/profile.html',
+    templateUrl: profileTemplate,
     controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
       debug($route.current.params);
 

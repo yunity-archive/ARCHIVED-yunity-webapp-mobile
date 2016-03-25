@@ -53,7 +53,7 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform,
       $rootScope.loading = false;
     }
   });
-  $rootScope.$on('$routeChangeStart', (event, next) =>  {
+  $rootScope.$on('$routeChangeStart', (event, next) => {
     debug('routeChangeStart next is:', next);
     yAPI.checkLogin().then(() =>  {}, () =>  {
 

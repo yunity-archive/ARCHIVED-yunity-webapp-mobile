@@ -1,4 +1,4 @@
-import angular from 'angular';
+import loginTemplate from './login.html';
 
 let debug = require('debug')('yunity:component:login');
 
@@ -6,7 +6,7 @@ export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/login/login.html',
+    templateUrl: loginTemplate,
     controller: ($scope, yAPI, yChat, $location) => {
 
       $scope.login = () => {

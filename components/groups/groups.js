@@ -1,4 +1,4 @@
-import angular from 'angular';
+import groupsTemplate from './groups.html';
 
 let debug = require('debug')('yunity:component:groups');
 
@@ -9,7 +9,7 @@ export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/groups/groups.html',
+    templateUrl: groupsTemplate,
     controller: ($scope, yAPI) => {
 
       $scope.groups = [];

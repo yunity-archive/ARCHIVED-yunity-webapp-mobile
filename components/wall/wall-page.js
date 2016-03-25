@@ -1,8 +1,10 @@
+import wallTemplate from './wall.html';
+
 export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/wall/wall.html',
+    templateUrl: wallTemplate,
     controller: ($scope) => {
       $scope.state = {
         posts: []

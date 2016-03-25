@@ -1,3 +1,5 @@
+import groupPageTemplate from './group-page';
+
 let debug = require('debug')('yunity:component:group-page');
 
 export default function($route, $routeParams, yAPI) {
@@ -7,7 +9,7 @@ export default function($route, $routeParams, yAPI) {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/groups/group.html',
+    templateUrl: groupPageTemplate,
     controller: ($scope, $rootScope, yAPI, yChat, $route) => {
       debug($route.current.params);
 

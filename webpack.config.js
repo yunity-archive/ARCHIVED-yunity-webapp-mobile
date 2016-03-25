@@ -22,6 +22,10 @@ module.exports = {
         ],
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel-loader']
+      }, {
+        test: /\.html$/,
+        loaders: ['ngtemplate', 'html'],
+        exclude: /(node_modules|bower_components)/
       }
     ]
   },

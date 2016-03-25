@@ -1,11 +1,12 @@
+import chatListTemplate from './chat-list.html';
+
 let debug = require('debug')('yunity:component:chat-list');
 
 export default function() {
   return {
     scope: {},
     restrict: 'E',
-    //template: '<h2>Hello Universe!</h2>',
-    templateUrl: 'components/chat/chat-list.html',
+    templateUrl: chatListTemplate,
     controller: ($scope, yAPI) => {
 
       $scope.chats = [

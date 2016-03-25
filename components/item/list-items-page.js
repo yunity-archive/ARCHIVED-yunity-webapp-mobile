@@ -1,8 +1,10 @@
+import listItemsTemplate from './list-items.html';
+
 export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/item/list-items.html',
+    templateUrl: listItemsTemplate,
     controller: ($scope, yAPI) => {
       yAPI.apiCall('/items').then((ret) => {
 

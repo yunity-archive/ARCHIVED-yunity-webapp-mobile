@@ -1,3 +1,5 @@
+import signupTemplate from './signup.html';
+
 let debug = require('debug')('yunity:signup:signup-page');
 
 export default function() {
@@ -5,7 +7,7 @@ export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/signup/signup.html',
+    templateUrl: signupTemplate,
     controller: ($scope, yAPI, yChat, $location) => {
 
       $scope.signup = () => {

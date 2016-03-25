@@ -1,8 +1,10 @@
+import createItemTemplate from './create-item.html';
+
 export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: 'components/item/create-item.html',
+    templateUrl: createItemTemplate,
     controller: ($scope, yAPI, $location) => {
 
       $scope.a = 'foo';
