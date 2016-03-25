@@ -2,7 +2,7 @@ import angular from 'angular';
 
 let debug = require('debug')('yunity:component:login');
 
-angular.module('yunity.mobile').directive('loginPage', () => {
+export default function() {
   return {
     scope: {},
     restrict: 'E',
@@ -29,6 +29,4 @@ angular.module('yunity.mobile').directive('loginPage', () => {
 
     }
   };
-});
-
-export default 'YunityLogin';
+}

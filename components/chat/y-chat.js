@@ -1,46 +1,7 @@
 import angular from 'angular';
 
-let debug = require('debug')('yunity:component:chat');
+export default function(yChat, yAPI, $route, $routeParams, $timeout) {
 
-angular.module('yunity.mobile').directive('yChatList', () => {
-  return {
-    scope: {},
-    restrict: 'E',
-    //template: '<h2>Hello Universe!</h2>',
-    templateUrl: 'components/chat/chat-list.html',
-    controller: ($scope, yAPI) => {
-
-      $scope.chats = [
-        {
-          id: 1,
-          name: "Peter",
-          online: true
-        },
-        {
-          id: 2,
-          name: "Petra",
-          online: false
-        }
-      ];
-
-      /*
-      * Initial API Call to gel list of conversations
-      */
-      debug('get all chats');
-      debug(yAPI.session);
-      if(yAPI.session.loggedin) {
-        debug('get all chats');
-        yAPI.apiCall('/chats').then((ret) => {
-          debug('got chats', ret);
-          $scope.chats = ret.data.chats;
-        });
-      }
-
-    }
-  };
-});
-
-angular.module('yunity.mobile').directive('yChat', (yChat, yAPI, $route, $routeParams, $timeout) => {
   return {
     scope: {},
     restrict: 'E',
@@ -89,29 +50,12 @@ angular.module('yunity.mobile').directive('yChat', (yChat, yAPI, $route, $routeP
       * @param id
       */
       $scope.getUser = (id) => {
+        return {
+          id: 12,
+          name: 'Uwe'
+        };
+      };
 
-        /*
-        so like
-
-        if(this.users[id] != undefined) {
-        return this.users[id]
-      } else {
-      yAPI.apiCall('/user/' + id).then(function(){
-      ...
-    });
+    }
   }
-
-  */
-
-  return {
-    id: 12,
-    name: "Uwe"
-  };
-};
-
 }
-}
-});
-
-
-export default 'YunityChat';

@@ -1,13 +1,12 @@
-import angular from 'angular';
+let debug = require('debug')('yunity:signup:signup-page');
 
-let debug = require('debug')('yunity:component:signup');
+export default function() {
 
-angular.module('yunity.mobile').directive('signupPage', () => {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: 'components/signup/signup.html',
-    controller: ($scope, yAPI, $location) => {
+    controller: ($scope, yAPI, yChat, $location) => {
 
       $scope.signup = () => {
 
@@ -45,6 +44,4 @@ angular.module('yunity.mobile').directive('signupPage', () => {
 
     }
   };
-});
-
-export default 'YunitySignup';
+}

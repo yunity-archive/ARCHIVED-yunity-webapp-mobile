@@ -8,6 +8,14 @@ import yunityMap from '../common/map';
 
 import routes from './routes';
 
+import groups from '../components/groups';
+import chat from '../components/chat';
+import item from '../components/item';
+import login from '../components/login';
+import map from '../components/map';
+import profile from '../components/profile';
+import signup from '../components/signup';
+
 let debug = require('debug')('yunity:main');
 
 /*
@@ -18,10 +26,10 @@ var app = angular.module('yunity.mobile', [
   'mobile-angular-ui',
   // drag features here
   'mobile-angular-ui.gestures',
-  yunityAPI,
-  yunityChat,
-  yunityMap
+  yunityAPI, yunityChat, yunityMap,
+  groups, chat, item, login, map, profile, signup
 ]);
+
 
 /*
 * INIT

@@ -1,8 +1,7 @@
-import angular from 'angular';
 
-let debug = require('debug')('yunity:component:profile');
+let debug = require('debug')('yunity:profile:profile-page');
 
-angular.module('yunity.mobile').directive('profilePage', () => {
+export default function() {
 
   debug('profile init');
 
@@ -31,7 +30,7 @@ angular.module('yunity.mobile').directive('profilePage', () => {
         }
 
 
-      }, (ret) => {
+      }, () => {
         $scope.error = true;
         $scope.error_message = 'user not found';
       });
@@ -48,36 +47,9 @@ angular.module('yunity.mobile').directive('profilePage', () => {
 
       };
     },
-    link: ($scope, element, attr, yAPI) => {
-      //debug('link => ' + attr.userid);
-
+    link: ($scope, element, attr) => {
       $scope.userid = attr.userid;
 
-      /*
-      yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-      debug(ret.data);
-    });
-    */
-
+    }
   }
 }
-});
-
-angular.module('yunity.mobile').directive('listUsersPage', () => {
-
-
-  return {
-    scope: {},
-    restrict: 'E',
-    templateUrl: 'components/profile/list-users.html',
-    controller: ($scope, $rootScope, yAPI, yChat, $route, $location) => {
-      yAPI.apiCall('/users/').then((ret) => {
-        debug(ret.data.users);
-        $scope.users = ret.data.users;
-      });
-
-    }
-  };
-});
-
-export default 'YunityProfile';
