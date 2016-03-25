@@ -1,0 +1,253 @@
+import angular from 'angular';
+import ngCookies from 'angular-cookies';
+
+const debug = require('debug')('yunity:api');
+
+function initialize($http, $cookies) {
+  var token = $cookies.get('csrftoken');
+  if(token != undefined) {
+    $http.defaults.headers.common['X-CSRFToken'] = token;
+  }
+}
+
+class yAPI {
+
+  constructor($http, $cookies, $rootScope , $q) {
+    Object.assign(this, {
+
+      $http, $cookies, $rootScope , $q,
+
+      url: '/api',
+      urlSuffix: '',
+      requestStart: () => {},
+      requestComplete: () => {},
+      requestFailed: () => {},
+      users: [],
+      session: {
+        loggedin: false,
+        user:{},
+        chats:[]
+      }
+
+    });
+  }
+
+  config(opt) {
+
+    if (opt.url !== undefined) {
+      this.url = opt.url;
+    }
+
+    if(opt.urlSuffix !== undefined) {
+      this.urlSuffix = opt.urlSuffix;
+    }
+
+    if(opt.requestStart !== undefined) {
+      this.requestStart = opt.requestStart;
+    }
+
+    if(opt.requestComplete !== undefined) {
+      this.requestComplete = opt.requestComplete;
+    }
+
+    if(opt.requestFailed !== undefined) {
+      this.requestFailed = opt.requestFailed;
+    }
+
+  }
+
+  getSession() {
+    return this.session;
+  }
+
+  setSession(user) {
+    this.session = {
+      loggedin:true,
+      user:user
+    };
+    this.$rootScope.session = this.session;
+  }
+
+  /*
+  * To do: Method checks server side is the user still logged in
+  */
+  checkLogin() {
+
+    debug('checklogin session is: ' , this.getSession());
+
+    if(this.getSession().loggedin){
+      return this.$q.resolve();
+    }
+    return this.apiCall({
+      uri: '/auth/login',
+      method: 'GET'
+    }).then((ret) => {
+
+      if(ret.data.user.id !== undefined) {
+
+        debug('check login success user is logged in');
+
+        /*
+        * User is logged in set vars
+        */
+
+        this.setSession(ret.data.user);
+
+
+      } else {
+        debug('user is not logged in');
+      }
+
+
+    }, () => {
+      debug('check login failed');
+    });
+
+  }
+
+  /*
+  * list Mappable Items by Filter
+  * Param Object => {filter}
+  */
+  listMappable(opt) {
+
+    return this.apiCall('/items').then(
+      (ret) => {
+        debug('listmappables success');
+        if(opt.success != undefined) {
+          opt.success(ret);
+        }
+      },
+      (ret) => {
+        debug('listmappables error');
+        if(opt.error != undefined) {
+          opt.error(ret);
+        }
+      }
+    );
+  }
+
+  /**
+  * Auth API call
+  * @param object => {email,password,[success],[error]}
+  */
+  authenticate(opt) {
+
+    debug(opt);
+
+    let api = this;
+
+    return this.apiCall({
+      uri: '/auth/login',
+      method: 'POST',
+      data: {
+        email: opt.email,
+        password: opt.password
+      }
+    }).then(
+      (ret) => {
+        debug('auth success');
+
+        /*
+        * maker USER Data accessable after login
+        */
+        /*
+        * User is logged in set vars
+        */
+        api.setSession(ret.data.user);
+
+        if(opt.success != undefined) {
+          opt.success(ret);
+        }
+      },
+      (ret) => {
+        debug('auth error');
+        if(opt.error != undefined) {
+          opt.error(ret);
+        }
+      }
+    );
+  }
+
+  getUsers(userIds) {
+    let userIdsString = userIds.join(',');
+    return this.apiCall('/user/' + userIdsString);
+  }
+
+  /*
+  * Call the Api:
+  * parameter Object { method, data, succes, error }
+  *
+  */
+  apiCall(opt) {
+
+
+    //debug($http.defaults.headers.common); //['X-CSRFToken'] = $cookies.get('csrftoken');
+
+    /*
+    * make this accessable
+    */
+    let api = this;
+    let urlBase = api.url;
+
+    /*
+    * If opt is a string, use default values
+    */
+    if (typeof(opt) === 'string') {
+      opt = {
+        uri: opt,
+        method: 'GET'
+      };
+    }
+
+    /*
+    * if no data and no method specified do GET othwist POST
+    */
+    if (opt.method == undefined && opt.data == undefined) {
+      opt.method = 'GET';
+    }
+    else if (opt.method == undefined) {
+      opt.method = 'POST';
+    }
+
+    if (opt.uri != undefined) {
+      urlBase += opt.uri;
+    }
+
+    if (opt.data == undefined) {
+      opt.data = {};
+    }
+
+    api.requestStart();
+
+    /*
+    * RUN Angulars HTTP Call
+    */
+    return this.$http({
+      method: opt.method,
+      url: urlBase + api.urlSuffix,
+      data: opt.data
+    }).then((data) => {
+
+      //     if(data.config.headers['X-CSRFToken'] != undefined) {
+      //         debug('set token');
+      //         $http.defaults.headers.common['X-CSRFToken'] = data.config.headers['X-CSRFToken'];
+      //}
+
+      api.requestComplete();
+
+      //debug(data);
+      //set token everytime as default token
+      this.$http.defaults.headers.common['X-CSRFToken'] = this.$cookies.get('csrftoken');
+      //debug('set token to: ' + $http.defaults.headers.common['X-CSRFToken']);
+
+      return data;
+    });
+  }
+
+}
+
+export default angular.module('yunity.yAPI', [ngCookies])
+  .service('yAPI2', yAPI)
+  .run(initialize)
+  .name;
