@@ -1,5 +1,7 @@
 //import './js/message.js';
 import angular from 'angular';
+import ngRoute from 'angular-route';
+
 import yunityAPI from '../common/api';
 import yunityChat from '../common/chat';
 import yunityMap from '../common/map';
@@ -8,7 +10,7 @@ import yunityMap from '../common/map';
 * INIT APP
 */
 var app = angular.module('yunity.mobile', [
-  'ngRoute',
+  ngRoute,
   'mobile-angular-ui',
   // drag features here
   'mobile-angular-ui.gestures',

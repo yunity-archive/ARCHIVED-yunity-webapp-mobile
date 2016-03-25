@@ -23,19 +23,17 @@
     <link rel="stylesheet" href="bower_components/Leaflet.markercluster/dist/MarkerCluster.Default.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 
-
-    <!-- SCRIPTS -->
-    <script src="bower_components/angular/index.js"></script>
-    <script src="bower_components/router/index.js"></script>
-    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
-    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js"></script>
-
     <!--
     <script src="bower_components/Leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script src="bower_components/leaflet/dist/leaflet.js"></script>
     <script src="js/map.js"></script>
     -->
     <script src="/build/app.js"></script>
+
+    <!-- SCRIPTS -->
+    <script src="bower_components/router/index.js"></script>
+    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
+    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js"></script>
 
 
 </head>
@@ -61,8 +59,8 @@
     <!-- Navbars -->
 
     <div class="navbar navbar-app navbar-absolute-top" id="searchbox">
-        
-            
+
+
                 <div class="btn-group">
                     <div ui-toggle="uiSidebarLeft" class="btn btn-menu">
                         <i class="fa fa-bars"></i>
@@ -71,11 +69,11 @@
                         <img src="/images/ylogo.png" />
                     </div>
                 </div>
-            
 
-       
+
+
     </div>
-    
+
     <!--
     <div class="navbar navbar-app navbar-absolute-bottom">
         <div class="btn-group justified">
@@ -88,7 +86,7 @@
         </div>
     </div>
     -->
-    
+
     <div class="app-body" ng-class="{loading: loading}">
         <div ng-show="loading" class="app-content-loading">
             <i class="fa fa-spinner fa-spin loading-spinner"></i>
