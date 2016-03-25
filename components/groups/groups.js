@@ -1,144 +1,144 @@
 
 angular.module('yunity.mobile').directive('groups', function() {
 
-    console.log('groups init');
+  console.log('groups init');
 
-    return {
-        scope: {},
-        restrict: 'E',
-        templateUrl: 'components/groups/groups.html',
-        controller: function ($scope, yAPI) {
+  return {
+    scope: {},
+    restrict: 'E',
+    templateUrl: 'components/groups/groups.html',
+    controller: function ($scope, yAPI) {
 
-            $scope.groups = [];
-            
-            yAPI.apiCall({
-                        uri: '/groups',
-                        method: 'GET'
-                    }).then(function(res){
-                        
-                        $scope.groups = res.data.groups;
+      $scope.groups = [];
 
-                    });
-            
-        },
-        link: function($scope, element, attr, yAPI){
-            //console.log('link => ' + attr.userid);
+      yAPI.apiCall({
+        uri: '/groups',
+        method: 'GET'
+      }).then(function(res){
+        
+        $scope.groups = res.data.groups;
 
-            $scope.userid = attr.userid;
+      });
 
-            /*
-            yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-                console.log(ret.data);
-            });
-            */
+    },
+    link: function($scope, element, attr, yAPI){
+      //console.log('link => ' + attr.userid);
 
-        }
-    }
+      $scope.userid = attr.userid;
+
+      /*
+      yAPI.apiCall('/user/' + attr.userid).then(function(ret){
+      console.log(ret.data);
+    });
+    */
+
+  }
+}
 });
 
 angular.module('yunity.mobile').directive('groupsAdd', function() {
 
-    return {
-        scope: {},
-        restrict: 'E',
-        templateUrl: 'components/groups/groups-add.html',
-        controller: function ($scope, yAPI, $location) {
-            
-            $scope.addgroup = function() {
-                
-                if($scope.name != '') { 
-                    yAPI.apiCall({
-                        uri: '/groups',
-                        method: 'POST',
-                        data: {
-                            description: $scope.description,
-                            name: $scope.name
-                        }
-                    }).then(function(res){
+  return {
+    scope: {},
+    restrict: 'E',
+    templateUrl: 'components/groups/groups-add.html',
+    controller: function ($scope, yAPI, $location) {
 
-                        $location.path('/groups');
+      $scope.addgroup = function() {
 
-                    });
-                }
-                else
-                {
-                    alert('enter a group name please');
-                }
-                
-            };
+        if($scope.name != '') {
+          yAPI.apiCall({
+            uri: '/groups',
+            method: 'POST',
+            data: {
+              description: $scope.description,
+              name: $scope.name
+            }
+          }).then(function(res){
 
-            
-        },
-        link: function($scope, element, attr, yAPI){
-            //console.log('link => ' + attr.userid);
+            $location.path('/groups');
 
-            $scope.userid = attr.userid;
-
-            /*
-            yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-                console.log(ret.data);
-            });
-            */
-
+          });
         }
-    }
+        else
+        {
+          alert('enter a group name please');
+        }
+
+      };
+
+
+    },
+    link: function($scope, element, attr, yAPI){
+      //console.log('link => ' + attr.userid);
+
+      $scope.userid = attr.userid;
+
+      /*
+      yAPI.apiCall('/user/' + attr.userid).then(function(ret){
+      console.log(ret.data);
+    });
+    */
+
+  }
+}
 });
 
 angular.module('yunity.mobile').directive('groupPage', function($route, $routeParams, yAPI) {
 
-    console.log('profile init');
+  console.log('profile init');
 
-    return {
-        scope: {},
-        restrict: 'E',
-        templateUrl: 'components/groups/group.html',
-        controller: function ($scope, $rootScope, yAPI, yChat, $route, $location) {
-            console.log($route.current.params);
+  return {
+    scope: {},
+    restrict: 'E',
+    templateUrl: 'components/groups/group.html',
+    controller: function ($scope, $rootScope, yAPI, yChat, $route, $location) {
+      console.log($route.current.params);
 
-            var group = {
-                id: $route.current.params.id,
-                loaded: false
-            };
+      var group = {
+        id: $route.current.params.id,
+        loaded: false
+      };
 
-            yAPI.apiCall('/groups/' + group.id).then(function(ret){
-                $scope.group = ret.data;
-                $scope.group.loaded = true;
-                
-                console.log(ret);
+      yAPI.apiCall('/groups/' + group.id).then(function(ret){
+        $scope.group = ret.data;
+        $scope.group.loaded = true;
 
-                
-            },function(ret){
-                alert('group could not be loaded');
-            });
-        },
-        link: function($scope, element, attr){
+        console.log(ret);
 
-            let groupId = $routeParams.id;
 
-            $scope.userid = attr.userid;
+      },function(ret){
+        alert('group could not be loaded');
+      });
+    },
+    link: function($scope, element, attr){
 
-            $scope.joinGroup = () => {
-                console.log('joining group');
+      let groupId = $routeParams.id;
 
-                yAPI.apiCall({
-                    uri: `/groups/${groupId}/members`,
-                    method: 'POST',
-                    data: {
-                        users: [yAPI.session.user.id]
-                    }
-                }).then(() => {
-                    $route.reload();
-                });
-            };
+      $scope.userid = attr.userid;
 
-            /*
-            yAPI.apiCall('/user/' + attr.userid).then(function(ret){
-                console.log(ret.data);
-            });
-            */
+      $scope.joinGroup = () => {
+        console.log('joining group');
 
-        }
-    }
+        yAPI.apiCall({
+          uri: `/groups/${groupId}/members`,
+          method: 'POST',
+          data: {
+            users: [yAPI.session.user.id]
+          }
+        }).then(() => {
+          $route.reload();
+        });
+      };
+
+      /*
+      yAPI.apiCall('/user/' + attr.userid).then(function(ret){
+      console.log(ret.data);
+    });
+    */
+
+  }
+}
 });
 
 export default 'YunityGroups';
