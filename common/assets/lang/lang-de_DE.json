@@ -1,0 +1,17 @@
+{
+    "ENGLISH":    		"Englisch",
+    "GERMAN":     		"Deutsch",
+    "SWITCH_LANGUAGE":	"Sprache wechseln",
+    "ABOUT_PAGE": 		"Über uns",
+    "TOGGLE_MAP": 		"Karte umschalten",
+    "SEARCH":     		"Suchen",
+    "GO":         		"Los!",
+    "HOME_PAGE":  		"Start",
+    "SEARCH_PAGE":		"Suche",
+    "PROFILE":    		"Profil",
+    "AWESOME":    		"Großartig!! Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+    "SEARCH_RESULTS":	"Suchergebnisse",
+    "LOGIN":            "Login",
+    "EMAIL":            "Email",
+    "PASSWORD":         "Passwort"
+}

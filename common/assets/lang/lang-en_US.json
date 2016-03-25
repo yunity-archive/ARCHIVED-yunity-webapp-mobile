@@ -1,0 +1,17 @@
+{
+    "ENGLISH":    		"English",
+    "GERMAN":     		"German",
+    "SWITCH_LANGUAGE":	"Switch language",
+    "ABOUT_PAGE": 		"About Page",
+    "TOGGLE_MAP": 		"Toogle Map",
+    "SEARCH":     		"Search",
+    "GO":         		"Go!",
+    "HOME_PAGE":  		"Home",
+    "SEARCH_PAGE":		"Search",
+    "PROFILE":    		"Profile",
+    "AWESOME":    		"Awesome!!",
+    "SEARCH_RESULTS":	"Search results",
+    "LOGIN":            "Login",
+    "EMAIL":            "Email",
+    "PASSWORD":         "Password"
+}
