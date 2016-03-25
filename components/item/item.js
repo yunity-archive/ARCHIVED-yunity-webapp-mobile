@@ -15,7 +15,7 @@ angular.module('yunity.mobile').directive('createItemPage', function() {
             latitude: 0.0
           }
         }).then(function(res) {
-          
+
           $location.path('/list/items');
 
         },
@@ -67,7 +67,7 @@ angular.module('yunity.mobile').directive('itemDetailPage', function() {
         $scope.item = ret.data;
       });
     }
-  }
+  };
 });
 
 

@@ -74,7 +74,7 @@ angular.module('yunity.mobile').directive('listUsersPage', function() {
       });
 
     }
-  }
+  };
 });
 
 export default 'YunityProfile';

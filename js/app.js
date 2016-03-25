@@ -68,7 +68,7 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', function($tr
           }
         }
       }
-    })
+    });
   });
 
   window.$transform = $transform;
@@ -146,7 +146,7 @@ app.config(function($routeProvider) {
 
   $routeProvider.when('/map', {
     template: '<map-page />',
-    reloadOnSearch: false,
+    reloadOnSearch: false
   });
 
   $routeProvider.when('/create/item', {
@@ -159,13 +159,13 @@ app.config(function($routeProvider) {
 
   $routeProvider.when('/list/items', {
     template: '<list-items-page />',
-    reloadOnSearch: false,
+    reloadOnSearch: false
 
   });
 
   $routeProvider.when('/item/:id', {
     template: '<item-detail-page />',
-    reloadOnSearch: false,
+    reloadOnSearch: false
 
   });
 

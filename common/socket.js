@@ -21,7 +21,7 @@ socketModule.factory('ySocketHttpInterceptor', ['$cookies', 'ySocket', ($cookies
 
 socketModule.config(['$httpProvider', ($httpProvider) => {
   $httpProvider.interceptors.push('ySocketHttpInterceptor');
-}])
+}]);
 
 socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
 
@@ -30,7 +30,7 @@ socketModule.factory('ySocket', ['$q', '$cookies', ($q, $cookies) => {
   let currentSessionId = $cookies.get(SESSION_COOKIE_NAME);
 
   const socket = socketIOClient('http://' + location.host, {
-    path: '/socket',
+    path: '/socket'
     //transports: ['websocket']
   });
 

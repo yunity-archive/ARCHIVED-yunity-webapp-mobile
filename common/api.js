@@ -1,7 +1,7 @@
 import ngCookies from 'angular-cookies';
 
 const apiModule = angular.module('yunityAPI', [
-  ngCookies,
+  ngCookies
 ]);
 
 apiModule.provider('PendingRequests', function() {
@@ -10,17 +10,17 @@ apiModule.provider('PendingRequests', function() {
 
   let getRequestId = (config) => {
     return `${ config.method }:${ config.url }`;
-  }
+  };
 
   let isPending = () => {
     return Object.keys(pendingRequests).length > 0;
-  }
+  };
 
   return {
     $get () {
       return {
         isPending: isPending
-      }
+      };
     },
     registerRequest (config) {
       let id = getRequestId(config);
@@ -33,8 +33,8 @@ apiModule.provider('PendingRequests', function() {
         delete pendingRequests[id];
       }
     },
-    isPending: isPending,
-  }
+    isPending: isPending
+  };
 });
 
 apiModule.config(($httpProvider, PendingRequestsProvider) => {
@@ -57,10 +57,10 @@ apiModule.config(($httpProvider, PendingRequestsProvider) => {
         console.error('caught error: ', rejection);
         return $q.reject(rejection);
       }
-    }
-  }
+    };
+  };
   $httpProvider.interceptors.push(requestTracker);
-})
+});
 
 apiModule.run(function ($http, $cookies) {
   var token = $cookies.get('csrftoken');
@@ -205,7 +205,7 @@ apiModule.factory('yAPI', ['$http','$cookies','$rootScope' , '$q' ,function ($ht
         data: {
           email: opt.email,
           password: opt.password
-        },
+        }
       }).then(
         function (ret) {
           console.log('auth success');
@@ -316,13 +316,13 @@ apiModule.factory('MapItemService', ['$q', 'yAPI', function($q, yAPI) {
     getMapItemsAndUsers: function(opts) {
       return $q.all([
         yAPI.apiCall('/items'),
-        yAPI.apiCall('/users'),
+        yAPI.apiCall('/users')
       ], function(items, users) {
         return {
           items: items,
           users: users
-        }
-      })
+        };
+      });
     },
     getMapItems: function(opts) {
       return yAPI.apiCall('/items');

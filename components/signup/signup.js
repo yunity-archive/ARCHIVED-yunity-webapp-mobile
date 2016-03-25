@@ -38,7 +38,7 @@ angular.module('yunity.mobile').directive('signupPage', function() {
         },function(){
           alert('error while signup');
         });
-      }
+      };
 
     }
   };

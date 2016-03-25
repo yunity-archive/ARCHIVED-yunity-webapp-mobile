@@ -21,7 +21,7 @@ translateModule.directive('languageLinks', function () {
     {
       $scope.changeLang = function (key) {
         $translate.use(key);
-      }
+      };
     }
   };
 });

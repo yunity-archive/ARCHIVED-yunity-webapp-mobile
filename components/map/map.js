@@ -12,5 +12,5 @@ angular.module('yunity.mobile').directive('mapPage', function() {
     link: function (element, $scope, attrs) {
 
     }
-  }
+  };
 });

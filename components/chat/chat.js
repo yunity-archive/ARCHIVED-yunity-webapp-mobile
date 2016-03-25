@@ -17,7 +17,7 @@ angular.module('yunity.mobile').directive('yChatList', function() {
           id: 2,
           name: "Petra",
           online: false
-        },
+        }
       ];
 
       /*
@@ -34,7 +34,7 @@ angular.module('yunity.mobile').directive('yChatList', function() {
       }
 
     }
-  }
+  };
 });
 
 angular.module('yunity.mobile').directive('yChat', function(yChat, yAPI, $route, $routeParams, $timeout) {
