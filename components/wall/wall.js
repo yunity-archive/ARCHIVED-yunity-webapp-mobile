@@ -1,3 +1,4 @@
+import angular from 'angular';
 
 angular.module('yunity.mobile').directive('wallPage', function() {
   return {

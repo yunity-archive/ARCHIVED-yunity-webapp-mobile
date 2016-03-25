@@ -1,3 +1,4 @@
+import angular from 'angular';
 
 angular.module('yunity.mobile').directive('groups', function() {
 
@@ -15,7 +16,7 @@ angular.module('yunity.mobile').directive('groups', function() {
         uri: '/groups',
         method: 'GET'
       }).then(function(res){
-        
+
         $scope.groups = res.data.groups;
 
       });

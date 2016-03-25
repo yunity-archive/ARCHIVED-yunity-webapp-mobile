@@ -1,3 +1,4 @@
+import angular from 'angular';
 import yunityAPI from './api';
 import yunitySocket from './socket';
 

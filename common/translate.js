@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 const translateModule = angular.module('yunityTranslate', ['pascalprecht.translate']);
 
 translateModule.config(function ($translateProvider) {

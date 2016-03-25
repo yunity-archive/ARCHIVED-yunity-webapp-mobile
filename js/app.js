@@ -1,4 +1,5 @@
 //import './js/message.js';
+import angular from 'angular';
 import yunityAPI from '../common/api';
 import yunityChat from '../common/chat';
 import yunityMap from '../common/map';

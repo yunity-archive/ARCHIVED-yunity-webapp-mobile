@@ -1,3 +1,4 @@
+import angular from 'angular';
 import ngCookies from 'angular-cookies';
 
 const apiModule = angular.module('yunityAPI', [

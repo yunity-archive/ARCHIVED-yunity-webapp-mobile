@@ -1,3 +1,4 @@
+import angular from 'angular';
 import socketIOClient from 'socket.io-client';
 
 import ngCookies from 'angular-cookies';

@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 import L from 'leaflet';
 import 'leaflet.markercluster';
 

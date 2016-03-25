@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 angular.module('yunity.mobile').directive('createItemPage', function() {
   return {
     scope: {},
