@@ -1,3 +1,5 @@
+# TODO: this needs updating, it is out of sync with reality
+
 # yunity-webapp-common
 
 Common functionality between yunity-webapp and yunity-webapp-mobile
