@@ -57,7 +57,7 @@ apiModule.config(($httpProvider, PendingRequestsProvider) => {
       },
       responseError: (rejection) => {
         // TODO: handle errors
-        console.error('caught error: ', rejection);
+        debug('caught error: ', rejection);
         return $q.reject(rejection);
       }
     };
