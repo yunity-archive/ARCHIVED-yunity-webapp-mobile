@@ -1,6 +1,6 @@
 import groupsTemplate from './groups.html';
 
-let debug = require('debug')('yunity:component:groups');
+const debug = require('debug')('yunity:component:groups');
 
 export default function() {
 

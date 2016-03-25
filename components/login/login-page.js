@@ -1,6 +1,6 @@
 import loginTemplate from './login.html';
 
-let debug = require('debug')('yunity:component:login-page');
+const debug = require('debug')('yunity:component:login-page');
 
 export default function() {
   return {

@@ -16,7 +16,7 @@ import map from '../components/map';
 import profile from '../components/profile';
 import signup from '../components/signup';
 
-let debug = require('debug')('yunity:app');
+const debug = require('debug')('yunity:app');
 
 /*
 * INIT APP

@@ -2,7 +2,7 @@ import angular from 'angular';
 import yunityAPI from './api';
 import yunitySocket from './socket';
 
-let debug = require('debug')('yunity:chat');
+const debug = require('debug')('yunity:chat');
 
 const chatModule = angular.module('yunityChat', [
   yunityAPI,

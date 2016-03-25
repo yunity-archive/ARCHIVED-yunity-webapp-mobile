@@ -1,6 +1,6 @@
 import groupPageTemplate from './group-page';
 
-let debug = require('debug')('yunity:component:group-page');
+const debug = require('debug')('yunity:component:group-page');
 
 export default function($route, $routeParams, yAPI) {
 

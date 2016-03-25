@@ -3,7 +3,7 @@ import angular from 'angular';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 
-let debug = require('debug')('yunity:map');
+const debug = require('debug')('yunity:map');
 
 L.Icon.Default.imagePath = '/assets/img/marker';
 

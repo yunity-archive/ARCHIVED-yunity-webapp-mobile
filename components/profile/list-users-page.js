@@ -1,6 +1,6 @@
 import listUsersTemplate from './list-users.html';
 
-let debug = require('debug')('yunity:list-users-page');
+const debug = require('debug')('yunity:list-users-page');
 
 export default function() {
   return {

@@ -3,7 +3,7 @@ import socketIOClient from 'socket.io-client';
 
 import ngCookies from 'angular-cookies';
 
-let debug = require('debug')('yunity:socket');
+const debug = require('debug')('yunity:socket');
 
 const SESSION_COOKIE_NAME = 'sessionid';
 

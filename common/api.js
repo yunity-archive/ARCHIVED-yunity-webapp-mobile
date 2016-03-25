@@ -1,7 +1,7 @@
 import angular from 'angular';
 import ngCookies from 'angular-cookies';
 
-let debug = require('debug')('yunity:api');
+const debug = require('debug')('yunity:api');
 
 const apiModule = angular.module('yunityAPI', [
   ngCookies
