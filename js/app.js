@@ -22,24 +22,6 @@ var app = angular.module('yunity.mobile', [
 ]);
 
 /*
-* FORM VALIDATION DIRECTIVE
-*/
-app.directive('showErrors', () => {
-  return {
-    restrict: 'A',
-    link: (scope, el) => {
-      el.bind('blur', () => {
-
-        var valid = false;
-
-        el.toggleClass('has-error', valid);
-      });
-    }
-  };
-
-});
-
-/*
 * INIT
 */
 app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform, $rootScope, yAPI, $location, $route) => {
@@ -82,26 +64,10 @@ app.run(['$transform', '$rootScope', 'yAPI', '$location', '$route', ($transform,
 
 app.config(routes);
 
-// app.provider('authFilter', function() {
-//         this.$get = function(yAPI, $location) {
-//                 console.log('authFilter');
-//                 if (!yAPI.session.loggedin) {
-//                         $location.path('/login');
-//                         return false;
-//                 }
-//                 return true;
-//         };
-// });
-
 /*
 * MAIN CONTROLLER
 */
 app.controller('MainController', ['$rootScope', '$scope', 'yAPI', 'yMapService', 'ySocket', ($rootScope, $scope, yAPI, yMapService) => {
-
-  // $scope.session = yAPI.getSession;
-
-  // console.log('session');
-  // console.log($scope.session);
 
   /*
   * handle categores
