@@ -21,8 +21,8 @@ export default function() {
             $location.path('/profile/' + res.data.user.id);
             yChat.initChats();
           },
-          error: () => {
-            alert('login failed');
+          error: err => {
+            debug('login failed', err);
           }
         });
 

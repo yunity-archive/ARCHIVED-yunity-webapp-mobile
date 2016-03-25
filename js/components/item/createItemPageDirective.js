@@ -1,5 +1,7 @@
 import createItemPageTemplate from './createItemPage.html';
 
+const debug = require('debug')('yunity:components:createItemPage');
+
 export default function() {
   return {
     scope: {},
@@ -22,8 +24,8 @@ export default function() {
         }).then(() => {
           $location.path('/list/items');
         },
-        (ret) => {
-          alert('cannot create item: ' + ret.data.reason);
+        err => {
+          debug('cannot create item', err);
         });
 
       };

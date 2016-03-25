@@ -1,5 +1,7 @@
 import itemDetailPageTemplate from './itemDetailPage.html';
 
+const debug = require('debug')('yunity:itemDetailPage');
+
 export default function() {
   return {
     scope: {},
@@ -11,7 +13,7 @@ export default function() {
       $scope.requestItem = () => {
 
         //to do open chat with owner of item and isert default text
-        alert('you got a Bannana');
+        debug('you got a Bannana');
         $location.path('/list/items');
 
       };

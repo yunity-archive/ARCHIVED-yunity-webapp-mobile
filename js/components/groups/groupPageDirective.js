@@ -27,8 +27,8 @@ export default function($route, $routeParams, yAPI) {
         debug(ret);
 
 
-      }, () => {
-        alert('group could not be loaded');
+      }, err => {
+        debug('group could not be loaded', err);
       });
     },
     link: ($scope, element, attr) => {

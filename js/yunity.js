@@ -130,7 +130,7 @@ app.controller('MainController', ($rootScope, $scope, yAPI, yMapService) => {
         if (ret.data.items != undefined && ret.data.items.length > 0) {
           yMapService.renderMarkerCluster(ret.data.items);
         } else {
-          alert('no items found');
+          debug('no items found');
         }
 
       },

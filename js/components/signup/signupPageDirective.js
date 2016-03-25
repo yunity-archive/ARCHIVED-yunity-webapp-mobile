@@ -34,13 +34,13 @@ class SignupPageCtrl {
           this.$location.path('/profile/' + res.data.id);
           this.yChat.initChats();
         },
-        error: () => {
-          alert('login failed');
+        error: err => {
+          debug('login failed', err);
         }
       });
 
-    }, () => {
-      alert('error while signup');
+    }, err => {
+      debug('error while signup', err);
     });
   }
 
