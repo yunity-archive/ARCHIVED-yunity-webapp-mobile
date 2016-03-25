@@ -1,6 +1,6 @@
 import signupTemplate from './signup.html';
 
-let debug = require('debug')('yunity:signup:signup-page');
+let debug = require('debug')('yunity:signup-page');
 
 export default function() {
 

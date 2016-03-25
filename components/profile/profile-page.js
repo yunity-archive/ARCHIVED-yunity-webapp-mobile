@@ -1,6 +1,6 @@
 import profileTemplate from './profile.html';
 
-let debug = require('debug')('yunity:profile:profile-page');
+let debug = require('debug')('yunity:profile-page');
 
 export default function() {
 
