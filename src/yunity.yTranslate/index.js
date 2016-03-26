@@ -1,5 +1,13 @@
 import angular from 'angular';
 
+/*
+
+  This is not operational yet, I just copied it over.... will need work
+
+    ns - 26/03/2016
+
+*/
+
 const translateModule = angular.module('yunityTranslate', ['pascalprecht.translate']);
 
 translateModule.config(($translateProvider) => {

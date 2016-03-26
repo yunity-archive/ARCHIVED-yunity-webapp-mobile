@@ -1,8 +1,0 @@
-node_modules
-.buildpath
-.idea/**
-.project
-.settings/**
-nbproject/**
-
-/nbproject/private/
