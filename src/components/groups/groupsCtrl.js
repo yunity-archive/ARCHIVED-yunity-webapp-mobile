@@ -1,8 +1,8 @@
 export default class GroupsCtrl {
 
-  constructor($scope, yAPI) {
+  constructor(yAPI, $location) {
     'ngInject';
-    Object.assign(this, { $scope, yAPI });
+    Object.assign(this, { yAPI, $location });
     this.groups = [];
 
     this.yAPI.apiCall({
@@ -11,6 +11,10 @@ export default class GroupsCtrl {
     }).then((res) => {
       this.groups = res.data.groups;
     });
+  }
+
+  show(groupId) {
+    this.$location.path(`/groups/${groupId}`);
   }
 
 }

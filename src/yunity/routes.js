@@ -21,16 +21,16 @@ export default function($routeProvider) {
     reloadOnSearch: false
   });
 
-  $routeProvider.when('/group/:id', {
+  $routeProvider.when('/groups/add', {
+    template: '<groups-add />',
+    reloadOnSearch: false
+  });
+
+  $routeProvider.when('/groups/:id', {
 
     template: (params) =>  {
       return `<group-page groupid="${params.id}" />`;
     },
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/groups/add', {
-    template: '<groups-add />',
     reloadOnSearch: false
   });
 
