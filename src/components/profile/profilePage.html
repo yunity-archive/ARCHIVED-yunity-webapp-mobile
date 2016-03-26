@@ -11,11 +11,11 @@
 
       <div ng-hide="ctrl.ownprofile">
         <h1>{{ctrl.user.display_name}}s Profile Page</h1>
-        <a class="btn btn-primary" ng-href="#/chat/{{user.id}}">Send message</a>
+        <a class="btn btn-primary" ng-href="#/chat/{{ctrl.user.id}}">Send message</a>
       </div>
 
     </div>
-    <div class="alert alert-warning" role="alert" ng-show="error">
+    <div class="alert alert-warning" role="alert" ng-show="ctrl.error">
       {{ctrl.error_message}}
     </div>
   </div>

@@ -1,12 +1,12 @@
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
 module.exports = {
   devtool: 'eval-source-map',
   entry: path.resolve(__dirname, '_entry.js'),
   output: {
-    path: path.resolve(__dirname, 'build/'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'app.js',
-    publicPath: '/build/',
     pathinfo: true
   },
   module: {

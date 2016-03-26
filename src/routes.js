@@ -43,7 +43,7 @@ export default function($routeProvider) {
   });
 
   $routeProvider.when('/chat/:id', {
-    templateUrl: 'chat.html',
+    template: '<y-chat></y-chat>',
     reloadOnSearch: false,
     access: {
       requiresLogin: true
