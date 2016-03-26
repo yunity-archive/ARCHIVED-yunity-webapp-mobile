@@ -6,9 +6,8 @@
     <hr>
     <div class="btn-group justified nav-tabs">
       <a ng-href="#/list/items" class="btn btn-primary">Back </a>
-
       <a ng-if="item.user_id !== session.user.id"
-         ng-href="/#/chat/{{item.user_id}}"
+         ng-href="#/chat/{{item.user_id}}"
          class="btn btn-primary">Get it!</a>
 
     </div>
