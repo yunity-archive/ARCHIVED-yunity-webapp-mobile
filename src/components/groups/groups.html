@@ -8,8 +8,8 @@
       <div class="panel panel-default" ng-repeat="group in ctrl.groups">
         <div class="panel-heading" ui-set="{'myAccordion': group.id}">
           <h4 class="panel-title">
-                        {{group.name}}
-                    </h4>
+            {{group.name}}
+          </h4>
         </div>
         <div ui-if="myAccordion == {{group.id}}">
           <div class="panel-body">
