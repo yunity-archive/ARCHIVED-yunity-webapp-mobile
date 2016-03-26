@@ -1,8 +1,8 @@
+var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval-source-map',
   entry: path.resolve(__dirname, 'src/yunity'),
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -43,3 +43,23 @@ module.exports = {
     new ExtractTextPlugin('app.css')
   ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production')
+    }
+  }));
+  module.exports.plugins.push(new webpack.optimize.DedupePlugin());
+  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    mangle: true,
+    compress: {
+      warnings: false
+    },
+    output: {
+      comments: false
+    }
+  }));
+} else {
+  module.exports.devtool = 'eval-source-map';
+}
