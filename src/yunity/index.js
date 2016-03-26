@@ -1,6 +1,11 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
 
+import 'angular-aria';
+import 'angular-animate';
+import 'angular-messages';
+import ngMaterial from 'angular-material';
+
 import yAPI from '../yunity.yAPI';
 import yChat from '../yunity.yChat';
 import yMap from '../yunity.yMap';
@@ -25,6 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 export default angular.module('yunity', [
   ngRoute,
+  ngMaterial,
   'mobile-angular-ui', 'mobile-angular-ui.gestures',
   yAPI, yChat, yMap,
   groups, chat, item, login, map, profile, signup
