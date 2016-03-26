@@ -2,6 +2,8 @@ import groupsTemplate from './groups.html';
 
 const debug = require('debug')('yunity:component:groups');
 
+import groupsCtrl from './groupsCtrl';
+
 export default function() {
 
   debug('groups init');
@@ -10,25 +12,7 @@ export default function() {
     scope: {},
     restrict: 'E',
     templateUrl: groupsTemplate,
-    controller: ($scope, yAPI) => {
-      'ngInject';
-
-      $scope.groups = [];
-
-      yAPI.apiCall({
-        uri: '/groups',
-        method: 'GET'
-      }).then((res) => {
-
-        $scope.groups = res.data.groups;
-
-      });
-
-    },
-    link: ($scope, element, attr) => {
-      $scope.userid = attr.userid;
-    }
+    controller: groupsCtrl,
+    controllerAs: 'ctrl'
   }
 }
-
-//export default 'YunityGroups';

@@ -1,18 +1,18 @@
 <div class="scrollable">
   <div class="scrollable-content section">
 
-    <form role="form" ng-submit='addgroup()'>
+    <form role="form" ng-submit='ctrl.addgroup()'>
       <fieldset>
         <legend>add group</legend>
 
         <div class="form-group has-success has-feedback">
           <label>name</label>
-          <input type="text" ng-model="name" class="form-control" placeholder="Enter name">
+          <input type="text" ng-model="ctrl.data.name" class="form-control" placeholder="Enter name">
         </div>
 
         <div class="form-group">
           <label>Description</label>
-          <textarea ng-model="description" class="form-control" placeholder="enter your description"></textarea>
+          <textarea ng-model="ctrl.data.description" class="form-control" placeholder="enter your description"></textarea>
         </div>
 
       </fieldset>

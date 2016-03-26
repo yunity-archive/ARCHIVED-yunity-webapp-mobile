@@ -5,7 +5,7 @@
 
     <div class="panel-group" ui-state="myAccordion" ui-default="1">
 
-      <div class="panel panel-default" ng-repeat="group in groups">
+      <div class="panel panel-default" ng-repeat="group in ctrl.groups">
         <div class="panel-heading" ui-set="{'myAccordion': group.id}">
           <h4 class="panel-title">
                         {{group.name}}
