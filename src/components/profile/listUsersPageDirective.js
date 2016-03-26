@@ -1,19 +1,12 @@
 import listUsersTemplate from './listUsersPage.html';
-
-const debug = require('debug')('yunity:listUsersPage');
+import listUsersPageCtrl from './listUsersPageCtrl';
 
 export default function() {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: listUsersTemplate,
-    controller: ($scope, yAPI) => {
-      'ngInject';
-      yAPI.apiCall('/users/').then((ret) => {
-        debug(ret.data.users);
-        $scope.users = ret.data.users;
-      });
-
-    }
+    controller: listUsersPageCtrl,
+    controllerAs: 'ctrl'
   };
 }

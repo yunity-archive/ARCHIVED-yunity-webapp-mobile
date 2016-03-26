@@ -1,16 +1,12 @@
 import listItemsTemplate from './listItemsPage.html';
+import listItemsPageCtrl from './listItemsPageCtrl';
 
 export default function() {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: listItemsTemplate,
-    controller: ($scope, yAPI) => {
-      'ngInject';
-      yAPI.apiCall('/items').then((ret) => {
-
-        $scope.items = ret.data.items.reverse();
-      });
-    }
+    controller: listItemsPageCtrl,
+    controllerAs: 'ctrl'
   };
 }

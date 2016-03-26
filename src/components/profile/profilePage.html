@@ -1,22 +1,22 @@
 <div class="scrollable">
   <div class="scrollable-content section">
-    <div sg-show="user.loaded">
+    <div sg-show="ctrl.user.loaded">
 
-      <div ng-show="ownprofile">
+      <div ng-show="ctrl.ownprofile">
         <h1>Hello {{user.display_name}}</h1>
         <p>
           This is your Profile!
         </p>
       </div>
 
-      <div ng-hide="ownprofile">
-        <h1>{{user.display_name}}s Profile Page</h1>
+      <div ng-hide="ctrl.ownprofile">
+        <h1>{{ctrl.user.display_name}}s Profile Page</h1>
         <a class="btn btn-primary" ng-href="#/chat/{{user.id}}">Send message</a>
       </div>
 
     </div>
     <div class="alert alert-warning" role="alert" ng-show="error">
-      {{error_message}}
+      {{ctrl.error_message}}
     </div>
   </div>
 </div>

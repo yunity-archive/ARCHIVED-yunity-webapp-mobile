@@ -2,13 +2,13 @@
   <div class="scrollable-content section">
 
     <form role="form"
-          ng-submit='createItem()'>
+          ng-submit='ctrl.createItem()'>
       <fieldset>
         <legend>Share a banana</legend>
         <div class="form-group has-success has-feedback">
           <label>Description</label>
           <input type="text"
-                 ng-model="description"
+                 ng-model="ctrl.data.description"
                  class="form-control"
                  placeholder="A banana looks like...">
         </div>
