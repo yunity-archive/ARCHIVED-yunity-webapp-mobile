@@ -10,3 +10,4 @@ assets/**
 /nbproject/private/
 public/app.js
 public/assets
+npm-debug.log
