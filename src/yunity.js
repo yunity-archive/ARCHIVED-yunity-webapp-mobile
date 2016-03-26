@@ -16,6 +16,10 @@ import map from './components/map';
 import profile from './components/profile';
 import signup from './components/signup';
 
+if (process.env.NODE_ENV !== 'production') {
+  localStorage.debug = 'yunity:*'
+}
+
 const debug = require('debug')('yunity:app');
 
 /*

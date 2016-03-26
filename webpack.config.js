@@ -3,7 +3,7 @@ var path = require('path');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: path.resolve(__dirname, '_entry.js'),
+  entry: path.resolve(__dirname, 'src/yunity.js'),
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'app.js',
