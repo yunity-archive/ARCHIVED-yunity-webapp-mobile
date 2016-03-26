@@ -17,6 +17,8 @@ import initialize from './initialize';
 import routes from './routes';
 import MainCtrl from './MainCtrl';
 
+import ngMock from 'angular-mocks';
+
 import './core.scss';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -27,7 +29,8 @@ export default angular.module('yunity', [
   ngRoute,
   'mobile-angular-ui', 'mobile-angular-ui.gestures',
   yAPI, yChat, yMap,
-  groups, chat, item, login, map, profile, signup
+  groups, chat, item, login, map, profile, signup,
+  ngMock
 ])
   .config(routes)
   .controller('MainController', MainCtrl)
