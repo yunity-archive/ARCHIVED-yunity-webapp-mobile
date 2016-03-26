@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import 'leaflet.markercluster';
 
-L.Icon.Default.imagePath = '/assets/img/marker';
+L.Icon.Default.imagePath = '/images/markers/';
 
 const debug = require('debug')('yunity:yMap');
 

@@ -1,10 +1,14 @@
 import angular from 'angular';
+import isabellaPng from './images/Isabella.png';
 
 export default class YChatCtrl {
 
   constructor($scope, $timeout, $routeParams, yChat) {
     'ngInject';
-    Object.assign(this, { $scope, $timeout, $routeParams, yChat });
+    Object.assign(this, {
+        $scope, $timeout, $routeParams, yChat,
+        isabellaPng
+      });
 
       let userId = this.$routeParams.id;
 

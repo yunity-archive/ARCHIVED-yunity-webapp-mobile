@@ -25,6 +25,11 @@ module.exports = {
         test: /\.html$/,
         loaders: ['ngtemplate', 'html'],
         exclude: /(node_modules|bower_components)/
+      },
+      {
+        test: /\.png$/,
+        loaders: ['file?name=assets/[hash].[ext]'],
+        exclude: /(node_modules|bower_components)/
       }
     ]
   },

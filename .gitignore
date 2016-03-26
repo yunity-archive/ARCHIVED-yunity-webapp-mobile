@@ -9,3 +9,4 @@ bower_components
 assets/**
 /nbproject/private/
 public/app.js
+public/assets
