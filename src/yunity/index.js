@@ -20,6 +20,7 @@ import signup from '../components/signup';
 
 import initialize from './initialize';
 import routes from './routes';
+import materialConfig from './materialConfig';
 import MainCtrl from './MainCtrl';
 
 import './core.scss';
@@ -36,6 +37,7 @@ export default angular.module('yunity', [
   groups, chat, item, login, map, profile, signup
 ])
   .config(routes)
+  .config(materialConfig)
   .controller('MainController', MainCtrl)
   .run(initialize)
   .name;
