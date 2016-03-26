@@ -17,6 +17,8 @@ import initialize from './initialize';
 import routes from './routes';
 import MainCtrl from './MainCtrl';
 
+import './core.scss';
+
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'yunity:*'
 }

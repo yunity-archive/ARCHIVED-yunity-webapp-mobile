@@ -11,3 +11,4 @@ assets/**
 public/app.js
 public/assets
 npm-debug.log
+public/app.css

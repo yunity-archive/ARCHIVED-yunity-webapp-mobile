@@ -109,7 +109,7 @@ h1 {
 }
 
 [drag-to-dismiss]{
-  transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */ 
+  transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -142,7 +142,7 @@ h1 {
 }
 
 .list-group-item-home {
-  padding: 20px; 
+  padding: 20px;
 }
 
 pre {
@@ -172,7 +172,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 input[type="email"]:focus,
-.uneditable-input:focus {   
+.uneditable-input:focus {
   border-color: rgba(214, 49, 55, 0.8);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(214, 49, 55, 0.6);
   outline: 0 none;
@@ -282,7 +282,7 @@ a.bg-primary:focus {
 .switch.active .switch-handle {
     border-color: #FF5A60;
 }
-.list-group-item.active, .list-group-item.active:focus, 
+.list-group-item.active, .list-group-item.active:focus,
 .list-group-item.active:hover {
     background-color: #FF5A5F;
     border-color: #FF5A5F;
@@ -290,7 +290,7 @@ a.bg-primary:focus {
 
 /* MAP STUFF */
 .map-container {
-	
+
 }
 
 
