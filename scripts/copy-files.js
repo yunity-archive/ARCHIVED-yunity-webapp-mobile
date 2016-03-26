@@ -2,6 +2,8 @@ var path = require('path');
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 
+var debug = require('debug')('copy-files');
+
 var BASE = path.join(__dirname, '..');
 var bowerDir = path.join(BASE, 'bower_components');
 var publicDir = path.join(BASE, 'public');
@@ -56,22 +58,10 @@ copySpecs.forEach(function(spec){
   var dst = spec.dst;
   var dstDir = path.dirname(dst);
   mkdirp.sync(dstDir);
-  console.log('copying', src, 'to', dst);
+  debug('copying', src, 'to', dst);
   copyFile(src, dst);
 });
 
 function copyFile(src, dst) {
   fs.createReadStream(src).pipe(fs.createWriteStream(dst));
 }
-
-/*
-<link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-hover.min.css"/>
-<link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css"/>
-<link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.min.css"/>
-
-<link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
-<link rel="stylesheet" href="bower_components/Leaflet.markercluster/dist/MarkerCluster.css"/>
-<link rel="stylesheet" href="bower_components/Leaflet.markercluster/dist/MarkerCluster.Default.css"/>
-<script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
-<script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js"></script>
-*/
