@@ -31,7 +31,7 @@
 
 </head>
 
-<body ng-app="yunity" ng-controller="MainController" ui-prevent-touchmove-defaults ng-strict-di>
+<body ng-app="yunity" ng-controller="MainController as ctrl" ui-prevent-touchmove-defaults ng-strict-di>
 
   <!-- Sidebars -->
   <div ng-include="'sidebarLeft.html'" ui-track-as-search-param='true' class="sidebar sidebar-left"></div>
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="app-body" ng-class="{loading: loading}">
+    <div class="app-body" ng-class="{loading: ctrl.loading}">
       <div ng-show="loading" class="app-content-loading">
         <i class="fa fa-spinner fa-spin loading-spinner"></i>
       </div>
