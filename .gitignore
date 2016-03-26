@@ -3,9 +3,9 @@
 .settings/**
 .idea/**
 nbproject/**
-build
 node_modules
 bower_components
 .idea/
 assets/**
 /nbproject/private/
+public/app.js
