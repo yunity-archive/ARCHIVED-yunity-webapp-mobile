@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var path = require('path');
 var mkdirp = require('mkdirp');
 var fs = require('fs');
