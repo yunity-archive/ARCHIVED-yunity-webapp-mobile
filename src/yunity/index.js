@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import angular from 'angular';
 import ngRoute from 'angular-route';
 
@@ -23,8 +25,6 @@ import routes from './routes';
 import materialConfig from './materialConfig';
 import MainCtrl from './MainCtrl';
 
-import ngMock from 'angular-mocks';
-
 import './core.scss';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -34,10 +34,9 @@ if (process.env.NODE_ENV !== 'production') {
 export default angular.module('yunity', [
   ngRoute,
   ngMaterial,
-  'mobile-angular-ui', 'mobile-angular-ui.gestures',
+  //'mobile-angular-ui', 'mobile-angular-ui.gestures',
   yAPI, yChat, yMap,
-  groups, chat, item, login, map, profile, signup,
-  ngMock
+  groups, chat, item, login, map, profile, signup
 ])
   .config(routes)
   .config(materialConfig)

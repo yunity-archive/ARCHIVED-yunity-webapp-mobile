@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "babel-node ./node_modules/.bin/jasmine",
+    "test": "karma start --single-run --browsers PhantomJS",
     "webpack": "webpack",
     "dev-server": "webpack-dev-server --port 8084 --inline --content-base public",
+    "karma": "karma start",
     "lint": "eslint src; exit 0"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "angular-material": "^1.0.6",
     "angular-messages": "^1.5.3",
     "angular-route": "^1.5.2",
+    "babel-polyfill": "^6.7.4",
     "debug": "^2.2.0",
     "leaflet": "^0.7.5",
     "leaflet.markercluster": "^0.4.0",

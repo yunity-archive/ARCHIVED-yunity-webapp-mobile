@@ -1,8 +1,6 @@
 // Karma configuration
 // Generated on Sat Mar 26 2016 13:46:45 GMT+0100 (CET)
 
-var webpackConfig = require('./webpack.config.js');
-
 module.exports = function(config) {
   config.set({
 
@@ -17,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'spec/**/*_spec.js'
+      'spec/main.js'
     ],
 
     // list of files to exclude
@@ -27,11 +25,10 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'spec/**/*_spec.js': ['webpack']
+      'spec/main.js': ['webpack']
     },
 
     webpack: {
-
       module: {
         loaders: [
           {
@@ -86,7 +83,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'PhantomJS', 'Firefox'],
 
 
     // Continuous Integration mode
