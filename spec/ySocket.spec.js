@@ -1,4 +1,4 @@
-import { app, module, inject } from './test-helper';
+import { app, module, inject } from './helper';
 
 describe('ySocket', () => {
 
