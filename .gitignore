@@ -3,9 +3,13 @@
 .settings/**
 .idea/**
 nbproject/**
-build
 node_modules
 bower_components
 .idea/
 assets/**
 /nbproject/private/
+public/app.js
+public/assets
+npm-debug.log
+public/app.css
+npm-debug.log*

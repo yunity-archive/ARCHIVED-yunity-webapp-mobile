@@ -1,0 +1,18 @@
+<md-content layout-padding>
+  <form name="userForm" ng-submit='ctrl.addgroup()'>
+    <div layout-gt-sm="row">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Name</label>
+        <input ng-model="ctrl.data.name">
+      </md-input-container>
+    </div>
+    <md-input-container class="md-block">
+      <label>Description</label>
+      <textarea ng-model="ctrl.data.description"
+                md-maxlength="150"
+                rows="5"
+                md-select-on-focus></textarea>
+    </md-input-container>
+    <md-button class="md-raised" type="submit">Save</md-button>
+  </form>
+</md-content>

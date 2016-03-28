@@ -1,0 +1,27 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "quotes": [
+      2,
+      "single"
+    ],
+    "no-alert": 2
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "extends": "eslint:recommended",
+  "ecmaFeatures": {
+    "jsx": true,
+    "experimentalObjectRestSpread": true
+  },
+  "plugins": [],
+  "globals": {
+    "describe" : false,
+    "it": false,
+    "beforeEach": false,
+    "expect": false
+  }
+}

@@ -1,0 +1,12 @@
+<md-content layout-padding>
+  <form ng-submit='ctrl.createItem()'>
+    <md-input-container class="md-block">
+      <label>Description</label>
+      <textarea ng-model="ctrl.data.description"
+                md-maxlength="150"
+                rows="5"
+                md-select-on-focus></textarea>
+    </md-input-container>
+    <md-button class="md-raised" type="submit">Share</md-button>
+  </form>
+</md-content>

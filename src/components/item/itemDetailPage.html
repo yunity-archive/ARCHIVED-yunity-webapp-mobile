@@ -1,0 +1,7 @@
+<md-content layout-padding>
+  <img src="/images/Banana.jpg">
+  <p>{{ ctrl.item.description }}</p>
+  <md-button ng-show="ctrl.isAvailable()"
+             ng-href="#/chat/{{ ctrl.item.user_id }}"
+             class="md-raised">Get it!</md-button>
+</md-content>
