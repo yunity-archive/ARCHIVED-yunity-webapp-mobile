@@ -5,4 +5,6 @@ import app from '../src/yunity';
 
 const { module, inject } = angular.mock;
 
-export { app, module, inject };
+const debug = console.log.bind(console);
+
+export { app, module, inject, debug };
