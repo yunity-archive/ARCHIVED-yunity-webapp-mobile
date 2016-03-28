@@ -15,7 +15,7 @@ export default class LoginPageCtrl {
   }
 
   login() {
-    this.yAPI.authenticate(Object.assign({
+    return this.yAPI.authenticate(Object.assign({
       success: (res) => {
         debug('login success');
         this.$location.path('/profile/' + res.data.user.id);
@@ -25,6 +25,8 @@ export default class LoginPageCtrl {
         debug('login failed', err);
       }
     }, this.data));
+    /*
+    */
   }
 
 }
