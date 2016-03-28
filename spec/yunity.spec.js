@@ -4,10 +4,10 @@ describe('yunity', () => {
 
   beforeEach(module(app));
 
-  describe('MainController', () => {
+  describe('MainCtrl', () => {
 
     it('has a controller', inject($controller => {
-      let ctrl = $controller('MainController');
+      let ctrl = $controller('MainCtrl');
       expect(ctrl).toBeDefined();
     }));
 
