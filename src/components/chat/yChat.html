@@ -1,11 +1,11 @@
-<div class="scrollable">
-  <div id="chat-container" class="scrollable-content">
+<md-content layout="column">
+
     <div class="chat-bubble" ng-repeat="message in ctrl.messages">
       <img class="chat-avatar" ng-src="{{ ctrl.isabellaPng }}">
       <div class="chat-message">{{ message.content }}</div>
     </div>
-  </div>
-  <div class="scrollable-footer">
+
+  <div layout="row">
     <form id="chat-form" role="form" ng-submit='ctrl.sendMessage()'>
       <fieldset>
         <div class="input-group">
@@ -17,4 +17,6 @@
       </fieldset>
     </form>
   </div>
-</div>
+
+</md-content>
+

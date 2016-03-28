@@ -6,18 +6,26 @@ export default class ItemDetailPageCtrl {
     'ngInject';
     Object.assign(this, {
       yAPI, $routeParams, $location, $rootScope,
-      item: null,
-
-      // TODO(ns) this is needed because directive has an isolate scope
-      // not sure what is the best practise here....
-      session: $rootScope.session
-
+      item: null
     });
+
+    $rootScope.$watch('session', session => this.session = session);
 
     this.yAPI.apiCall('/items/' + $routeParams.id).then((ret) => {
       this.item = ret.data;
     });
 
+  }
+
+  isAvailable() {
+    if (this.item &&
+        this.session &&
+        this.session.user &&
+        this.session.user.id !== this.item.user_id) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   requestItem() {

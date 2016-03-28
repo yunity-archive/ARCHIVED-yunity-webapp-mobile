@@ -1,15 +1,23 @@
-<div class="scrollable">
-  <div class="scrollable-content section">
+<md-content>
+  <h1>group page: {{ group.name }}</h1>
 
-    <h1>group page: {{group.name}} <button ng-click="ctrl.joinGroup()" class="btn btn-primary">Join <i class="fa fa-plus"></i></button>
-    </h1>
+  <md-button class="md-fab"
+             aria-label="Join group"
+             ng-click="ctrl.joinGroup()">
+    <md-icon md-font-library="material-icons">group_add</md-icon>
+  </md-button>
 
-    <p>{{group.description}}</p>
-    <h3>members</h3>
-    <ul>
-      <li ng-repeat="member in ctrl.group.members">
-        <a href="#/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a>
-      </li>
-    </ul>
-  </div>
-</div>
+  <p>{{ group.description }}</p>
+  
+  <h3>members</h3>
+
+  <md-list>
+    <md-list-item ng-repeat="member in ctrl.group.members"
+                  ng-href="#/profile/{{ member.id }}">
+      <div class="md-list-item-text" layout="column">
+        {{ member.first_name }} {{ member.last_name }}
+      </div>
+    </md-list-item>
+  </md-list>
+
+</md-content>

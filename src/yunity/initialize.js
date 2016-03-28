@@ -1,6 +1,6 @@
 const debug = require('debug')('yunity:initialize');
 
-export default function initialize($transform, $rootScope, yAPI, $location, $route) {
+export default function initialize($rootScope, yAPI, $location, $route) {
   'ngInject';
 
   debug('running app!');
@@ -36,7 +36,5 @@ export default function initialize($transform, $rootScope, yAPI, $location, $rou
       }
     });
   });
-
-  window.$transform = $transform;
-
+  
 }

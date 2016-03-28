@@ -1,3 +1,5 @@
+const debug = require('debug')('yunity:component:GroupsAddCtrl');
+
 export default class GroupsAddCtrl{
 
   constructor($scope, yAPI, $location) {
@@ -8,6 +10,8 @@ export default class GroupsAddCtrl{
 
   addgroup() {
 
+    debug('adding group', this.data);
+
     if (this.data.name != '') {
       this.yAPI.apiCall({
         uri: '/groups',
@@ -15,6 +19,8 @@ export default class GroupsAddCtrl{
         data: this.data
       }).then(() => {
         this.$location.path('/groups');
+      }).catch(err => {
+        debug('error', err);
       });
     } else {
       alert('enter a group name please');

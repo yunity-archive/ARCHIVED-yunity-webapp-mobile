@@ -1,17 +1,11 @@
-<div class="scrollable">
-  <div class="scrollable-content section">
+<md-content>
+  <md-list>
+    <md-list-item class="md-2-line"
+                  ng-repeat="item in ctrl.items"
+                  ng-href="#/item/{{ item.id }}">
+      <img ng-src="/images/Banana.jpg" class="md-avatar">
+      <p>{{ item.description }}</p>
+    </md-list-item>
+</md-content>
 
-    <a class="list-group-item media"
-       href="#/item/{{item.id}}"
-       ng-repeat="item in ctrl.items">
-      <div class="pull-left">
-        <img src="/images/Banana.jpg" class="img-thumbnail">
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">{{ item.description }}</h4>
 
-      </div>
-    </a>
-
-  </div>
-</div>
