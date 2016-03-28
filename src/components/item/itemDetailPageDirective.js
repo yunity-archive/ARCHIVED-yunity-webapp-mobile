@@ -7,6 +7,7 @@ export default function() {
     scope: {},
     restrict: 'E',
     templateUrl: itemDetailPageTemplate,
-    controller: itemDetailPageCtrl
+    controller: itemDetailPageCtrl,
+    controllerAs: 'ctrl'
   };
 }

@@ -1,26 +1,12 @@
-<div class="scrollable">
-  <div class="scrollable-content section">
-
-    <form role="form"
-          ng-submit='ctrl.createItem()'>
-      <fieldset>
-        <legend>Share a banana</legend>
-        <div class="form-group has-success has-feedback">
-          <label>Description</label>
-          <input type="text"
-                 ng-model="ctrl.data.description"
-                 class="form-control"
-                 placeholder="A banana looks like...">
-        </div>
-
-      </fieldset>
-      <hr>
-
-      <button class="btn btn-primary btn-block">
-        Share
-      </button>
-
-    </form>
-
-  </div>
-</div>
+<md-content layout-padding>
+  <form ng-submit='ctrl.createItem()'>
+    <md-input-container class="md-block">
+      <label>Description</label>
+      <textarea ng-model="ctrl.data.description"
+                md-maxlength="150"
+                rows="5"
+                md-select-on-focus></textarea>
+    </md-input-container>
+    <md-button class="md-raised" type="submit">Share</md-button>
+  </form>
+</md-content>

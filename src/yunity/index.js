@@ -34,7 +34,6 @@ if (process.env.NODE_ENV !== 'production') {
 export default angular.module('yunity', [
   ngRoute,
   ngMaterial,
-  //'mobile-angular-ui', 'mobile-angular-ui.gestures',
   yAPI, yChat, yMap,
   groups, chat, item, login, map, profile, signup
 ])

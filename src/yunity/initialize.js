@@ -34,5 +34,4 @@ export default function initialize($rootScope, yAPI, $location, $route) {
       }
     });
   });
-
 }

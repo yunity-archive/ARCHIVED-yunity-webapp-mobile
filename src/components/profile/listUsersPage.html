@@ -1,13 +1,11 @@
-<div class="scrollable">
-  <div class="scrollable-content section">
+<md-content>
+  <md-list>
+    <md-list-item class="md-2-line"
+                  ng-repeat="user in ctrl.users"
+                  ng-href="#/profile/{{ user.id }}">
+      <img ng-src="{{ user.avatarUrl }}" class="md-avatar">
+      <p>{{ user.first_name }} {{ user.last_name }}</p>
+    </md-list-item>
+</md-content>
 
-    <a class="list-group-item media" href="#/profile/{{user.id}}" ng-repeat="user in ctrl.users">
-      <div class="pull-left">
-      </div>
-      <div class="media-body">
-        <h3>{{user.first_name}} {{user.last_name}}</h3>
-      </div>
-    </a>
 
-  </div>
-</div>
