@@ -1,37 +1,22 @@
-<div class="scrollable">
-  <div class="scrollable-content section">
+<md-content layout-padding>
+  <form ng-submit='ctrl.login()'>
 
-    <form role="form" ng-submit='ctrl.login()'>
-      <fieldset>
-        <legend>Login</legend>
-        <div class="form-group has-success has-feedback">
-          <label>Email</label>
-          <input type="email"
-                 ng-model="ctrl.data.email"
-                 class="form-control"
-                 placeholder="Enter email">
-        </div>
+    <md-input-container class="md-block">
+      <label>Email</label>
+      <input required type="email" name="Email" ng-model="ctrl.data.email"
+               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+    </md-input-container>
 
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password"
-                 ng-model="ctrl.data.password"
-                 class="form-control"
-                 placeholder="Password">
-        </div>
+    <md-input-container class="md-block">
+        <label>Password</label>
+        <input type="password" required name="password" ng-model="ctrl.data.password">
+    </md-input-container>
 
-        <div class="form-group">
-          <label>Remember Me</label>
-          <ui-switch ng-model='rememberMe'></ui-switch>
-        </div>
-      </fieldset>
-      <hr>
+    <md-switch class="md-primary" md-no-ink aria-label="Remember Me" ng-model="ctrl.data.rememberMe">
+    Remember Me
+ </md-switch>
 
-      <button class="btn btn-primary btn-block">
-        Login
-      </button>
+    <md-button class="md-raised" type="submit">Login</md-button>
+  </form>
 
-    </form>
-
-  </div>
-</div>
+</md-content>
