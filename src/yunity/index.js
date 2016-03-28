@@ -40,6 +40,6 @@ export default angular.module('yunity', [
 ])
   .config(routes)
   .config(materialConfig)
-  .controller('MainController', MainCtrl)
+  .controller('MainCtrl', MainCtrl)
   .run(initialize)
   .name;

@@ -7,7 +7,7 @@
     "test": "karma start --single-run --browsers PhantomJS",
     "webpack": "webpack",
     "dev-server": "webpack-dev-server --port 8084 --inline --content-base public",
-    "karma": "karma start",
+    "karma": "karma start --browsers PhantomJS",
     "lint": "eslint src; exit 0"
   },
   "repository": {
