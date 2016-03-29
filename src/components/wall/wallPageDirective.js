@@ -8,5 +8,5 @@ export default function() {
     templateUrl: wallTemplate,
     controller: wallPageCtrl,
     controllerAs: 'ctrl'
-  }
+  };
 }

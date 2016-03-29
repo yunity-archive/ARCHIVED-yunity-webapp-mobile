@@ -6,7 +6,7 @@ export default class ProfilePageCtrl {
     Object.assign(this, {
       $rootScope, yAPI, yChat, $route, $location,
       error: false,
-      error_messag: '',
+      errorMessage: '',
       user: {
         id: $route.current.params.id,
         loaded: false
@@ -20,14 +20,14 @@ export default class ProfilePageCtrl {
       this.user.loaded = true;
       this.ownprofile = false;
 
-      if(this.user.id == this.yAPI.session.user.id) {
+      if(this.user.id === this.yAPI.session.user.id) {
         this.ownprofile = true;
       }
 
 
     }, () => {
       this.error = true;
-      this.error_message = 'user not found';
+      this.errorMessage = 'user not found';
     });
 
   }

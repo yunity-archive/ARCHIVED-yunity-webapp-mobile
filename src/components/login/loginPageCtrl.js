@@ -25,8 +25,6 @@ export default class LoginPageCtrl {
         debug('login failed', err);
       }
     }, this.data));
-    /*
-    */
   }
 
 }

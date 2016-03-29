@@ -29,7 +29,7 @@ import MainCtrl from './MainCtrl';
 import './core.scss';
 
 if (process.env.NODE_ENV !== 'production') {
-  localStorage.debug = 'yunity:*'
+  localStorage.debug = 'yunity:*';
 }
 
 export default angular.module('yunity', [

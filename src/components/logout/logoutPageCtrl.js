@@ -15,8 +15,9 @@ export default class LogoutPageCtrl {
       method: 'POST',
       data: {}
     }).then((res) => {
-      debug('logout');
+      debug('logout', res);
       this.$location.path('login');
+
       //first clearSession and then reload
       this.yAPI.clearSession();
       this.yAPI.checkLogin();

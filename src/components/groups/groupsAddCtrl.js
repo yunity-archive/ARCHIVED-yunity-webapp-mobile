@@ -12,7 +12,7 @@ export default class GroupsAddCtrl{
 
     debug('adding group', this.data);
 
-    if (this.data.name != '') {
+    if (this.data.name !== '') {
       this.yAPI.apiCall({
         uri: '/groups',
         method: 'POST',
@@ -23,7 +23,7 @@ export default class GroupsAddCtrl{
         debug('error', err);
       });
     } else {
-      alert('enter a group name please');
+      debug('enter a group name please');
     }
 
   }

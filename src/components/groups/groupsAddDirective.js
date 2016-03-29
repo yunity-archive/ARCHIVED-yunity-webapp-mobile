@@ -10,5 +10,5 @@ export default function() {
     templateUrl: groupsAddTemplate,
     controller: groupsAddCtrl,
     controllerAs: 'ctrl'
-  }
+  };
 }

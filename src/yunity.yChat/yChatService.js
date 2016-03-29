@@ -17,8 +17,8 @@ export default class YChat {
       let {type, payload} = data;
 
       if (type === 'chat_message') {
-        let {chat_id, message} = payload;
-        let fns = this.chatListeners[chat_id];
+        let {chatId, message} = payload;
+        let fns = this.chatListeners[chatId];
         if (fns) {
           fns.forEach(fn => fn([message]));
         }
@@ -60,7 +60,7 @@ export default class YChat {
       } else {
         incoming.push.apply(incoming, msgs);
       }
-    }
+    };
 
     if (!this.chatListeners[chatId]) this.chatListeners[chatId] = [];
     this.chatListeners[chatId].push(listener);
@@ -130,10 +130,10 @@ export default class YChat {
   getExistingChat(userId,chats) {
 
     for(let chat of chats) {
-      if(chat.participants.length == 2) {
+      if(chat.participants.length === 2) {
 
         for(let part of chat.participants) {
-          if(part == userId) {
+          if(part === userId) {
             return chat;
           }
         }
@@ -151,7 +151,8 @@ export default class YChat {
       this.yAPI.session.chats = ret.data.chats;
 
       this.listenAll((msgs) => {
-        debug('todo: sync messages');
+        debug('todo: sync messages', msgs);
+
         // TO DO: sync messages with yApi.Session messages...
       });
 

@@ -9,10 +9,6 @@ export default class YMapService {
 
   constructor() {
     Object.assign(this, {
-      /*
-      * Attributes
-      */
-
       container: null,
       latLng: null,
       zoom: null,
@@ -28,11 +24,11 @@ export default class YMapService {
   * Configuration
   */
   config(opt) {
-    if(opt.defaultLatLng != undefined) {
+    if(opt.defaultLatLng !== undefined) {
       this.defaultLatLng = opt.defaultLatLng;
     }
 
-    if(opt.defaultZoom != undefined) {
+    if(opt.defaultZoom !== undefined) {
       this.defaultZoom = opt.defaultZoom;
     }
   }
@@ -95,7 +91,7 @@ export default class YMapService {
   */
   setView(LatLng, zoom) {
 
-    if(zoom == undefined) {
+    if(zoom === undefined) {
       zoom = this.defaultZoom;
     }
     this.container.setView(LatLng, zoom);

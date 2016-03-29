@@ -54,7 +54,7 @@ export default class YAPI {
   setSession(user) {
     this.session = {
       loggedIn: true,
-      user: user,
+      user,
       chats: []
     };
     this.$rootScope.session = this.session;
@@ -113,13 +113,13 @@ export default class YAPI {
     return this.apiCall('/items').then(
       (ret) => {
         debug('listmappables success');
-        if(opt.success != undefined) {
+        if(opt.success !== undefined) {
           opt.success(ret);
         }
       },
       (ret) => {
         debug('listmappables error');
-        if(opt.error != undefined) {
+        if(opt.error !== undefined) {
           opt.error(ret);
         }
       }
@@ -155,13 +155,13 @@ export default class YAPI {
         */
         api.setSession(ret.data.user);
 
-        if(opt.success != undefined) {
+        if(opt.success !== undefined) {
           opt.success(ret);
         }
       },
       (ret) => {
         debug('auth error');
-        if(opt.error != undefined) {
+        if(opt.error !== undefined) {
           opt.error(ret);
         }
       }
@@ -192,7 +192,7 @@ export default class YAPI {
     /*
     * If opt is a string, use default values
     */
-    if (typeof(opt) === 'string') {
+    if (typeof opt === 'string') {
       opt = {
         uri: opt,
         method: 'GET'
@@ -202,18 +202,17 @@ export default class YAPI {
     /*
     * if no data and no method specified do GET othwist POST
     */
-    if (opt.method == undefined && opt.data == undefined) {
+    if (opt.method === undefined && opt.data === undefined) {
       opt.method = 'GET';
-    }
-    else if (opt.method == undefined) {
+    } else if (opt.method === undefined) {
       opt.method = 'POST';
     }
 
-    if (opt.uri != undefined) {
+    if (opt.uri !== undefined) {
       urlBase += opt.uri;
     }
 
-    if (opt.data == undefined) {
+    if (opt.data === undefined) {
       opt.data = {};
     }
 
@@ -238,7 +237,6 @@ export default class YAPI {
       //debug(data);
       //set token everytime as default token
       this.$http.defaults.headers.common['X-CSRFToken'] = this.$cookies.get('csrftoken');
-      //debug('set token to: ' + $http.defaults.headers.common['X-CSRFToken']);
 
       return data;
     });

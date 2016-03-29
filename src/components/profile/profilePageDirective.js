@@ -8,5 +8,5 @@ export default function() {
     templateUrl: profileTemplate,
     controller: profilePageCtrl,
     controllerAs: 'ctrl'
-  }
+  };
 }

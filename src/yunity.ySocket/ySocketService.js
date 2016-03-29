@@ -17,7 +17,6 @@ export default class YSocket {
 
       socket: socketIOClient('http://' + location.host, {
         path: '/socket'
-        //transports: ['websocket']
       })
 
     });

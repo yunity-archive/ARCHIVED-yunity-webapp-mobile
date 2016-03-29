@@ -14,5 +14,5 @@ export default function() {
     templateUrl: groupsTemplate,
     controller: groupsCtrl,
     controllerAs: 'ctrl'
-  }
+  };
 }

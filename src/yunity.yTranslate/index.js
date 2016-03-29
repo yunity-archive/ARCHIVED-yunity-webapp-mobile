@@ -22,7 +22,6 @@ translateModule.config(($translateProvider) => {
 });
 
 
-
 translateModule.directive('languageLinks', () => {
   return {
     restrict: 'A',

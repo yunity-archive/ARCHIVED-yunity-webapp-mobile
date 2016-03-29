@@ -45,23 +45,5 @@ export default class YChatCtrl {
       this.yChat.sendMessage(this.chat.id, msg);
     }
   }
-
-  /**
-  * TO DO: returning correct path to avatar image
-  */
-  avatar(user_id) {
-    return '/img/avatar.png';
-  }
-
-  /**
-  * TO DO: returns user object and handle users to store them in memory
-  *
-  * @param id
-  */
-  getUser(id) {
-    return {
-      id: 12,
-      name: 'Uwe'
-    };
-  }
+  
 }

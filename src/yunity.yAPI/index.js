@@ -6,7 +6,7 @@ import yAPIService from './yAPIService';
 function initialize($http, $cookies) {
   'ngInject';
   var token = $cookies.get('csrftoken');
-  if(token != undefined) {
+  if(token !== undefined) {
     $http.defaults.headers.common['X-CSRFToken'] = token;
   }
 }
