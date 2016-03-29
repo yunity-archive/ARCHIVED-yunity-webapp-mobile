@@ -31,6 +31,10 @@ var config = {
         test: /\.png$/,
         loaders: ['file?name=assets/[hash].[ext]'],
         exclude: /(node_modules|bower_components)/
+      }, {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css!sass'),
+        exclude: /(node_modules|bower_components)/
       }
     ]
   },
@@ -55,18 +59,6 @@ if (process.env.NODE_ENV === 'production') {
       comments: false
     }
   }));
-  config.module.loaders.push({
-    test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('style', 'css!sass'),
-    exclude: /(node_modules|bower_components)/
-  });
-} else {
-  //config.devtool = 'eval-source-map';
-  config.module.loaders.push({
-    test: /\.scss$/,
-    loader: 'style!css!sass',
-    exclude: /(node_modules|bower_components)/
-  });
 }
 
 module.exports = config;

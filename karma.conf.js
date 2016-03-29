@@ -4,6 +4,17 @@ var bsConfigFile = './browserstack.json';
 
 module.exports = function(config) {
 
+  var webpackLoaders = webpackConfig.module.loaders;
+
+  /* hack to remove the extract-text-webpack-plugin when
+    running karma (it causes the tests to fail otherwise) */
+  webpackLoaders.forEach(function(entry){
+    var loader = entry.loader;
+    if (!loader) return;
+    if (loader.indexOf('extract-text-webpack-plugin') === -1) return;
+    entry.loader = loader.split(/!/g).slice(1).join('!');
+  });
+
   var karmaConfig = {
     basePath: '',
     frameworks: ['jasmine'],
@@ -16,7 +27,7 @@ module.exports = function(config) {
     },
     webpack: {
       module: {
-        loaders: webpackConfig.module.loaders
+        loaders: webpackLoaders
       }
     },
     webpackMiddleware: {
