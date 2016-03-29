@@ -169,22 +169,22 @@ export default angular.module('yunity.example', [])
 
 ## TODO
 
-  - [x] directive walkthrough
-  - [ ] service walkthrough
-  - [ ] module walkthrough
+  - [x] directive walkthrough [guide]
+  - [ ] service walkthrough [guide]
+  - [ ] module walkthrough [guide]
   - [x] fix the heading links in this file
-  - [ ] explain services vs factories vs ...
-  - [ ] explain 'ngInject'
-  - [ ] explain `Object.assign()`, destructring, ES6 fat arrows, ES6 object shorthand
-  - [ ] explain webpack `file-loader`
-  - [ ] explain webpack `ngtemplate-loader`
-  - [ ] explain webpack change reloading
-  - [ ] explain eslint and `npm run lint`
-  - [ ] explain testing with karma
-  - [ ] explain testing with karma browserstack
-  - [ ] explain continuous integration with circleci
-  - [ ] explain how to get commit access
-  - [ ] explain how to contribute (fork/pull-request/etc)
-  - [ ] explain how to setup atom with eslint package
+  - [ ] explain services vs factories vs ... [guide]
+  - [ ] explain 'ngInject' [guide]
+  - [ ] explain `Object.assign()`, destructring, ES6 fat arrows, ES6 object shorthand  [guide]
+  - [ ] explain webpack `file-loader` [wiki]
+  - [ ] explain webpack `ngtemplate-loader` [wiki]
+  - [ ] explain webpack change reloading [wiki]
+  - [ ] explain eslint and `npm run lint` [wiki]
+  - [ ] explain testing with karma [wiki]
+  - [ ] explain testing with karma browserstack [wiki]
+  - [ ] explain continuous integration with circleci [wiki]
+  - [ ] explain how to get commit access [wiki]
+  - [ ] explain how to contribute (fork/pull-request/etc) [wiki]
+  - [ ] explain how to setup atom with eslint package [wiki]
   - [ ] add a task to write an eslint plugin (a bit like [this one](https://github.com/Gillespie59/eslint-plugin-angular))
-  - [ ] work out which of this stuff should go on the wiki
+  - [x] work out which of this stuff should go on the wiki
