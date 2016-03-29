@@ -1,11 +1,11 @@
 machine:
   node:
     version: 5.5.0
-  environment:
-    NODE_ENV: production
 dependencies:
   post:
-    - webpack
+    # only set NODE_ENV for this command
+    # otherwise npm install does not install dev deps
+    - NODE_ENV=production webpack
 general:
   artifacts:
     - public
