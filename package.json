@@ -1,7 +1,7 @@
 {
   "name": "yunity-webapp-mobile",
   "version": "0.0.1",
-  "description": "",
+  "description": "angularjs frontend for yunity platform",
   "main": "index.js",
   "scripts": {
     "test": "karma start --single-run --browsers PhantomJS",
@@ -15,7 +15,8 @@
     "url": "git+https://github.com/yunity/yunity-webapp-mobile.git"
   },
   "author": "",
-  "license": "ISC",
+  "private": true,
+  "license": "AGPLv3",
   "bugs": {
     "url": "https://github.com/yunity/yunity-webapp-mobile/issues"
   },
