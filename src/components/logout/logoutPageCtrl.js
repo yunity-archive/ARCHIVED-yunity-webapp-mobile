@@ -10,19 +10,19 @@ export default class LogoutPageCtrl {
   }
 
   logout() {
-      this.yAPI.apiCall({
-        uri: '/auth/logout',
-        method: 'POST',
-        data: {}
-      }).then((res) => {
-        debug('logout');
-        this.$location.path('login');
-        //first clearSession and then reload
-        this.yAPI.clearSession();
-        this.yAPI.checkLogin();
-        },
-        err => {
-                debug('error while signup', err);
-        });
-    }
+    this.yAPI.apiCall({
+      uri: '/auth/logout',
+      method: 'POST',
+      data: {}
+    }).then((res) => {
+      debug('logout');
+      this.$location.path('login');
+      //first clearSession and then reload
+      this.yAPI.clearSession();
+      this.yAPI.checkLogin();
+    },
+    err => {
+      debug('error while signup', err);
+    });
+  }
 }
