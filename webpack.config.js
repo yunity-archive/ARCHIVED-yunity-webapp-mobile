@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'production') {
     exclude: /(node_modules|bower_components)/
   });
 } else {
-  config.devtool = 'eval-source-map';
+  //config.devtool = 'eval-source-map';
   config.module.loaders.push({
     test: /\.scss$/,
     loader: 'style!css!sass',
