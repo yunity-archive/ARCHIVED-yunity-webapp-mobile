@@ -14,10 +14,10 @@ export default class YChat {
 
     this.ySocket.listen(data => {
 
-      let {type, payload} = data;
+      let { type, payload } = data;
 
       if (type === 'chat_message') {
-        let {chatId, message} = payload;
+        let { chatId, message } = payload;
         let fns = this.chatListeners[chatId];
         if (fns) {
           fns.forEach(fn => fn([message]));
@@ -129,11 +129,11 @@ export default class YChat {
   */
   getExistingChat(userId,chats) {
 
-    for(let chat of chats) {
-      if(chat.participants.length === 2) {
+    for (let chat of chats) {
+      if (chat.participants.length === 2) {
 
-        for(let part of chat.participants) {
-          if(part === userId) {
+        for (let part of chat.participants) {
+          if (part === userId) {
             return chat;
           }
         }

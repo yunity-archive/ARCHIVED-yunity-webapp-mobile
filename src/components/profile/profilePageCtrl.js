@@ -20,7 +20,7 @@ export default class ProfilePageCtrl {
       this.user.loaded = true;
       this.ownprofile = false;
 
-      if(this.user.id === this.yAPI.session.user.id) {
+      if (this.user.id === this.yAPI.session.user.id) {
         this.ownprofile = true;
       }
 
@@ -33,8 +33,8 @@ export default class ProfilePageCtrl {
   }
 
   sendMessage() {
-    var chat = this.yChat.getExistingChat(this.user.id, this.yAPI.session.chats);
-    if(chat) {
+    let chat = this.yChat.getExistingChat(this.user.id, this.yAPI.session.chats);
+    if (chat) {
       this.$location.path('/chat/' + chat.id);
     } else {
       this.$location.path('/chat/new/' + this.user.id );

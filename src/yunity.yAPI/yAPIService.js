@@ -29,19 +29,19 @@ export default class YAPI {
       this.url = opt.url;
     }
 
-    if(opt.urlSuffix !== undefined) {
+    if (opt.urlSuffix !== undefined) {
       this.urlSuffix = opt.urlSuffix;
     }
 
-    if(opt.requestStart !== undefined) {
+    if (opt.requestStart !== undefined) {
       this.requestStart = opt.requestStart;
     }
 
-    if(opt.requestComplete !== undefined) {
+    if (opt.requestComplete !== undefined) {
       this.requestComplete = opt.requestComplete;
     }
 
-    if(opt.requestFailed !== undefined) {
+    if (opt.requestFailed !== undefined) {
       this.requestFailed = opt.requestFailed;
     }
 
@@ -74,7 +74,7 @@ export default class YAPI {
   */
   checkLogin() {
 
-    if(this.getSession().loggedIn){
+    if (this.getSession().loggedIn){
       return this.$q.resolve();
     }
     return this.apiCall({
@@ -82,7 +82,7 @@ export default class YAPI {
       method: 'GET'
     }).then((ret) => {
 
-      if(ret.data.user.id !== undefined) {
+      if (ret.data.user.id !== undefined) {
 
         debug('check login success user is logged in');
 
@@ -113,13 +113,13 @@ export default class YAPI {
     return this.apiCall('/items').then(
       (ret) => {
         debug('listmappables success');
-        if(opt.success !== undefined) {
+        if (opt.success !== undefined) {
           opt.success(ret);
         }
       },
       (ret) => {
         debug('listmappables error');
-        if(opt.error !== undefined) {
+        if (opt.error !== undefined) {
           opt.error(ret);
         }
       }
@@ -155,13 +155,13 @@ export default class YAPI {
         */
         api.setSession(ret.data.user);
 
-        if(opt.success !== undefined) {
+        if (opt.success !== undefined) {
           opt.success(ret);
         }
       },
       (ret) => {
         debug('auth error');
-        if(opt.error !== undefined) {
+        if (opt.error !== undefined) {
           opt.error(ret);
         }
       }

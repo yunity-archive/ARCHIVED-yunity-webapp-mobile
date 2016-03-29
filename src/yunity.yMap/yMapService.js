@@ -12,7 +12,7 @@ export default class YMapService {
       container: null,
       latLng: null,
       zoom: null,
-      element:null,
+      element: null,
       initiated: false,
       defaultLatLng: [51.505, -0.09],
       defaultZoom: 13
@@ -24,11 +24,11 @@ export default class YMapService {
   * Configuration
   */
   config(opt) {
-    if(opt.defaultLatLng !== undefined) {
+    if (opt.defaultLatLng !== undefined) {
       this.defaultLatLng = opt.defaultLatLng;
     }
 
-    if(opt.defaultZoom !== undefined) {
+    if (opt.defaultZoom !== undefined) {
       this.defaultZoom = opt.defaultZoom;
     }
   }
@@ -91,7 +91,7 @@ export default class YMapService {
   */
   setView(LatLng, zoom) {
 
-    if(zoom === undefined) {
+    if (zoom === undefined) {
       zoom = this.defaultZoom;
     }
     this.container.setView(LatLng, zoom);
@@ -111,7 +111,7 @@ export default class YMapService {
   renderMarkerCluster(items) {
 
     // init cluster group
-    var markers = new L.MarkerClusterGroup();
+    let markers = new L.MarkerClusterGroup();
 
     // add all recieved marker items to the map
     items.forEach(item => {
