@@ -9,7 +9,7 @@ Here we include extra stuff that might be useful:
 
 # Walkthroughs
 
-## [Directive](#walkthrough-directive)
+## [Directive(#walkthrough-directive)]
 
 Defining a directive involves:
 
@@ -18,7 +18,7 @@ Defining a directive involves:
   1. [Template File](#directive-template) `myTemplate.html`
   1. [Registration](#directive-registration) of the directive with a module
 
-### [Definition file](#directive-definition)
+### [Definition file(#directive-definition)]
 
 This defines the directive, but does not contain any logic or template.
 
@@ -53,7 +53,7 @@ export default function() {
 }
 ```
 
-### [Controller File](#directive-controller)
+### [Controller File(#directive-controller)]
 
 This is where the logic of the directive lives.
 
@@ -116,7 +116,7 @@ export default class MyCtrl {
 }
 ```
 
-### [Template file](#directive-template)
+### [Template file(#directive-template)]
 
 This just defines the view template for the directive. It has access to the
 controller as `ctrl`.
@@ -145,7 +145,7 @@ Contents of `myTemplate.html`:
 </div>
 ```
 
-### [Registration](#directive-registration)
+### [Registration(#directive-registration)]
 
 Contents of an angular module definition file:
 
@@ -167,7 +167,7 @@ export default angular.module('yunity.example', [])
   .name;
 ```
 
-## [TODO](#todo)
+## [TODO(#todo)]
 
   - [x] directive walkthrough
   - [ ] service walkthrough
