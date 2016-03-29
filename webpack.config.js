@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+var config = {
   entry: path.resolve(__dirname, 'src/yunity'),
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -13,7 +13,7 @@ module.exports = {
     loaders: [
       {
         test: /\.json$/,
-        loaders: ['json-loader']
+        loaders: ['json']
       },
       {
         test: /\.js?$/,
@@ -21,7 +21,7 @@ module.exports = {
           __dirname
         ],
         exclude: /(node_modules|bower_components)/,
-        loaders: ['ng-annotate', 'babel-loader']
+        loaders: ['ng-annotate', 'babel']
       }, {
         test: /\.html$/,
         loaders: ['ngtemplate', 'html'],
@@ -30,11 +30,6 @@ module.exports = {
       {
         test: /\.png$/,
         loaders: ['file?name=assets/[hash].[ext]'],
-        exclude: /(node_modules|bower_components)/
-      },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader'),
         exclude: /(node_modules|bower_components)/
       }
     ]
@@ -45,13 +40,13 @@ module.exports = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins.push(new webpack.DefinePlugin({
+  config.plugins.push(new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
     }
   }));
-  module.exports.plugins.push(new webpack.optimize.DedupePlugin());
-  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
+  config.plugins.push(new webpack.optimize.DedupePlugin());
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     mangle: true,
     compress: {
       warnings: false
@@ -60,6 +55,18 @@ if (process.env.NODE_ENV === 'production') {
       comments: false
     }
   }));
+  config.module.loaders.push({
+    test: /\.scss$/,
+    loader: ExtractTextPlugin.extract('style', 'css!sass'),
+    exclude: /(node_modules|bower_components)/
+  });
 } else {
-  module.exports.devtool = 'eval-source-map';
+  config.devtool = 'eval-source-map';
+  config.module.loaders.push({
+    test: /\.scss$/,
+    loader: 'style!css!sass',
+    exclude: /(node_modules|bower_components)/
+  });
 }
+
+module.exports = config;

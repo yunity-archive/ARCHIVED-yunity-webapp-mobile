@@ -13,3 +13,4 @@ public/assets
 npm-debug.log
 public/app.css
 npm-debug.log*
+browserstack.json

@@ -1,97 +1,59 @@
-// Karma configuration
-// Generated on Sat Mar 26 2016 13:46:45 GMT+0100 (CET)
+var webpackConfig = require('./webpack.config');
+var fs = require('fs');
+var bsConfigFile = './browserstack.json';
 
 module.exports = function(config) {
-  config.set({
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
+  var karmaConfig = {
     basePath: '',
-
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
-
-    // list of files / patterns to load in the browser
     files: [
       'spec/main.js'
     ],
-
-    // list of files to exclude
-    exclude: [
-    ],
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    exclude: [],
     preprocessors: {
       'spec/main.js': ['webpack']
     },
-
     webpack: {
       module: {
-        loaders: [
-          {
-            test: /\.js?$/,
-            include: [
-              __dirname
-            ],
-            exclude: /(node_modules|bower_components)/,
-            loaders: ['ng-annotate', 'babel-loader']
-          }, {
-            test: /\.html$/,
-            loaders: ['ngtemplate', 'html'],
-            exclude: /(node_modules|bower_components)/
-          }, {
-            test: /\.png$/,
-            loaders: ['file?name=assets/[hash].[ext]'],
-            exclude: /(node_modules|bower_components)/
-          }, {
-            test: /\.scss$/,
-            loader: 'style!css-loader!sass-loader',
-            exclude: /(node_modules|bower_components)/
-          }
-        ]
+        loaders: webpackConfig.module.loaders
       }
     },
     webpackMiddleware: {
       noInfo: true
     },
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
-
-
-    // web server port
     port: 9876,
-
-
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome', 'PhantomJS', 'Firefox'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
+    customLaunchers: {},
     singleRun: false,
-
-    // Concurrency level
-    // how many browser should be started simultaneous
     concurrency: Infinity
-  })
+  };
+
+  if (fs.existsSync(bsConfigFile)) {
+
+    var bsConfig = JSON.parse(fs.readFileSync(bsConfigFile, 'utf8'));
+    karmaConfig.browserStack = bsConfig;
+
+    karmaConfig.customLaunchers['bs_firefox_mac'] = {
+      base: 'BrowserStack',
+      browser: 'firefox',
+      browser_version: '21.0',
+      os: 'OS X',
+      os_version: 'Mountain Lion'
+    };
+
+    karmaConfig.customLaunchers['bs_iphone5'] = {
+      base: 'BrowserStack',
+      device: 'iPhone 5',
+      os: 'ios',
+      os_version: '6.0'
+    };
+
+  }
+
+  config.set(karmaConfig);
 }
