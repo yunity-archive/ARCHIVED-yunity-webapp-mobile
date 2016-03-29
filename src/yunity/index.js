@@ -16,6 +16,7 @@ import groups from '../components/groups';
 import chat from '../components/chat';
 import item from '../components/item';
 import login from '../components/login';
+import logout from '../components/logout';
 import map from '../components/map';
 import profile from '../components/profile';
 import signup from '../components/signup';

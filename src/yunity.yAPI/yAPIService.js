@@ -64,8 +64,6 @@ export default class YAPI {
   */
   checkLogin() {
 
-    debug('checklogin session is: ' , this.getSession());
-
     if(this.getSession().loggedin){
       return this.$q.resolve();
     }
