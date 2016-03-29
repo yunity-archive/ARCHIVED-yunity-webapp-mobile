@@ -1,6 +1,13 @@
 import L from 'leaflet';
 import 'leaflet.markercluster';
 
+/*
+  TODO: import stylesheets
+  - leaflet.css
+  - MarkerClusterer.css
+  - MarkerClusterer.Default.css
+*/
+
 L.Icon.Default.imagePath = '/images/markers/';
 
 const debug = require('debug')('yunity:yMap');

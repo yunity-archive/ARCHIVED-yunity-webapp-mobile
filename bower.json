@@ -1,9 +1,0 @@
-{
-	"name":"yunity-webapp-mobile",
-	"dependencies": {
-		"mobile-angular-ui":"latest",
-		"leaflet":"latest",
-		"Leaflet.markercluster":"https://github.com/Leaflet/Leaflet.markercluster.git"
-	}
-}
-

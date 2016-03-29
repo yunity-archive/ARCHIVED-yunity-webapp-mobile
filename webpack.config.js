@@ -20,21 +20,21 @@ var config = {
         include: [
           __dirname
         ],
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loaders: ['ng-annotate', 'babel']
       }, {
         test: /\.html$/,
         loaders: ['ngtemplate', 'html'],
-        exclude: /(node_modules|bower_components)/
+        exclude: /node_modules/
       },
       {
         test: /\.png$/,
         loaders: ['file?name=assets/[hash].[ext]'],
-        exclude: /(node_modules|bower_components)/
+        exclude: /node_modules/
       }, {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style', 'css!sass'),
-        exclude: /(node_modules|bower_components)/
+        exclude: /node_modules/
       }
     ]
   },
