@@ -1,0 +1,11 @@
+machine:
+  node:
+    version: 5.5.0
+  environment:
+    NODE_ENV: production
+dependencies:
+  post:
+    - webpack
+general:
+  artifacts:
+    - public
