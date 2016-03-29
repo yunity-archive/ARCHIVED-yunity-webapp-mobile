@@ -6,7 +6,7 @@ export default class YAPI {
     'ngInject';
     Object.assign(this, {
 
-      $http, $cookies, $rootScope , $q,
+      $http, $cookies, $rootScope, $q,
 
       url: '/api',
       urlSuffix: '',
@@ -15,9 +15,9 @@ export default class YAPI {
       requestFailed: () => {},
       users: [],
       session: {
-        loggedin: false,
-        user:{},
-        chats:[]
+        loggedIn: false,
+        user: {},
+        chats: []
       }
 
     });
@@ -53,17 +53,18 @@ export default class YAPI {
 
   setSession(user) {
     this.session = {
-      loggedin:true,
-      user:user
+      loggedIn: true,
+      user: user,
+      chats: []
     };
     this.$rootScope.session = this.session;
   }
 
   clearSession() {
-          this.session = {
-            loggedin: false,
-            user:{},
-            chats:[]
+    this.session = {
+      loggedIn: false,
+      user: {},
+      chats: []
     };
     this.$rootScope.session = this.session;
   }
@@ -73,7 +74,7 @@ export default class YAPI {
   */
   checkLogin() {
 
-    if(this.getSession().loggedin){
+    if(this.getSession().loggedIn){
       return this.$q.resolve();
     }
     return this.apiCall({

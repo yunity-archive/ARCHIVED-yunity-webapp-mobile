@@ -5,7 +5,7 @@ describe('yAPI', () => {
   beforeEach(module(app));
 
   it('has a logged out session', inject(yAPI => {
-    expect(yAPI.getSession().loggedin).toEqual(false);
+    expect(yAPI.getSession().loggedIn).toEqual(false);
   }));
 
 });

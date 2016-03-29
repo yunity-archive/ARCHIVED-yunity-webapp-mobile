@@ -22,7 +22,7 @@ export default class YChatListCtrl {
     debug('get all chats');
     debug(yAPI.session);
 
-    if(yAPI.session.loggedin) {
+    if(yAPI.session.loggedIn) {
       debug('get all chats');
       yAPI.apiCall('/chats').then((ret) => {
         debug('got chats', ret);

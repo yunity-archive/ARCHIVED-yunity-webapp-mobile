@@ -24,7 +24,7 @@ export default function initialize($rootScope, yAPI, $location, $route) {
 
       if (next.access !== undefined) {
         if (next.access.requiresLogin) {
-          if (!yAPI.session.loggedin) {
+          if (!yAPI.session.loggedIn) {
             debug('access not allowed');
             event.preventDefault();
             $location.path('/login');

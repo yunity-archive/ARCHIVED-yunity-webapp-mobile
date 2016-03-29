@@ -36,7 +36,7 @@ describe('LoginPageCtrl', () => {
 
     expect(ctrl).toBeDefined();
 
-    expect(yAPI.getSession().loggedin).toEqual(false);
+    expect(yAPI.getSession().loggedIn).toEqual(false);
 
     let credentials = {
       email: 'foo@foo.com',
@@ -61,7 +61,7 @@ describe('LoginPageCtrl', () => {
 
     $httpBackend.flush();
 
-    expect(yAPI.getSession().loggedin).toEqual(true);
+    expect(yAPI.getSession().loggedIn).toEqual(true);
     expect(yAPI.getSession().user.display_name).toEqual(user.display_name);
     expect(yAPI.getSession().user.first_name).toEqual(user.first_name);
     expect(yAPI.getSession().user.last_name).toEqual(user.last_name);

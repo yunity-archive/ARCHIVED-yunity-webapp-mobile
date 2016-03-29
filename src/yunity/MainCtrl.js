@@ -8,7 +8,7 @@ export default class MainCtrl {
     Object.assign(this, {
       $rootScope, $location, $mdSidenav, yAPI, yMapService,
 
-      loggedIn: false,
+      session: {},
       menuItems: [],
       profileItems: [],
 
@@ -30,8 +30,9 @@ export default class MainCtrl {
     });
 
     $rootScope.$watch('session', session => {
-      if (session && session.loggedin) {
-        this.loggedIn = true;
+      // TODO: Find out why session is undefined.
+      this.session = session || {};
+      if (session && session.loggedIn) {
         this.menuItems = [
           { href: 'chat/1', title: 'Chat' },
           { href: 'groups', title: 'Groups' },
