@@ -8,7 +8,9 @@ export default class MainCtrl {
     Object.assign(this, {
       $rootScope, $location, $mdSidenav, yAPI, yMapService,
 
+      loggedIn: false,
       menuItems: [],
+      profileItems: [],
 
       sidebarLeft: 'menu',
       activeCategory: null,
@@ -29,18 +31,28 @@ export default class MainCtrl {
 
     $rootScope.$watch('session', session => {
       if (session && session.loggedin) {
+        this.loggedIn = true;
         this.menuItems = [
           { href: 'chat/1', title: 'Chat' },
           { href: 'groups', title: 'Groups' },
           { href: 'create/item', title: 'Share a banana' },
           { href: 'list/items', title: 'List of bananas' },
-          { href: 'list/users', title: 'List of users' },
-          { href: `profile/${session.user.id}`, title: 'Profile' }
+          { href: 'list/users', title: 'List of users' }
+        ];
+        this.profileItems = [
+          { icon: 'account_circle', href: `profile/${session.user.id}`, title: 'Profile' },
+          { icon: 'settings', href: 'settings', title: 'Settings' },
+          { icon: 'exit_to_app', href: 'logout', title: 'Logout' }
         ];
       } else {
         this.menuItems = [
-          { href: 'login', title: 'Login' },
-          { href: 'signup', title: 'Signup' }
+          { href: 'groups', title: 'Groups' },
+          { href: 'list/items', title: 'List of bananas' },
+          { href: 'list/users', title: 'List of users' }
+        ];
+        this.profileItems = [
+          { icon: 'input', href: 'login', title: 'Login' },
+          { icon: 'account_box', href: 'signup', title: 'Signup' }
         ];
       }
     });
@@ -53,6 +65,10 @@ export default class MainCtrl {
       this.$rootScope.loading = false;
     });
 
+  }
+  
+  openMenu($mdOpenMenu, ev) {
+    $mdOpenMenu(ev);
   }
 
   openSidenav() {

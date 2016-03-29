@@ -46,12 +46,24 @@
         <span>unity</span>
       </h2>
       <span flex></span>
-      <md-button class="md-icon-button" aria-label="Favorite">
-        <md-icon md-font-library="material-icons" style="color: greenyellow;">favorite</md-icon>
+      <md-button class="md-icon-button" aria-label="Share" ng-if="ctrl.loggedIn" ng-click="ctrl.openShare()">
+        <md-icon md-font-library="material-icons">add_circle</md-icon>
       </md-button>
-      <md-button class="md-icon-button" aria-label="More">
-        <md-icon md-font-library="material-icons">more_vert</md-icon>
-      </md-button>
+      <md-menu md-position-mode="target-right target">
+        <md-button class="md-icon-button" aria-label="Profile" ng-click="$mdOpenMenu($event)">
+          <md-icon md-font-library="material-icons">account_circle</md-icon>
+        </md-button>
+        <md-menu-content width="3">
+          <md-menu-item ng-repeat="profileItem in ctrl.profileItems">
+            <md-button ng-click="ctrl.go(profileItem.href)">
+              <div layout="row" flex>
+                <p flex>{{ profileItem.title }}</p>
+                <md-icon md-font-library="material-icons" style="margin: auto 3px auto 0;">{{ profileItem.icon }}</md-icon>
+              </div>
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
     </div>
   </md-toolbar>
 
