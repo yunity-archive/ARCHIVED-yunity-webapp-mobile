@@ -36,7 +36,7 @@ export default angular.module('yunity', [
   ngRoute,
   ngMaterial,
   yAPI, yChat, yMap,
-  groups, chat, item, login, map, profile, signup
+  groups, chat, item, login, logout, map, profile, signup
 ])
   .config(routes)
   .config(materialConfig)

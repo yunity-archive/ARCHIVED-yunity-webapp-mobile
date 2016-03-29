@@ -15,6 +15,11 @@ export default function($routeProvider) {
     template: '<login-page />',
     reloadOnSearch: false
   });
+  
+  $routeProvider.when('/logout', {
+    template: '<logout-page />',
+    reloadOnSearch: false
+  });
 
   $routeProvider.when('/groups', {
     template: '<groups />',

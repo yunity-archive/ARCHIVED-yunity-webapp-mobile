@@ -59,6 +59,15 @@ export default class YAPI {
     this.$rootScope.session = this.session;
   }
 
+  clearSession() {
+          this.session = {
+            loggedin: false,
+            user:{},
+            chats:[]
+    };
+    this.$rootScope.session = this.session;
+  }
+
   /*
   * To do: Method checks server side is the user still logged in
   */
