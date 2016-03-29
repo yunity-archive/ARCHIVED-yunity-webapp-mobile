@@ -35,7 +35,8 @@ export default class MainCtrl {
           { href: 'create/item', title: 'Share a banana' },
           { href: 'list/items', title: 'List of bananas' },
           { href: 'list/users', title: 'List of users' },
-          { href: `profile/${session.user.id}`, title: 'Profile' }
+          { href: `profile/${session.user.id}`, title: 'Profile' },
+          { href: 'logout', title: 'Logout' }
         ];
       } else {
         this.menuItems = [
