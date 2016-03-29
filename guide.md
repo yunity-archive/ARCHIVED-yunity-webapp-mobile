@@ -9,18 +9,20 @@ Here we include extra stuff that might be useful:
 
 # Walkthroughs
 
-## Directive (#walkthrough-directive)
+## [Directive](#walkthrough-directive)
 
 Defining a directive involves:
 
-  1. [Definition File](#directive-definition)
-  1. [Controller File](#directive-controller)
-  1. [Template File](#directive-template)
+  1. [Definition File](#directive-definition) `myDirective.js`
+  1. [Controller File](#directive-controller) `MyCtrl.js`
+  1. [Template File](#directive-template) `myTemplate.html`
   1. [Registration](#directive-registration) of the directive with a module
 
-### Definition file (#directive-definition)
+### [Definition file](#directive-definition)
 
-Content of `myDirective.js`:
+This defines the directive, but does not contain any logic or template.
+
+Contents of `myDirective.js`:
 
 ```javascript
 /* import the template (uses webpack ngtemplate-loader)
@@ -51,7 +53,9 @@ export default function() {
 }
 ```
 
-### Controller File (#directive-controller)
+### [Controller File](#directive-controller)
+
+This is where the logic of the directive lives.
 
 Contents of `MyCtrl.js`:
 
@@ -112,12 +116,15 @@ export default class MyCtrl {
 }
 ```
 
-### Template file (#directive-template)
+### [Template file](#directive-template)
 
-Content of `myTemplate.html`:
+This just defines the view template for the directive. It has access to the
+controller as `ctrl`.
+
+Contents of `myTemplate.html`:
 
 ```html
-<!-- make sure there is only one top level element-->
+<!-- make sure there is only one top level element that contains everything -->
 <div>
 
   <!-- everything in our controller is available via ctrl as we specified
@@ -138,7 +145,7 @@ Content of `myTemplate.html`:
 </div>
 ```
 
-### Registration (#directive-registration)
+### [Registration](#directive-registration)
 
 Contents of an angular module definition file:
 
@@ -150,15 +157,17 @@ import myDirective from './myDirective';
 
 /* here we are defining a new module */
 export default angular.module('yunity.example', [])
+
   /* this is where we name it so it will be usable inside other templates as:
       <my-directive></my-directive> */
   .directive('myDirective', myDirective)
+
   /* import to export the name of the module so it can be easily declared as
      a dependency of another module */
   .name;
 ```
 
-## TODO (#todo)
+## [TODO](#todo)
 
   - [x] directive walkthrough
   - [ ] service walkthrough
