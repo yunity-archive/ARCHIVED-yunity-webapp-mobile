@@ -162,7 +162,7 @@ export default angular.module('yunity.example', [])
       <my-directive></my-directive> */
   .directive('myDirective', myDirective)
 
-  /* import to export the name of the module so it can be easily declared as
+  /* important to export the name of the module so it can be easily declared as
      a dependency of another module */
   .name;
 ```
