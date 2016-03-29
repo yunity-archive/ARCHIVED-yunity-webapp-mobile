@@ -67,7 +67,7 @@ export default class MainCtrl {
     });
 
   }
-  
+
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
   }
@@ -95,7 +95,7 @@ export default class MainCtrl {
       filter: {},
       success: (ret) => {
         debug('show items on status > ' + ret.data.items.length);
-        if (ret.data.items != undefined && ret.data.items.length > 0) {
+        if (ret.data.items !== undefined && ret.data.items.length > 0) {
           this.yMapService.renderMarkerCluster(ret.data.items);
         } else {
           debug('no items found');
