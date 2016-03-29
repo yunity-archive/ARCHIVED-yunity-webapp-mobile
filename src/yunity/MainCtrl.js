@@ -34,7 +34,7 @@ export default class MainCtrl {
       this.session = session || {};
       if (session && session.loggedIn) {
         this.menuItems = [
-          { href: 'chat/1', title: 'Chat' },
+          { href: 'chat', title: 'Chat' },
           { href: 'groups', title: 'Groups' },
           { href: 'create/item', title: 'Share a banana' },
           { href: 'list/items', title: 'List of bananas' },

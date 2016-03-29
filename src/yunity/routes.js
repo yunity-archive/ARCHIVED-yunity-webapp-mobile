@@ -47,6 +47,14 @@ export default function($routeProvider) {
     reloadOnSearch: false
   });
 
+  $routeProvider.when('/chat/', {
+    template: '<y-chat-list />',
+    reloadOnSearch: false,
+    access: {
+      requiresLogin: true
+    }
+  });
+
   $routeProvider.when('/chat/:id', {
     template: '<y-chat></y-chat>',
     reloadOnSearch: false,
@@ -64,8 +72,7 @@ export default function($routeProvider) {
       requiresLogin: true
     }
   });
-
-
+  
   $routeProvider.when('/about', {
     templateUrl: 'about.html',
     reloadOnSearch: false
