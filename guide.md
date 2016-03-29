@@ -13,7 +13,7 @@ Here we include extra stuff that might be useful:
 
 Defining a directive involves:
 
-  1. [Definition File](#definintion-file) `myDirective.js`
+  1. [Definition File](#definition-file) `myDirective.js`
   1. [Controller File](#controller-file) `MyCtrl.js`
   1. [Template File](#template-file) `myTemplate.html`
   1. [Registration](#directive-registration) of the directive with a module
