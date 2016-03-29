@@ -172,6 +172,7 @@ export default angular.module('yunity.example', [])
   - [x] directive walkthrough
   - [ ] service walkthrough
   - [ ] module walkthrough
+  - [ ] fix the heading links in this file
   - [ ] explain services vs factories vs ...
   - [ ] explain 'ngInject'
   - [ ] explain `Object.assign()`, destructring, ES6 fat arrows, ES6 object shorthand
