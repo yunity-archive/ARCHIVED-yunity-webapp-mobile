@@ -4,21 +4,21 @@ We use [rwwagner90/angular-styleguide-es6](https://github.com/rwwagner90/angular
 
 Here we include extra stuff that might be useful:
   1. Walkthroughs
-    1. [Directive](#walkthrough-directive)
+    1. [Directive](#directive-walkthrough)
   1. [TODO](#todo)
 
 # Walkthroughs
 
-## [Directive(#walkthrough-directive)]
+## Directive Walkthrough
 
 Defining a directive involves:
 
-  1. [Definition File](#directive-definition) `myDirective.js`
-  1. [Controller File](#directive-controller) `MyCtrl.js`
-  1. [Template File](#directive-template) `myTemplate.html`
+  1. [Definition File](#definintion-file) `myDirective.js`
+  1. [Controller File](#controller-file) `MyCtrl.js`
+  1. [Template File](#template-file) `myTemplate.html`
   1. [Registration](#directive-registration) of the directive with a module
 
-### [Definition file(#directive-definition)]
+### Definition File
 
 This defines the directive, but does not contain any logic or template.
 
@@ -53,7 +53,7 @@ export default function() {
 }
 ```
 
-### [Controller File(#directive-controller)]
+### Controller File
 
 This is where the logic of the directive lives.
 
@@ -116,7 +116,7 @@ export default class MyCtrl {
 }
 ```
 
-### [Template file(#directive-template)]
+### Template File
 
 This just defines the view template for the directive. It has access to the
 controller as `ctrl`.
@@ -145,7 +145,7 @@ Contents of `myTemplate.html`:
 </div>
 ```
 
-### [Registration(#directive-registration)]
+### Directive registration
 
 Contents of an angular module definition file:
 
@@ -167,7 +167,7 @@ export default angular.module('yunity.example', [])
   .name;
 ```
 
-## [TODO(#todo)]
+## TODO
 
   - [x] directive walkthrough
   - [ ] service walkthrough
