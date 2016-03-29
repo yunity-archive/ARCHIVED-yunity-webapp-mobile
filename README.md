@@ -1,3 +1,6 @@
+[![Circle CI](https://circleci.com/gh/yunity/yunity-webapp-mobile.svg?style=svg)](https://circleci.com/gh/yunity/yunity-webapp-mobile)
+[![David](https://david-dm.org/yunity/yunity-webapp-mobile.svg)](https://david-dm.org/yunity/yunity-webapp-mobile)
+
 # yunity-webapp-mobile
 
 
