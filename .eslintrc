@@ -18,6 +18,7 @@
     "linebreak-style": 2,
     "lines-around-comment": [2, {"allowBlockStart": true, "beforeBlockComment": true, "beforeLineComment": true}],
     "arrow-spacing": 2,
+    "arrow-parens": 2,
     "prefer-arrow-callback": 2,
     "prefer-rest-params": 2,
     "no-invalid-this": 2,
