@@ -19,7 +19,7 @@ export default class GroupsAddCtrl{
         data: this.data
       }).then(() => {
         this.$location.path('/groups');
-      }).catch(err => {
+      }).catch((err) => {
         debug('error', err);
       });
     } else {

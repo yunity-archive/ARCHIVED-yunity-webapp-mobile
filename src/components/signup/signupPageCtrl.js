@@ -22,12 +22,12 @@ export default class SignupPageCtrl {
           this.$location.path('/profile/' + res.data.id);
           this.yChat.initChats();
         },
-        error: err => {
+        error: (err) => {
           debug('login failed', err);
         }
       });
 
-    }, err => {
+    }, (err) => {
       debug('error while signup', err);
     });
   }

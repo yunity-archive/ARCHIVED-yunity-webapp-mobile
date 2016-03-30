@@ -14,11 +14,11 @@ export default class YChatCtrl {
 
     this.messages = [];
 
-    this.yChat.getChatForUser(userId).then(chat => {
+    this.yChat.getChatForUser(userId).then((chat) => {
       this.chat = chat;
-      this.yChat.listen(this.chat.id, msgs => {
+      this.yChat.listen(this.chat.id, (msgs) => {
         this.$timeout(() => {
-          msgs.forEach(msg => {
+          msgs.forEach((msg) => {
             this.messages.push(msg);
           });
           this.$timeout(() => {

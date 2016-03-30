@@ -9,7 +9,7 @@ export default class ItemDetailPageCtrl {
       item: null
     });
 
-    $rootScope.$watch('session', session => this.session = session);
+    $rootScope.$watch('session', (session) => this.session = session);
 
     this.yAPI.apiCall('/items/' + $routeParams.id).then((ret) => {
       this.item = ret.data;

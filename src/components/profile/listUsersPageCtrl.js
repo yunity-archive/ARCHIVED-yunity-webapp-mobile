@@ -9,7 +9,7 @@ export default class ListUsersPageCtrl {
     this.yAPI.apiCall('/users/').then((ret) => {
       debug(ret.data.users);
       this.users = ret.data.users;
-      this.users.forEach(user => {
+      this.users.forEach((user) => {
         user.avatarUrl = isabellaPng;
       });
     });

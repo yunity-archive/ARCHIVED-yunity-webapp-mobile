@@ -18,7 +18,7 @@ export default class GroupPageCtrl {
       this.group = ret.data;
       this.group.loaded = true;
       debug(ret);
-    }, err => {
+    }, (err) => {
       debug('group could not be loaded', err);
     });
   }

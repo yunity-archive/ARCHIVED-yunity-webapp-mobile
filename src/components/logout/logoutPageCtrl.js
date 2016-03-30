@@ -22,7 +22,7 @@ export default class LogoutPageCtrl {
       this.yAPI.clearSession();
       this.yAPI.checkLogin();
     },
-    err => {
+    (err) => {
       debug('error while signup', err);
     });
   }

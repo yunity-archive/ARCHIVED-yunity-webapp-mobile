@@ -12,7 +12,7 @@ export default class YChat {
 
     });
 
-    this.ySocket.listen(data => {
+    this.ySocket.listen((data) => {
 
       let { type, payload } = data;
 
@@ -20,9 +20,9 @@ export default class YChat {
         let { chatId, message } = payload;
         let fns = this.chatListeners[chatId];
         if (fns) {
-          fns.forEach(fn => fn([message]));
+          fns.forEach((fn) => fn([message]));
         }
-        this.allListeners.forEach(fn => fn([message]));
+        this.allListeners.forEach((fn) => fn([message]));
       }
 
     });
@@ -30,7 +30,7 @@ export default class YChat {
   }
 
   loadInitialMessages(chatId) {
-    return this.yAPI.apiCall(`/chats/${chatId}/messages/`).then(response => {
+    return this.yAPI.apiCall(`/chats/${chatId}/messages/`).then((response) => {
       return response.data.messages.reverse();
     });
   }
@@ -39,7 +39,7 @@ export default class YChat {
     return this.yAPI.apiCall({
       uri: `/users/${userId}/chat/`,
       method: 'POST'
-    }).then(response => {
+    }).then((response) => {
       return response.data.chat;
     });
   }
@@ -73,11 +73,11 @@ export default class YChat {
       // otherwise messages created after the API req but
       // before socket connect will not be seen
 
-      this.loadInitialMessages(chatId).then(msgs => {
+      this.loadInitialMessages(chatId).then((msgs) => {
 
         if (incoming.length > 0) {
           let minimumId = incoming[0].id;
-          msgs = msgs.filter(msg => msg.id < minimumId);
+          msgs = msgs.filter((msg) => msg.id < minimumId);
         }
         if (msgs.length > 0) {
           fn(msgs);
@@ -110,10 +110,10 @@ export default class YChat {
       uri: `/chats/${chatId}//messages`,
       method: 'POST',
       data: msg
-    }).then(response => {
+    }).then((response) => {
       debug('sent message!', response.data);
       return;
-    }, err => {
+    }, (err) => {
       debug('error sending chat message', err);
       return;
     });

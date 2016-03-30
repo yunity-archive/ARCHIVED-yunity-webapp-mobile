@@ -29,7 +29,7 @@ export default class MainCtrl {
       }]
     });
 
-    $rootScope.$watch('session', session => {
+    $rootScope.$watch('session', (session) => {
       // TODO: Find out why session is undefined.
       this.session = session || {};
       if (session && session.loggedIn) {

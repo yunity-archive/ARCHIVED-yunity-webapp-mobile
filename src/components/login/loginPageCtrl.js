@@ -21,7 +21,7 @@ export default class LoginPageCtrl {
         this.$location.path('/profile/' + res.data.user.id);
         this.yChat.initChats();
       },
-      error: err => {
+      error: (err) => {
         debug('login failed', err);
       }
     }, this.data));

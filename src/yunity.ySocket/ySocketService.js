@@ -26,14 +26,14 @@ export default class YSocket {
         debug('emitting session id', this.currentSessionId);
         this.socket.emit('authenticate', { sessionId: this.currentSessionId });
       }
-      this.deferreds.forEach(deferred => {
+      this.deferreds.forEach((deferred) => {
         deferred.resolve();
       });
       this.deferreds.length = 0;
     });
 
-    this.socket.on('message', data => {
-      this.listeners.forEach(fn => fn(data));
+    this.socket.on('message', (data) => {
+      this.listeners.forEach((fn) => fn(data));
     });
 
   }

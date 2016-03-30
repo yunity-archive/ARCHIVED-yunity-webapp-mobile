@@ -121,7 +121,7 @@ export default class YMapService {
     let markers = new L.MarkerClusterGroup();
 
     // add all recieved marker items to the map
-    items.forEach(item => {
+    items.forEach((item) => {
       markers.addLayer( new L.Marker(item.ll) );
     });
 
