@@ -40,16 +40,3 @@ $ ln -s /usr/bin/nodejs /usr/bin/node
 bower install
 npm install
 ```
-
-## 5. npm link yunity-webapp-common
-
-This means you can develop this locally without having to push to github for each change. It symlinks the library to the global node_modules, then symlinks from there to the app project.
-
-```sh
-cd ../yunity-webapp-common
-sudo npm link
-cd ../yunity-webapp-mobile
-npm link yunity-webapp-common
-```
-
-(note: you might have to chown `yunity-webapp-common/node_modules` back to yourself after this)
