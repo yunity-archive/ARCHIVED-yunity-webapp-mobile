@@ -29,6 +29,7 @@
     "angular-material": "^1.0.6",
     "angular-messages": "^1.5.3",
     "angular-route": "^1.5.3",
+    "angular-ui-router": "^0.2.18",
     "babel-polyfill": "^6.7.4",
     "debug": "^2.2.0",
     "leaflet": "^0.7.7",

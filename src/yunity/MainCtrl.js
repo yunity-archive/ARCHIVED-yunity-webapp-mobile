@@ -36,9 +36,9 @@ export default class MainCtrl {
         this.menuItems = [
           { href: 'chat', title: 'Chat' },
           { href: 'groups', title: 'Groups' },
-          { href: 'create/item', title: 'Share a banana' },
-          { href: 'list/items', title: 'List of bananas' },
-          { href: 'list/users', title: 'List of users' }
+          { href: 'items/new', title: 'Share a banana' },
+          { href: 'items', title: 'List of bananas' },
+          { href: 'users', title: 'List of users' }
         ];
         this.profileItems = [
           { icon: 'account_circle', href: `profile/${session.user.id}`, title: 'Profile' },
@@ -48,8 +48,8 @@ export default class MainCtrl {
       } else {
         this.menuItems = [
           { href: 'groups', title: 'Groups' },
-          { href: 'list/items', title: 'List of bananas' },
-          { href: 'list/users', title: 'List of users' }
+          { href: 'items', title: 'List of bananas' },
+          { href: 'users', title: 'List of users' }
         ];
         this.profileItems = [
           { icon: 'input', href: 'login', title: 'Login' },
@@ -57,15 +57,7 @@ export default class MainCtrl {
         ];
       }
     });
-
-    this.$rootScope.$on('$routeChangeStart', () => {
-      this.$rootScope.loading = true;
-    });
-
-    this.$rootScope.$on('$routeChangeSuccess', () => {
-      this.$rootScope.loading = false;
-    });
-
+    
   }
 
   openMenu($mdOpenMenu, ev) {

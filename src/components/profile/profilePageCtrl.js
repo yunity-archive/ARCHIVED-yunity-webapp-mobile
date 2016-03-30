@@ -1,19 +1,19 @@
 const debug = require('debug')('yunity:profilePage');
 
 export default class ProfilePageCtrl {
-  constructor($rootScope, yAPI, yChat, $route, $location) {
+  constructor($rootScope, yAPI, yChat, $stateParams, $location) {
     'ngInject';
     Object.assign(this, {
-      $rootScope, yAPI, yChat, $route, $location,
+      $rootScope, yAPI, yChat, $stateParams, $location,
       error: false,
       errorMessage: '',
       user: {
-        id: $route.current.params.id,
+        id: $stateParams.id,
         loaded: false
       }
     });
 
-    debug($route.current.params);
+    debug('profile page params', $stateParams);
 
     yAPI.apiCall('/users/' + this.user.id).then((ret) => {
       this.user = ret.data.users[0];

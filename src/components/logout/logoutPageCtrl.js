@@ -17,12 +17,8 @@ export default class LogoutPageCtrl {
     }).then((res) => {
       debug('logout', res);
       this.$location.path('login');
-
-      //first clearSession and then reload
       this.yAPI.clearSession();
-      this.yAPI.checkLogin();
-    },
-    (err) => {
+    }, (err) => {
       debug('error while signup', err);
     });
   }

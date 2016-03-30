@@ -1,0 +1,58 @@
+<div layout="column">
+  <ui-view name="header">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-click="ctrl.openSidenav()" hide-gt-md>
+          <md-icon md-font-library="material-icons">menu</md-icon>
+        </md-button>
+        <img src="/images/ylogo.png" style="height: 40px; margin: 0 -14px 0 0;">
+        <h2>
+          <span>unity</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Share" ng-if="ctrl.session.loggedIn" ng-click="ctrl.openShare()">
+          <md-icon md-font-library="material-icons">add_circle</md-icon>
+        </md-button>
+        <md-menu md-position-mode="target-right target">
+          <md-button class="md-icon-button" aria-label="Profile" ng-click="$mdOpenMenu($event)">
+            <md-icon md-font-library="material-icons">account_circle</md-icon>
+          </md-button>
+          <md-menu-content width="3">
+            <md-menu-item ng-repeat="profileItem in ctrl.profileItems">
+              <md-button ng-click="ctrl.go(profileItem.href)">
+                <div layout="row" flex>
+                  <p flex>{{ profileItem.title }}</p>
+                  <md-icon md-font-library="material-icons" style="margin: auto 3px auto 0;">{{ profileItem.icon }}</md-icon>
+                </div>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
+    </md-toolbar>
+  </ui-view>
+
+  <div flex layout="row">
+
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo" hide-gt-md>
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content>
+        <md-list>
+          <md-list-item ng-repeat="menuItem in ctrl.menuItems" ng-click="ctrl.go(menuItem.href)">
+            <div class="md-list-item-text" layout="column">
+              <p>{{ menuItem.title }}</p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-sidenav>
+
+    <md-content flex layout="column">
+      <ui-view></ui-view>
+    </md-content>
+
+  </div>
+
+</div>

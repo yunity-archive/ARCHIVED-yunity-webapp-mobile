@@ -2,17 +2,17 @@ const debug = require('debug')('yunity:component:groupPageCtrl');
 
 export default class GroupPageCtrl {
 
-  constructor($rootScope, yAPI, yChat, $route, $routeParams) {
+  constructor($rootScope, yAPI, yChat, $stateParams) {
     'ngInject';
     Object.assign(this, {
-      $rootScope, yAPI, yChat, $route, $routeParams,
+      $rootScope, yAPI, yChat, $stateParams,
       group: {
-        id: $route.current.params.id,
+        id: $stateParams.id,
         loaded: false
       }
     });
 
-    debug($route.current.params);
+    debug($stateParams);
 
     yAPI.apiCall('/groups/' + this.group.id).then((ret) => {
       this.group = ret.data;
@@ -24,7 +24,7 @@ export default class GroupPageCtrl {
   }
 
   joinGroup() {
-    let groupId = this.$routeParams.id;
+    let groupId = this.$stateParams.id;
 
     debug('joining group');
 
@@ -35,7 +35,7 @@ export default class GroupPageCtrl {
         users: [this.yAPI.session.user.id]
       }
     }).then(() => {
-      this.$route.reload();
+      this.$state.reload();
     });
 
   }

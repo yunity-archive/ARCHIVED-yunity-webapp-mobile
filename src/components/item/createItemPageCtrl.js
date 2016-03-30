@@ -19,7 +19,7 @@ export default class CreateItemPageCtrl {
       method: 'POST',
       data: this.data
     }).then(() => {
-      this.$location.path('/list/items');
+      this.$location.path('/items');
     }, (err) => {
       debug('cannot create item', err);
     });

@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 
 import angular from 'angular';
-import ngRoute from 'angular-route';
+import uiRouter from 'angular-ui-router';
 
 import 'angular-aria';
 import 'angular-animate';
@@ -26,6 +26,8 @@ import routes from './routes';
 import materialConfig from './materialConfig';
 import MainCtrl from './MainCtrl';
 
+import routeHelperProvider from './routeHelperProvider';
+
 import './core.scss';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -33,11 +35,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default angular.module('yunity', [
-  ngRoute,
-  ngMaterial,
+  ngMaterial, uiRouter,
   yAPI, yChat, yMap,
   groups, chat, item, login, logout, map, profile, signup
 ])
+  .provider('routeHelper', routeHelperProvider)
   .config(routes)
   .config(materialConfig)
   .controller('MainCtrl', MainCtrl)

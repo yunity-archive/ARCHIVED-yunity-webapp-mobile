@@ -1,114 +1,141 @@
-export default function($routeProvider) {
+import rootTemplate from './root.html';
+
+export default function(routeHelperProvider, $stateProvider, $urlRouterProvider) {
   'ngInject';
 
-  $routeProvider.when('/', {
-    template: '<wall-page />',
-    reloadOnSearch: false
+  $urlRouterProvider.otherwise(goToRoot);
+
+  function yAPIResolve(yAPI) {
+    'ngInject';
+    return yAPI.resolve();
+  }
+
+  routeHelperProvider.setDefaultOptions({
+    resolve: { yAPIResolve }
   });
 
-  $routeProvider.when('/signup', {
-    template: '<signup-page />',
-    reloadOnSearch: false
+  routeHelperProvider.state('root', {
+    url: '',
+    templateUrl: rootTemplate
+  }, (root) => {
+
+    /* login/signup stuff -------------------------------------------------- */
+
+    root('login', {
+      url: '/login',
+      template: '<login-page></login-page>'
+    });
+
+    root('signup', {
+      url: '/signup',
+      template: '<signup-page></signup-page>'
+    });
+
+    root('logout', {
+      url: '/logout',
+      template: '<logout-page></logout-page>'
+    });
+
+    /* profile -------------------------------------------------------------- */
+
+    root('profile', {
+      url: '/profile',
+      template: '<ui-view></ui-view>'
+    }, (profile) => {
+
+      profile('show', {
+        url: '/:id',
+        template: '<profile-page></profile-page>'
+      });
+
+    });
+
+    /* chat ----------------------------------------------------------------- */
+
+    root('chat', {
+      url: '/chat',
+      template: '<ui-view><y-chat-list></y-chat-list></ui-view>',
+      access: {
+        requiresLogin: true
+      }
+    }, (chat) => {
+
+      chat('show', {
+        url: '/:id',
+        template: '<y-chat></y-chat>',
+        access: {
+          requiresLogin: true
+        }
+      });
+
+      chat('new', {
+        url: '/new/:userids',
+        template: '<chat-page></chat-page>',
+        access: {
+          requiresLogin: true
+        }
+      });
+
+    });
+
+    /* users ---------------------------------------------------------------- */
+
+    root('users', {
+      url: '/users',
+      template: '<list-users-page></list-users-page>',
+      access: {
+        requiresLogin: true
+      }
+    });
+
+    /* items ---------------------------------------------------------------- */
+
+    root('items', {
+      url: '/items',
+      template: '<ui-view><list-items-page></list-items-page></ui-view>'
+    }, (items) => {
+
+      items('new', {
+        url: '/new',
+        template: '<create-item-page>',
+        access: {
+          requiresLogin: true
+        }
+      });
+
+      items('show', {
+        url: '/:id',
+        template: '<item-detail-page></item-detail-page>'
+      });
+
+    });
+
+    /* groups --------------------------------------------------------------- */
+
+    root('groups', {
+      url: '/groups',
+      template: '<ui-view><groups></groups></ui-view>'
+    }, (groups) => {
+
+      groups('add', {
+        url: '/add',
+        template: '<groups-add></groups-add>'
+      });
+
+      groups('show', {
+        url: '/:id',
+        template: '<group-page></group-page>'
+      });
+
+    });
+
   });
 
-  $routeProvider.when('/login', {
-    template: '<login-page />',
-    reloadOnSearch: false
-  });
+  function goToRoot($injector) {
+    'ngInject';
 
-  $routeProvider.when('/logout', {
-    template: '<logout-page />',
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/groups', {
-    template: '<groups />',
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/groups/add', {
-    template: '<groups-add />',
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/groups/:id', {
-
-    template: (params) =>  {
-      return `<group-page groupid="${params.id}" />`;
-    },
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/profile/:id', {
-
-    template: (params) =>  {
-      return `<profile-page userid="${params.id}" />`;
-    },
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/chat/', {
-    template: '<y-chat-list />',
-    reloadOnSearch: false,
-    access: {
-      requiresLogin: true
-    }
-  });
-
-  $routeProvider.when('/chat/:id', {
-    template: '<y-chat></y-chat>',
-    reloadOnSearch: false,
-    access: {
-      requiresLogin: true
-    }
-  });
-
-  $routeProvider.when('/chat/new/:userids', {
-    template: (params) =>  {
-      return `<chat-page userids="${params.userids}" />`;
-    },
-    reloadOnSearch: false,
-    access: {
-      requiresLogin: true
-    }
-  });
-  
-  $routeProvider.when('/about', {
-    templateUrl: 'about.html',
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/map', {
-    template: '<map-page />',
-    reloadOnSearch: false
-  });
-
-  $routeProvider.when('/create/item', {
-    template: '<create-item-page />',
-    reloadOnSearch: false,
-    access: {
-      requiresLogin: true
-    }
-  });
-
-  $routeProvider.when('/list/items', {
-    template: '<list-items-page />',
-    reloadOnSearch: false
-
-  });
-
-  $routeProvider.when('/item/:id', {
-    template: '<item-detail-page />',
-    reloadOnSearch: false
-
-  });
-
-  $routeProvider.when('/list/users', {
-    template: '<list-users-page />',
-    reloadOnSearch: false,
-    access: {
-      requiresLogin: true
-    }
-  });
+    /* this is needed because '' and '/' are slightly different... */
+    $injector.get('$state').go('root');
+  }
 
 }

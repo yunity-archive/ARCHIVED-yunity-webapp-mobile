@@ -3,14 +3,14 @@ import isabellaPng from './images/Isabella.png';
 
 export default class YChatCtrl {
 
-  constructor($scope, $timeout, $routeParams, yChat) {
+  constructor($scope, $timeout, $stateParams, yChat) {
     'ngInject';
     Object.assign(this, {
-      $scope, $timeout, $routeParams, yChat,
+      $scope, $timeout, $stateParams, yChat,
       isabellaPng
     });
 
-    let userId = this.$routeParams.id;
+    let userId = this.$stateParams.id;
 
     this.messages = [];
 
@@ -45,5 +45,5 @@ export default class YChatCtrl {
       this.yChat.sendMessage(this.chat.id, msg);
     }
   }
-  
+
 }

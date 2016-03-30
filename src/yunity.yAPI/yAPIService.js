@@ -21,6 +21,7 @@ export default class YAPI {
       }
 
     });
+
   }
 
   config(opt) {
@@ -69,39 +70,24 @@ export default class YAPI {
     this.$rootScope.session = this.session;
   }
 
-  /*
-  * To do: Method checks server side is the user still logged in
+  /* pass this into a route resolve config
+     it will ensure that we always check if the user
+     is logged in when first loading any route
   */
-  checkLogin() {
-
-    if (this.getSession().loggedIn){
-      return this.$q.resolve();
+  resolve() {
+    if (!this.resolvePromise) {
+      this.resolvePromise = this.apiCall({
+        uri: '/auth/login',
+        method: 'GET'
+      }).then(({ data }) => {
+        this.resolveDone = true;
+        let { user } = data;
+        if (user && user.id !== undefined) {
+          this.setSession(user);
+        }
+      });
     }
-    return this.apiCall({
-      uri: '/auth/login',
-      method: 'GET'
-    }).then((ret) => {
-
-      if (ret.data.user.id !== undefined) {
-
-        debug('check login success user is logged in');
-
-        /*
-        * User is logged in set vars
-        */
-
-        this.setSession(ret.data.user);
-
-
-      } else {
-        debug('user is not logged in');
-      }
-
-
-    }, () => {
-      debug('check login failed');
-    });
-
+    return this.resolvePromise;
   }
 
   /*

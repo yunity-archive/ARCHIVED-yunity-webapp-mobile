@@ -1,6 +1,6 @@
 const debug = require('debug')('yunity:initialize');
 
-export default function initialize($rootScope, yAPI, $location, $route) {
+export default function initialize($rootScope, yAPI) {
   'ngInject';
 
   /*
@@ -18,20 +18,5 @@ export default function initialize($rootScope, yAPI, $location, $route) {
       $rootScope.loading = false;
     }
   });
-  $rootScope.$on('$routeChangeStart', (event, next) => {
-    debug('routeChangeStart next is:', next);
-    yAPI.checkLogin().then(() =>  {}, () =>  {
 
-      if (next.access !== undefined) {
-        if (next.access.requiresLogin) {
-          if (!yAPI.session.loggedIn) {
-            debug('access not allowed');
-            event.preventDefault();
-            $location.path('/login');
-            $route.reload();
-          }
-        }
-      }
-    });
-  });
 }
