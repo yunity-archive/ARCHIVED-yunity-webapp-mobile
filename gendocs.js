@@ -1,7 +1,9 @@
 require('babel-register');
 
-// https://github.com/petebacondarwin/dgeni-angular/blob/master/docs/dgeni-conf.js
-// https://github.com/angular/dgeni-packages
+// possibly useful links:
+// - https://github.com/petebacondarwin/dgeni-angular/blob/master/docs/dgeni-conf.js
+// - https://github.com/angular/dgeni-packages
+// - https://github.com/angular/angular.js/blob/master/docs/config/index.js
 
 var path = require('path');
 
