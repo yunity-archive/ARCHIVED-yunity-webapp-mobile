@@ -4,117 +4,359 @@ We use [rwwagner90/angular-styleguide-es6](https://github.com/rwwagner90/angular
 
 Here we include extra stuff that might be useful:
   1. Walkthroughs
-    1. [Directive](#directive-walkthrough)
+    1. [Module](#module-walkthrough)
+    1. [Provider](#provider-walkthrough)
+    1. [Config](#config-walkthrough)
     1. [Service](#service-walkthrough)
+    1. [Directive](#directive-walkthrough)
+    1. [Controller](#controller-walkthrough)
+    1. [Initialization](#initialization-walkthrough)
   1. [TODO](#todo)
 
 # Walkthroughs
 
-## Directive Walkthrough
+## Module Walkthrough
 
-Defining a directive involves:
+We keep the code split into modules to seperate functionality. The main app is also a module (`yunity`).
 
-  1. [Definition File](#definition-file) `myDirective.js`
-  1. [Controller File](#controller-file) `MyCtrl.js`
-  1. [Template File](#template-file) `myTemplate.html`
-  1. [Registration](#directive-registration) of the directive with a module
+It depends on various submodules of ours (e.g. `yunity.yAPI`), and external AngularJS libs (e.g. `ui.router`).
 
-### Definition File
-
-This defines the directive, but does not contain any logic or template.
-
-Contents of `myDirective.js`:
+A module looks like this:
 
 ```javascript
-/* import the template (uses webpack ngtemplate-loader)
-   it stores it in the $templateCache and returns us the key that we
-   can use as a templateUrl */
-import myTemplate from './myTemplate.html';
+import angular from 'angular';
 
-// the template has a controller to manage the logic, keep it in a seperate file
-import MyCtrl from './MyCtrl';
+import someHelperProvider from './someHelperProvider';
+import someConfig from './someConfig';
+import MyExampleService from './MyExampleService';
+import myExampleDirective from './myExampleDirective';
+import myExampleController from './myExampleController';
+import someInitialization from './someInitialization';
+
+export default angular.module('yunity.example', [])
+  .provider('someHelper', someHelperProvider)
+  .config(someConfig)
+  .service('myExampleService', MyExampleService)
+  .directive('myExampleDirective', myExampleDirective)
+  .controller('myExampleController', myExampleController)
+  .run(someInitialization)
+  .name;
+```
+
+To break it down:
+
+### Import angular
+
+We always import angular, even though it is available as a global, and on the `window` object.
+```javascript
+import angular from 'angular';
+```
+
+### One thing per file
+
+Implement the functionality in seperate files. One file per thing.
+
+```javascript
+import someHelperProvider from './someHelperProvider';
+import someConfig from './someConfig';
+import MyExampleService from './MyExampleService';
+import myExampleDirective from './myExampleDirective';
+import myOtherExampleDirective from './myOtherExampleDirective';
+import myExampleCtrl from './myExampleCtrl';
+import someInitialization from './someInitialization';
+```
+
+### Define modules
+
+This defines a module, the dependencies go inside `[]`. It is required to specify even if it is empty
+
+```javascript
+angular.module('yunity.example', []) // GOOD defines module
+angular.module('yunity.example')     // BAD loads module, must have already been defined
+```
+
+### Export the name
+
+The call to `module()` defines a module inside `angular`, and returns an object.
+
+We export just the name:
+
+```javascript
+// yunity.example.module.js
+export default angular.module('yunity.example', [])
+  ...
+  .name;
+```
+
+This allows us to easily use it from another module, e.g.:
+
+```javascript
+// yunity.foo.module.js
+import example from './yunity.example.module';
+...
+angular.module('yunity.foo', [example])
+...
+```
+### Register some things
+
+#### provider
+
+These are an overkill for most scenarios, and you should prefer a [service](#service-walkthrough).
+
+They allow you to define things that can be used in a [config](#config-walkthough) function.
+
+See [provider walkthrough](#provider-walkthrough) for how to write one.
+
+#### config
+
+ Runs first and only `provider` type dependencies are available.
+
+```javascript
+  .config(someConfig)
+```
+
+See [config walktrough](#config-walkthough) for how to write config.
+
+#### service
+
+Give them lower camelcase name, and the same name as the file (but without `Service` ending).
+
+```javascript
+  .service('myExample', MyExampleService)
+```
+
+See [service walkthough](#service-walkthrough) for how to write a service.
+
+#### directive
+
+Lower camelcase variable and name.
+
+```javascript
+  .directive('myOtherExample', myOtherExampleDirective)
+```
+
+`myOtherExample` gets turned into kebab-case `my-other-example` for the template.
+
+This would allow me to use it as:
+
+```html
+<some-other-example></some-other-example>
+```
+
+See [directive walkthrough](#directive-walkthough) for how to write a directive.
+
+#### controller
+
+Normally controllers would be only registered inside directives, or routes.
+We have only one controller registered directly in a module, `MainCtrl`, and this might go away one day too.
+
+Capitalized camelcase. Ends in `..Ctrl`. Registered name also includes the `Ctrl`.
+
+```javascript
+  .controller('MyExampleCtrl', MyExampleCtrl)
+```
+
+#### run
+
+We can run some code when the application/module starts up. All dependencies are now available.
+
+Pass in a function.
+
+```javascript
+  .run(someInitialization)
+```
+
+See [initialization walkthough](#initialization-walkthrough) for how to write initialization.
+
+## Provider Walkthough
+
+Actually, I won't write this. You should use a [service](#service-walkthrough) instead.
+Though, if you really need a provider, and you know what you're doing, then go ahead.
+
+## Config Walkthough
+
+Inside a config function you cannot access all dependencies, only `Provider` type ones.
+
+They are normally used to configure angular core services, and external libaries.
+
+```javascript
+export default function(routeHelperProvider, $stateProvider, $urlRouterProvider) {
+  'ngInject';
+  ...
+}
+```
+
+  * `$stateProvider` and `$urlRouterProvider` come from `angular-ui-router`
+  * `routeHelperProvider` - something that was registered as `.provider('routeHelper', routeHelperProvider)`
+
+
+## Service Walkthrough
+
+Most of the fiddly logic should be contained in services, as they are abstracted from any specific view, and can be reused.
+
+Contents of `myExampleService.js`:
+
+```javascript
+export default class myExampleService {
+
+  constructor($http, $cookies) {
+    'ngInject';
+    Object.assign(this, {
+      $http, $cookies,
+      foo: 10
+    });
+  }
+
+  doSomething() {
+    return this.$http('/api/foo').then(res => {
+      return res.data;
+    });
+  }
+
+  getFoo() {
+    return this.foo;
+  }
+
+}
+```
+
+#### Export as default class
+
+Just a convention that allows to import as `import MyExampleService from './MyExampleService.js'`.
+
+```javascript
+export default class MyExampleService { ...
+```
+
+#### Define dependencies to inject in constructor
+
+```javascript
+...
+  constructor($http, $cookies) {
+    'ngInject';
+...
+```
+
+#### Object.assign() to add arguments to object
+
+`Object.assign()` copies key/values from arguments `1..n` into the object at argument `0`.
+
+We can use this along with ES6 object shorthand to add arguments and default values to the object without repetition.
+
+```javascript
+...
+  Object.assign(this, {
+    $http, $cookies,
+    foo: 10
+  });
+...
+```
+
+It is the same as doing:
+
+```javascript
+...
+  this.$http = $http;
+  this.$cookies = $cookies;
+  this.foo = 10;
+...
+```
+
+#### Define methods
+
+Methods are what users of your services will call to do things.
+
+```javascript
+...
+  doSomething() {
+    ...
+  }
+...
+```
+
+#### Return a promise if doing anything async
+
+Most angular built in things will resolve a promise too.
+
+```javascript
+...
+  doSomething() {
+    return $http('/foo').then(res => {
+      return res.data;
+    })
+  }
+...
+```
+
+## Directive Walkthrough
+
+Contents of `myExampleDirective.js`:
+
+```javascript
+import myExampleTemplate from './my-example.html';
+import MyExampleCtrl from './MyExampleCtrl';
 
 export default function() {
   return {
     scope: {},
-
-    /* 'E' means this will be an <some-directive></some-directive>
-       'A' would mean it gets used like <div some-directive></div> */
     restrict: 'E',
-
-    templateUrl: myTemplate,
-
-    /* this will get called as `new MyCtrl()` each time we view the directive */
-    controller: MyCtrl,
-
-    /* this is important, and means the controller is available as `ctrl`
-       inside the template */
+    templateUrl: myExampleTemplate,
+    controller: MyExampleCtrl,
     controllerAs: 'ctrl'
   };
 }
 ```
 
-### Controller File
+#### Import template html files
 
-This is where the logic of the directive lives.
+We use [ngtemplate-loader](https://github.com/WearyMonkey/ngtemplate-loader) so we can import html templates directly.
 
-Contents of `MyCtrl.js`:
+It automatically adds them to the angular `$templateCache`, and returns the cache key that can be used with `templateUrl` properties.
 
 ```javascript
-/* class has same name as file */
-export default class MyCtrl {
+import myExampleTemplate from './myExample.html';
+...
+  templateUrl: myExampleTemplate,
+...
+```
 
-  /* constructor defines the dependencies */
-  constuctor($location, someService) {
-    'ngInject'; // this must be the first line, allows ng-annotate to work
+#### Define the controller in a seperate file
 
-    /* Object.assign() copies the properties into `this` so we can
-       use them later in the methods */
-    Object.assign(this, {
+```javascript
+import MyExampleCtrl from './MyExampleCtrl';
+...
+  controller: MyExampleCtrl,
+...
+```
 
-      /* this is ES6 shorthand syntax for:
-           { $location: $location, someService: someService } */
-      $location, someService,
+See [Controller](#controller-walkthrough) for how to write a controller.
 
-      /* ... can also use this to define some initial data */
-      imageUrl: '/images/foo.png',
-      data: {
-        name: 'Peter',
-        age: 50
-      },
-      animals: [{ name: 'cat' }, { name: 'dog' }]
+#### Restrict 'E' or 'A'
 
-    });
+To use the directive as `<my-example></my-example>` use:
 
-    /* initialization, we can do things here, this will be executed whenever
-       the controller is created, on each page/directive view */
+```javascript
+...
+  restrict: 'E',
+...
+```
 
-    someService.doSomething().then(data => {
-      /* so long as you are using ES6 fat arrow function syntax
-         `this` will always be what you want it to be
-         ... in this case it will replace our initial data value */
-      this.data = data;
-    });
+To use the directive as `<div my-example></div>` use:
 
-  } /* no comma needed here as it is a class definition */
+```javascript
+...
+  restrict: 'A',
+...
+```
 
-  /* now we can define our method, which will be available in the view */
+#### Use controllerAs syntax
 
-  myMethod() {
-    this.someService().doSomethingElse().then(result => {
-      /* the injected dependencies are available here via `this.` */
-      this.$location.path('/somewhere');
-    });
-  }
+This makes the controller available as `ctrl`. We don't use `$scope` anymore.
 
-  myOtherMethod() {
-    this.someService().doYetAnotherThing().then(result => {
-      /* we can set values on `this` and use them in the template */
-      this.result = result;
-    });
-  }
-
-}
+```javascript
+...
+  controllerAs: 'ctrl'
+...
 ```
 
 ### Template File
@@ -122,7 +364,7 @@ export default class MyCtrl {
 This just defines the view template for the directive. It has access to the
 controller as `ctrl`.
 
-Contents of `myTemplate.html`:
+Contents of `myExampleTemplate.html`:
 
 ```html
 <!-- make sure there is only one top level element that contains everything -->
@@ -146,88 +388,61 @@ Contents of `myTemplate.html`:
 </div>
 ```
 
-### Directive registration
+## Controller Walkthough
 
-Contents of an angular module definition file:
+This is where the logic directly connected to a view should live. Anything the view directly calls will be in here.
 
-```javascript
-/* don't assume angular is available globally */
-import angular from 'angular';
-
-import myDirective from './myDirective';
-
-/* here we are defining a new module */
-export default angular.module('yunity.example', [])
-
-  /* this is where we name it so it will be usable inside other templates as:
-      <my-directive></my-directive> */
-  .directive('myDirective', myDirective)
-
-  /* important to export the name of the module so it can be easily declared as
-     a dependency of another module */
-  .name;
-```
-
-## Sevice Walkthrough
-
-Most of the fiddly logic should be contained in services, as they are abstracted from any specific view, and can be reused.
-
-Contents of `someService.js`:
+Most of the stuff about [writing a service](#service-walkthrough) also applies.
 
 ```javascript
-/* could import some libs here if we need to wrap a non-angularjs
-   libary that has no user interface */
+export default class MyExampleCtrl {
 
-export default class MyService {
-
-  /* a few lines of normal angular boilerplate injection stuff */
-  constructor($http, $cookies) {
+  constuctor($location, myExample) {
     'ngInject';
     Object.assign(this, {
-      $http, $cookies,
+      $location, myExample,
+      imageUrl: '/images/foo.png',
+      data: {
+        name: 'Peter',
+        age: 50
+      },
+      animals: [{ name: 'cat' }, { name: 'dog' }]
+    });
+    myExample.doSomething().then(data => {
+      this.data = data;
+    });
 
-      // can set some defaults down here
-      foo: 10
+  }
 
+  myMethod() {
+    this.myExample.doSomethingElse().then(result => {
+      this.$location.path('/somewhere');
     });
   }
 
-  doSomething() {
-    /* unless it returns a value directly, return a promise */
-    return this.$http('/api/foo').then(res => {
-
-      /* this will cause a chained promise to return with just
-         the `data` field from the response data */
-      return res.data;
-
+  myOtherMethod() {
+    this.myExample.doYetAnotherThing().then(result => {
+      this.result = result;
     });
-  }
-
-  getFoo() {
-    /* this is returning a direct value
-       in some cases you might want to copy the value */
-    return this.foo;
   }
 
 }
 ```
 
-Register it in a module somewhere:
+Inside the template this stuff will be usable as `ctrl.myMethod()`, `ctrl.data.name`, `ctrl.animals`, etc.
 
-```javascript
-import angular from 'angular';
-import MyService from './MyService';
+## Initialization Walkthough
 
-export default angular.module('yunity.example', [])
-  .service('myService', MyService)
-  .name;
-```
+TODO
 
 ## TODO
 
   - [x] directive walkthrough [guide]
   - [x] service walkthrough [guide]
-  - [ ] module walkthrough [guide]
+  - [x] module walkthrough [guide]
+  - [x] config walkthrough [guide]
+  - [ ] initialization walkthrough [guide]
+  - [x] controller walkthrough [guide]
   - [x] fix the heading links in this file
   - [ ] explain services vs factories vs ... [guide]
   - [ ] explain 'ngInject' [guide]
