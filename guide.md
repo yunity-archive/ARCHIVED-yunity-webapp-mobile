@@ -5,6 +5,7 @@ We use [rwwagner90/angular-styleguide-es6](https://github.com/rwwagner90/angular
 Here we include extra stuff that might be useful:
   1. Walkthroughs
     1. [Directive](#directive-walkthrough)
+    1. [Service](#service-walkthrough)
   1. [TODO](#todo)
 
 # Walkthroughs
@@ -167,10 +168,65 @@ export default angular.module('yunity.example', [])
   .name;
 ```
 
+## Sevice Walkthrough
+
+Most of the fiddly logic should be contained in services, as they are abstracted from any specific view, and can be reused.
+
+Contents of `someService.js`:
+
+```javascript
+/* could import some libs here if we need to wrap a non-angularjs
+   libary that has no user interface */
+
+export default class MyService {
+
+  /* a few lines of normal angular boilerplate injection stuff */
+  constructor($http, $cookies) {
+    'ngInject';
+    Object.assign(this, {
+      $http, $cookies,
+
+      // can set some defaults down here
+      foo: 10
+
+    });
+  }
+
+  doSomething() {
+    /* unless it returns a value directly, return a promise */
+    return this.$http('/api/foo').then(res => {
+
+      /* this will cause a chained promise to return with just
+         the `data` field from the response data */
+      return res.data;
+
+    });
+  }
+
+  getFoo() {
+    /* this is returning a direct value
+       in some cases you might want to copy the value */
+    return this.foo;
+  }
+
+}
+```
+
+Register it in a module somewhere:
+
+```javascript
+import angular from 'angular';
+import MyService from './MyService';
+
+export default angular.module('yunity.example', [])
+  .service('myService', MyService)
+  .name;
+```
+
 ## TODO
 
   - [x] directive walkthrough [guide]
-  - [ ] service walkthrough [guide]
+  - [x] service walkthrough [guide]
   - [ ] module walkthrough [guide]
   - [x] fix the heading links in this file
   - [ ] explain services vs factories vs ... [guide]
