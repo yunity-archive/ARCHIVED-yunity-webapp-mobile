@@ -1,8 +1,12 @@
 
 const debug = require('debug')('yunity:MainCtrl');
 
+/** A main controller that is available everywhere */
 export default class MainCtrl {
 
+  /**
+   * Create a main controller
+   */
   constructor($rootScope, $location, $mdSidenav, yAPI, yMapService) {
     'ngInject';
     Object.assign(this, {
@@ -57,26 +61,40 @@ export default class MainCtrl {
         ];
       }
     });
-    
+
   }
 
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
   }
 
+  /**
+   * Opens the left sidenav
+   */
   openSidenav() {
     this.$mdSidenav('left').open();
   }
 
+  /**
+   * Closes the left sidenav
+   */
   closeSidenav() {
     this.$mdSidenav('left').close();
   }
 
+  /**
+   * Navigates to a path
+   * @param {string} path - the path to go to
+   */
   go(path) {
     this.$location.path(path);
     this.closeSidenav();
   }
 
+  /**
+   * Selects a sub category
+   * @param {string} cat - category to show
+   */
   showSubCategories(cat) {
     this.activeCategory = cat;
   }
