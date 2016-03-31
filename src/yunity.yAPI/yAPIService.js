@@ -25,27 +25,7 @@ export default class YAPI {
   }
 
   config(opt) {
-
-    if (opt.url !== undefined) {
-      this.url = opt.url;
-    }
-
-    if (opt.urlSuffix !== undefined) {
-      this.urlSuffix = opt.urlSuffix;
-    }
-
-    if (opt.requestStart !== undefined) {
-      this.requestStart = opt.requestStart;
-    }
-
-    if (opt.requestComplete !== undefined) {
-      this.requestComplete = opt.requestComplete;
-    }
-
-    if (opt.requestFailed !== undefined) {
-      this.requestFailed = opt.requestFailed;
-    }
-
+    Object.assign(this, opt);
   }
 
   getSession() {
