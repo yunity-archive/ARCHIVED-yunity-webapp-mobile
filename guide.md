@@ -43,16 +43,14 @@ export default angular.module('yunity.example', [])
   .name;
 ```
 
-To break it down:
-
-### Import angular
+#### Import angular
 
 We always import angular, even though it is available as a global, and on the `window` object.
 ```javascript
 import angular from 'angular';
 ```
 
-### One thing per file
+#### One thing per file
 
 Implement the functionality in seperate files. One file per thing.
 
@@ -66,7 +64,7 @@ import myExampleCtrl from './myExampleCtrl';
 import someInitialization from './someInitialization';
 ```
 
-### Define modules
+#### Define modules
 
 This defines a module, the dependencies go inside `[]`. It is required to specify even if it is empty
 
@@ -75,7 +73,7 @@ angular.module('yunity.example', []) // GOOD defines module
 angular.module('yunity.example')     // BAD loads module, must have already been defined
 ```
 
-### Export the name
+#### Export the name
 
 The call to `module()` defines a module inside `angular`, and returns an object.
 
