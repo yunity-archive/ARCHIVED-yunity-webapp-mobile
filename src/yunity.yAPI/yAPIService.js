@@ -80,11 +80,12 @@ export default class YAPI {
         uri: '/auth/login',
         method: 'GET'
       }).then(({ data }) => {
-        this.resolveDone = true;
         let { user } = data;
         if (user && user.id !== undefined) {
           this.setSession(user);
         }
+      }).catch((err) => {
+        debug('failed checking login status', err);
       });
     }
     return this.resolvePromise;
