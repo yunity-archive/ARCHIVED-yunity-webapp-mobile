@@ -2,12 +2,11 @@
   <ui-view name="header">
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings" ng-click="ctrl.openSidenav()" hide-gt-md>
-          <md-icon md-font-library="material-icons">menu</md-icon>
+        <md-button class="md-fab logo" aria-label="Settings" ng-click="ctrl.openSidenav()">
+          <img class="png-icon" src="/images/ylogo.png">
         </md-button>
-        <img src="/images/ylogo.png" style="height: 40px; margin: 0 -14px 0 0;">
         <h2>
-          <span>unity</span>
+          <span>yunity</span>
         </h2>
         <span flex></span>
         <md-button class="md-icon-button" aria-label="Share" ng-if="ctrl.session.loggedIn" ng-click="ctrl.openShare()">
