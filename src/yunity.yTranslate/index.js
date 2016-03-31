@@ -18,7 +18,9 @@ translateModule.config(($translateProvider) => {
   });
 
   $translateProvider.determinePreferredLanguage();
-  $translateProvider.useSanitizeValueStrategy('sanitize'); // http://angular-translate.github.io/docs/#/guide/19_security
+  
+  // http://angular-translate.github.io/docs/#/guide/19_security
+  $translateProvider.useSanitizeValueStrategy('sanitize');
 });
 
 
