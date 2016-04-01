@@ -12,6 +12,9 @@ import yAPI from '../yunity.yAPI';
 import yChat from '../yunity.yChat';
 import yMap from '../yunity.yMap';
 
+import showLoggedInDirective from './showLoggedInDirective';
+import hideLoggedInDirective from './hideLoggedInDirective';
+
 import groups from '../components/groups';
 import chat from '../components/chat';
 import item from '../components/item';
@@ -43,5 +46,7 @@ export default angular.module('yunity', [
   .config(routes)
   .config(materialConfig)
   .controller('MainCtrl', MainCtrl)
+  .directive('showLoggedIn', showLoggedInDirective)
+  .directive('hideLoggedIn', hideLoggedInDirective)
   .run(initialize)
   .name;
