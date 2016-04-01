@@ -1,0 +1,16 @@
+#main-sidebar {
+  .logo {
+    text-align: center;
+    
+    img {
+      margin: 8px;
+    }
+  }
+  
+  // Don't diplay logo when sidebar is
+  // locked open or in the closing animation.
+  &.md-locked-open .logo,
+  &.md-locked-open-remove-active .logo {
+    display: none
+  }
+}

@@ -1,5 +1,8 @@
 @import "~angular-material/angular-material.scss";
 
+@import "style/toolbar.scss";
+@import "style/sidebar.scss";
+
 #lightbulb {
   font-size: 100px;
   display: block;
@@ -289,65 +292,6 @@ a.bg-primary:focus {
 .list-group-item.active:hover {
     background-color: #FF5A5F;
     border-color: #FF5A5F;
-}
-
-/* TOOLBAR */
-
-#main-toolbar {
-  .logo {
-    width: 80px;
-    height: 40px;
-    border-radius: 20px;
-    padding: 0;
-    
-    img {
-      width: 90px;
-      margin: -25px 0 0 -5px;
-    }
-  }
-  
-  .tool-button {
-    width: 40px;
-    height: 40px;
-    line-height: 20px;
-    border-radius: 10px;
-    padding-left: 8px;
-    text-align: left;
-    transition: width 0.4s ease-in;
-    
-    span {
-      font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.4s ease-in;
-    }
-    
-    @media(min-width: $layout-breakpoint-sm) {
-      width: 120px;
-      
-      span {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-/* SIDEBAR */
-
-#main-sidebar {
-  .logo {
-    text-align: center;
-    
-    img {
-      margin: 8px;
-    }
-  }
-  
-  // Don't diplay logo when sidebar is
-  // locked open or in the closing animation.
-  &.md-locked-open .logo,
-  &.md-locked-open-remove-active .logo {
-    display: none
-  }
 }
 
 /* MAP STUFF */
