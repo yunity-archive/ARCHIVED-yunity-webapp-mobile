@@ -30,9 +30,9 @@ export default class MainCtrl {
     });
 
     $rootScope.$watch('session', (session) => {
-      // TODO: Find out why session is undefined.
       this.session = session || {};
-      if (session && session.loggedIn) {
+      let { loggedIn, user } = this.session;
+      if (loggedIn) {
         this.menuItems = [
           { href: 'chat', title: 'Chat' },
           { href: 'groups', title: 'Groups' },
@@ -41,7 +41,7 @@ export default class MainCtrl {
           { href: 'users', title: 'List of users' }
         ];
         this.profileItems = [
-          { icon: 'account_circle', href: `profile/${session.user.id}`, title: 'Profile' },
+          { icon: 'account_circle', href: `profile/${user.id}`, title: 'Profile' },
           { icon: 'settings', href: 'settings', title: 'Settings' },
           { icon: 'exit_to_app', href: 'logout', title: 'Logout' }
         ];
@@ -57,7 +57,7 @@ export default class MainCtrl {
         ];
       }
     });
-    
+
   }
 
   openMenu($mdOpenMenu, ev) {
