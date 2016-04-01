@@ -9,11 +9,17 @@
           <span>yunity</span>
         </h2>
         <span flex></span>
-        <md-button class="md-icon-button" aria-label="Share" ng-if="ctrl.session.loggedIn" ng-click="ctrl.openShare()">
+        <md-button class="md-fab md-mini" aria-label="Share" show-logged-in>
           <md-icon md-font-library="material-icons">add_circle</md-icon>
         </md-button>
+        <md-button class="md-fab md-mini" aria-label="Notifications" show-logged-in>
+          <md-icon md-font-library="material-icons">notifications</md-icon>
+        </md-button>
+        <md-button class="md-fab md-mini" aria-label="Chat" show-logged-in>
+          <md-icon md-font-library="material-icons">chat</md-icon>
+        </md-button>
         <md-menu md-position-mode="target-right target">
-          <md-button class="md-icon-button" aria-label="Profile" ng-click="$mdOpenMenu($event)">
+          <md-button class="md-fab md-mini" aria-label="Profile" ng-click="$mdOpenMenu($event)">
             <md-icon md-font-library="material-icons">account_circle</md-icon>
           </md-button>
           <md-menu-content width="3">
