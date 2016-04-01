@@ -15,7 +15,8 @@
   </head>
   <body ng-app="yunity"
         ng-controller="MainCtrl as ctrl"
-        ng-strict-di>
-    <ui-view></ui-view>
+        ng-strict-di
+        layout="column">
+    <ui-view layout="column" flex></ui-view>
   </body>
 </html>
