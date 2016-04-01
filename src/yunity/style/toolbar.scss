@@ -6,14 +6,15 @@
     padding: 0;
     
     img {
-      width: 90px;
-      margin: -25px 0 0 -5px;
+      width: 100px;
+      margin: -30px 0 0 -5px;
     }
   }
   
   .tool-button {
     width: 40px;
     height: 40px;
+    min-width: 40px;
     line-height: 20px;
     border-radius: 10px;
     padding-left: 8px;
