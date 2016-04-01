@@ -1,6 +1,6 @@
 export default function materialConfig($mdThemingProvider) {
   'ngInject';
   $mdThemingProvider.theme('default')
-    .primaryPalette('pink')
+    .primaryPalette('brown')
     .accentPalette('orange');
 }
