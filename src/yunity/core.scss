@@ -293,15 +293,41 @@ a.bg-primary:focus {
 
 /* TOOLBAR */
 
-#main-toolbar .md-fab.logo {
-  width: 80px;
-  height: 40px;
-  border-radius: 20px;
-  padding: 0;
+#main-toolbar {
+  .logo {
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0;
+    
+    img {
+      width: 90px;
+      margin: -25px 0 0 -5px;
+    }
+  }
   
-  img {
-    width: 90px;
-    margin: -25px 0 0 -5px;
+  .tool-button {
+    width: 40px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 10px;
+    padding-left: 8px;
+    text-align: left;
+    transition: width 0.4s ease-in;
+    
+    span {
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.4s ease-in;
+    }
+    
+    @media(min-width: $layout-breakpoint-sm) {
+      width: 120px;
+      
+      span {
+        opacity: 1;
+      }
+    }
   }
 }
 
