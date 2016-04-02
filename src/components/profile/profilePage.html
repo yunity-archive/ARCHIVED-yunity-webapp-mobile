@@ -1,8 +1,38 @@
-<md-content layout-padding>
-  <img ng-src="{{ ctrl.user.avatarUrl }}">
-  <h1>{{ ctrl.user.display_name }}</h1>
-  <p ng-show="ctrl.ownprofile">This is your Profile!</p>
-  <md-button ng-hide="ctrl.ownprofile"
-             ng-href="#/chat/{{ ctrl.user.id }}"
-             class="md-raised">Send message</md-button>
-</md-content>
+<div flex layout="column">
+  
+  <div layout="row" class="profile-header">
+    <div class="profile-avatar">
+      <img src="/images/Bodhi.png" />
+    </div>
+    <div flex layout="column" class="profile-header-info">
+      <div flex layout="row" class="profile-display-name">
+        <div flex>
+          <h1>{{ ctrl.user.display_name }}</h1>
+        </div>
+        <div layout="column">
+          <md-button class="md-icon-button" aria-label="Connect">
+            <md-icon md-font-library="material-icons">person_add</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Message"
+                     ng-href="#/chat/{{ ctrl.user.id }}">
+            <md-icon md-font-library="material-icons">chat_bubble_outline</md-icon>
+          </md-button>
+        </div>
+      </div>
+      <div layout="row" class="profile-connections">
+        <div flex>
+          <h2 show-logged-in>(This is you!)</h2>
+        </div>
+        <div>
+          <md-button class="md-icon-button" aria-label="Information">
+            <md-icon md-font-library="material-icons">info_outline</md-icon>
+          </md-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div flex>
+  </div>
+  
+</div>
