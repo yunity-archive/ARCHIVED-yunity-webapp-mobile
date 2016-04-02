@@ -27,6 +27,7 @@ import signup from '../components/signup';
 import initialize from './initialize';
 import routes from './routes';
 import materialConfig from './materialConfig';
+import exceptionConfig from './exceptionConfig';
 import MainCtrl from './MainCtrl';
 
 import routeHelperProvider from './routeHelperProvider';
@@ -45,6 +46,7 @@ export default angular.module('yunity', [
   .provider('routeHelper', routeHelperProvider)
   .config(routes)
   .config(materialConfig)
+  .config(exceptionConfig)
   .controller('MainCtrl', MainCtrl)
   .directive('showLoggedIn', showLoggedInDirective)
   .directive('hideLoggedIn', hideLoggedInDirective)
