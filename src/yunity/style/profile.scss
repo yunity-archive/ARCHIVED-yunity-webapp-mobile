@@ -1,0 +1,39 @@
+$header-height: 160px;
+
+.profile-header {
+  color: white;
+  height: $header-height;
+  
+  .profile-avatar {
+    img {
+      width: $header-height;
+      height: $header-height;
+    }
+  }
+  
+  .profile-header-info {
+    > div {
+      &.profile-display-name {
+        background: #124C65;
+      }
+      &.profile-connections {
+        background: #196687;
+      }
+      
+      md-icon {
+        color: white;
+      }
+    }
+  }
+  
+  h1, h2 {
+    margin: 8px 16px;
+    padding: 0;
+  }
+  h1 {
+    font-size: 240%;
+  }
+  h2 {
+    font-size: 120%;
+  }
+}

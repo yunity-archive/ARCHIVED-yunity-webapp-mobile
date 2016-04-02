@@ -9,6 +9,10 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     'ngInject';
     return yAPI.resolve();
   }
+  
+  function makeLayoutFlexElement(elementName) {
+    return `<${elementName} flex layout="column"></${elementName}>`;
+  }
 
   routeHelperProvider.setDefaultOptions({
     resolve: { yAPIResolve }
@@ -23,29 +27,29 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
     root('login', {
       url: '/login',
-      template: '<login-page></login-page>'
+      template: makeLayoutFlexElement('login-page')
     });
 
     root('signup', {
       url: '/signup',
-      template: '<signup-page></signup-page>'
+      template: makeLayoutFlexElement('signup-page')
     });
 
     root('logout', {
       url: '/logout',
-      template: '<logout-page></logout-page>'
+      template: makeLayoutFlexElement('logout-page')
     });
 
     /* profile -------------------------------------------------------------- */
 
     root('profile', {
       url: '/profile',
-      template: '<ui-view></ui-view>'
+      template: makeLayoutFlexElement('ui-view')
     }, (profile) => {
 
       profile('show', {
         url: '/:id',
-        template: '<profile-page></profile-page>'
+        template: makeLayoutFlexElement('profile-page')
       });
 
     });
@@ -54,7 +58,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
     root('chat', {
       url: '/chat',
-      template: '<ui-view><y-chat-list></y-chat-list></ui-view>',
+      template: makeLayoutFlexElement('y-chat-list'),
       access: {
         requiresLogin: true
       }
@@ -62,7 +66,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
       chat('show', {
         url: '/:id',
-        template: '<y-chat></y-chat>',
+        template: makeLayoutFlexElement('y-chat'),
         access: {
           requiresLogin: true
         }
@@ -70,7 +74,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
       chat('new', {
         url: '/new/:userids',
-        template: '<chat-page></chat-page>',
+        template: makeLayoutFlexElement('chat-page'),
         access: {
           requiresLogin: true
         }
@@ -82,7 +86,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
     root('users', {
       url: '/users',
-      template: '<list-users-page></list-users-page>',
+      template: makeLayoutFlexElement('list-users-page'),
       access: {
         requiresLogin: true
       }
@@ -92,12 +96,12 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
     root('items', {
       url: '/items',
-      template: '<ui-view><list-items-page></list-items-page></ui-view>'
+      template: makeLayoutFlexElement('list-items-page')
     }, (items) => {
 
       items('new', {
         url: '/new',
-        template: '<create-item-page>',
+        template: makeLayoutFlexElement('create-item-page'),
         access: {
           requiresLogin: true
         }
@@ -105,7 +109,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
       items('show', {
         url: '/:id',
-        template: '<item-detail-page></item-detail-page>'
+        template: makeLayoutFlexElement('item-detail-page')
       });
 
     });
@@ -114,17 +118,17 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
     root('groups', {
       url: '/groups',
-      template: '<ui-view><groups></groups></ui-view>'
+      template: makeLayoutFlexElement('groups')
     }, (groups) => {
 
       groups('add', {
         url: '/add',
-        template: '<groups-add></groups-add>'
+        template: makeLayoutFlexElement('groups-add')
       });
 
       groups('show', {
         url: '/:id',
-        template: '<group-page></group-page>'
+        template: makeLayoutFlexElement('group-page')
       });
 
     });
