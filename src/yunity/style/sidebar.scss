@@ -1,4 +1,19 @@
 #main-sidebar {
+  background: rgba(216,27,96,0.9);
+  
+  md-content {
+    background: none; // Prevent grey background from being used.
+    width: 320px;     // Set content width so items won't be squished when sidebar closes.
+  }
+  
+  // Applies when sidebar is locked open due to the window being wide enough.
+  &.md-locked-open,
+  &.md-locked-open-remove-active {
+    .logo {
+      display: none;
+    }
+  }
+  
   .logo {
     text-align: center;
     
@@ -7,10 +22,12 @@
     }
   }
   
-  // Don't diplay logo when sidebar is
-  // locked open or in the closing animation.
-  &.md-locked-open .logo,
-  &.md-locked-open-remove-active .logo {
-    display: none
+  // Menu list items.
+  .md-list-item-text p {
+    margin: 0;
+    color: white;
+    font-size: 140%;
+    font-weight: bold;
+    text-transform: lowercase;
   }
 }
