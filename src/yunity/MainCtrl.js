@@ -2,16 +2,25 @@
 const debug = require('debug')('yunity:MainCtrl');
 
 export default class MainCtrl {
-
+  
   constructor($rootScope, $location, $mdSidenav, yAPI, yMapService) {
     'ngInject';
     Object.assign(this, {
       $rootScope, $location, $mdSidenav, yAPI, yMapService,
-
+      
       session: {},
-      menuItems: [],
       profileItems: [],
-
+      
+      menuItems: [
+        { icon: 'map', href: 'map', title: 'Map' },
+        { icon: 'domain', href: 'groups', title: 'Communities' },
+        { icon: 'store', href: 'stores', title: 'Stores' },
+        { icon: 'event', href: 'events', title: 'Events' },
+        { icon: 'local_offer', href: 'items', title: 'Bananas' },
+        { icon: 'people', href: 'users', title: 'Users' },
+        { icon: 'help', href: 'about', title: 'About' }
+      ],
+      
       sidebarLeft: 'menu',
       activeCategory: null,
       categories: [{
@@ -28,61 +37,48 @@ export default class MainCtrl {
         icon: 'apple'
       }]
     });
-
+    
     $rootScope.$watch('session', (session) => {
       this.session = session || {};
       let { loggedIn, user } = this.session;
       if (loggedIn) {
-        this.menuItems = [
-          { href: 'chat', title: 'Chat' },
-          { href: 'groups', title: 'Groups' },
-          { href: 'items/new', title: 'Share a banana' },
-          { href: 'items', title: 'List of bananas' },
-          { href: 'users', title: 'List of users' }
-        ];
         this.profileItems = [
           { icon: 'account_circle', href: `profile/${user.id}`, title: 'Profile' },
           { icon: 'settings', href: 'settings', title: 'Settings' },
           { icon: 'exit_to_app', href: 'logout', title: 'Logout' }
         ];
       } else {
-        this.menuItems = [
-          { href: 'groups', title: 'Groups' },
-          { href: 'items', title: 'List of bananas' },
-          { href: 'users', title: 'List of users' }
-        ];
         this.profileItems = [
           { icon: 'input', href: 'login', title: 'Login' },
           { icon: 'account_box', href: 'signup', title: 'Signup' }
         ];
       }
     });
-
+    
   }
-
+  
   openMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
   }
-
+  
   openSidenav() {
     this.$mdSidenav('left').open();
   }
-
+  
   closeSidenav() {
     this.$mdSidenav('left').close();
   }
-
+  
   go(path) {
     this.$location.path(path);
     this.closeSidenav();
   }
-
+  
   showSubCategories(cat) {
     this.activeCategory = cat;
   }
-
+  
   filter() {
-
     this.yAPI.listMappable({
       filter: {},
       success: (ret) => {
@@ -97,5 +93,5 @@ export default class MainCtrl {
       }
     });
   }
-
+  
 }

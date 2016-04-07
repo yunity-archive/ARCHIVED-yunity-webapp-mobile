@@ -23,11 +23,18 @@
   }
   
   // Menu list items.
-  .md-list-item-text p {
-    margin: 0;
-    color: white;
-    font-size: 140%;
-    font-weight: bold;
-    text-transform: lowercase;
+  .md-list-item-text {
+    p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.87);
+      font-size: 140%;
+      font-weight: bold;
+      text-transform: lowercase;
+    }
+    
+    md-icon {
+      color: rgba(255, 255, 255, 0.87);
+      margin-right: 4px;
+    }
   }
 }

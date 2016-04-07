@@ -10,7 +10,7 @@
           <span>yunity</span>
         </h2>
         <span flex></span>
-        <md-button class="md-raised tool-button md-primary md-hue-1" aria-label="Share" show-logged-in>
+        <md-button class="md-raised tool-button md-primary md-hue-1" aria-label="Share" ng-click="ctrl.go('items/new')" show-logged-in>
           <md-icon md-font-library="material-icons">add_circle</md-icon>
           <span>Share</span>
         </md-button>
@@ -53,8 +53,9 @@
       <md-content>
         <md-list>
           <md-list-item ng-repeat="menuItem in ctrl.menuItems" ng-click="ctrl.go(menuItem.href)">
-            <div class="md-list-item-text" layout="column">
-              <p>{{ menuItem.title }}</p>
+            <div class="md-list-item-text md-hue-1" layout="row">
+              <md-icon md-font-library="material-icons">{{ menuItem.icon }}</md-icon>
+              <p flex>{{ menuItem.title }}</p>
             </div>
           </md-list-item>
         </md-list>
