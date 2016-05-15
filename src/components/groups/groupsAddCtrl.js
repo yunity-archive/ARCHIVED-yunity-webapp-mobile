@@ -17,8 +17,8 @@ export default class GroupsAddCtrl{
         uri: '/groups',
         method: 'POST',
         data: this.data
-      }).then(() => {
-        this.$location.path('/groups');
+      }).then((res) => {
+        this.$location.path(`/groups/${res.data.id}`);
       }).catch((err) => {
         debug('error', err);
       });
