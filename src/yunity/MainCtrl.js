@@ -12,30 +12,24 @@ export default class MainCtrl {
       profileItems: [],
       
       menuItems: [
-        { icon: 'map', href: 'map', title: 'Map' },
-        { icon: 'domain', href: 'groups', title: 'Communities' },
-        { icon: 'store', href: 'stores', title: 'Stores' },
-        { icon: 'event', href: 'events', title: 'Events' },
-        { icon: 'local_offer', href: 'items', title: 'Bananas' },
-        { icon: 'people', href: 'users', title: 'Users' },
-        { icon: 'help', href: 'about', title: 'About' }
+        { title: 'Map'         , href: 'map'    , icon: 'map'         },
+        { title: 'Communities' , href: 'groups' , icon: 'domain'      },
+        { title: 'Stores'      , href: 'stores' , icon: 'store'       },
+        { title: 'Events'      , href: 'events' , icon: 'event'       },
+        { title: 'Bananas'     , href: 'items'  , icon: 'local_offer' },
+        { title: 'Users'       , href: 'users'  , icon: 'people'      },
+        { title: 'About'       , href: 'about'  , icon: 'help'        }
+      ],
+      
+      categories: [
+        { name: 'Booksharing'  , icon: 'book'  },
+        { name: 'Carsharing'   , icon: 'car'   },
+        { name: 'Couchsurfing' , icon: 'bed'   },
+        { name: 'Foodsharing'  , icon: 'apple' }
       ],
       
       sidebarLeft: 'menu',
-      activeCategory: null,
-      categories: [{
-        name: 'Booksharing',
-        icon: 'book'
-      }, {
-        name: 'Carsharing',
-        icon: 'car'
-      }, {
-        name: 'Couchsurfing',
-        icon: 'bed'
-      }, {
-        name: 'Foodsharing',
-        icon: 'apple'
-      }]
+      activeCategory: null
     });
     
     $rootScope.$watch('session', (session) => {
@@ -43,14 +37,14 @@ export default class MainCtrl {
       let { loggedIn, user } = this.session;
       if (loggedIn) {
         this.profileItems = [
-          { icon: 'account_circle', href: `profile/${user.id}`, title: 'Profile' },
-          { icon: 'settings', href: 'settings', title: 'Settings' },
-          { icon: 'exit_to_app', href: 'logout', title: 'Logout' }
+          { title: 'Profile'  , href: `profile/${user.id}` , icon: 'account_circle' },
+          { title: 'Settings' , href: 'settings'           , icon: 'settings'       },
+          { title: 'Logout'   , href: 'logout'             , icon: 'exit_to_app'    }
         ];
       } else {
         this.profileItems = [
-          { icon: 'input', href: 'login', title: 'Login' },
-          { icon: 'account_box', href: 'signup', title: 'Signup' }
+          { title: 'Login'  , href: 'login'  , icon: 'input'       },
+          { title: 'Signup' , href: 'signup' , icon: 'account_box' }
         ];
       }
     });
