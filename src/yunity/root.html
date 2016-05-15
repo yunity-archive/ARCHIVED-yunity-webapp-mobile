@@ -52,11 +52,10 @@
       </md-toolbar>
       <md-content>
         <md-list>
-          <md-list-item ng-repeat="menuItem in ctrl.menuItems" ng-click="ctrl.go(menuItem.href)">
-            <div class="md-list-item-text md-hue-1" layout="row">
-              <md-icon md-font-library="material-icons">{{ menuItem.icon }}</md-icon>
-              <p flex>{{ menuItem.title }}</p>
-            </div>
+          <md-list-item ng-repeat="menuItem in ctrl.menuItems"
+                        ng-click="ctrl.go(menuItem.href)">
+            <md-icon md-font-library="material-icons">{{ menuItem.icon }}</md-icon>
+            <div flex class="md-list-item-text">{{ menuItem.title }}</div>
           </md-list-item>
         </md-list>
       </md-content>
