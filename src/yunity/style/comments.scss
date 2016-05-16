@@ -1,15 +1,13 @@
 .comment {
-  padding: 0;
-  margin: 10px 16px 10px 10px;
+  padding: 6px;
+  margin-right: 6px;
   
   .comment-media {
     height: 48px;
     padding-right: 8px;
   }
   
-  .comment-title {
-    margin: 0;
-  }
+  .comment-title { margin: 0; }
   
   .comment-content {
     
@@ -21,12 +19,29 @@
     font-size: 90%;
     
     .comment-media { height: 40px; }
+    
+    .comment { margin-top: 4px; }
+    .comment:nth-child(odd) { background: rgba(255, 255, 255, 0.4); }
+    .comment:nth-child(even) { background: rgba(0, 0, 0, 0.05); }
   }
   
 }
 
-.add-comment {
-  md-input-container {
-    margin: 0;
+.add-comment md-input-container {
+  margin: 0;
+  
+  // Unsure why the input has this. Without it,
+  // the errors spacer appears before the input.
+  .md-input { order: unset; }
+  
+  .md-errors-spacer { display: none; }
+  .comment-media,
+  .comment-title { opacity: 0.5; }
+  
+  &.md-input-focused,
+  &.md-input-has-value {
+    .md-errors-spacer { display: block; }
+    .comment-media,
+    .comment-title { opacity: 1; }
   }
 }
