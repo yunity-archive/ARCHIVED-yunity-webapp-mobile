@@ -26,7 +26,7 @@
     "angular-animate": "^1.5.3",
     "angular-aria": "^1.5.3",
     "angular-cookies": "^1.5.3",
-    "angular-material": "^1.0.7",
+    "angular-material": "github:angular/bower-material#v1.1.0-rc4",
     "angular-messages": "^1.5.3",
     "angular-route": "^1.5.3",
     "angular-ui-router": "^0.2.18",
