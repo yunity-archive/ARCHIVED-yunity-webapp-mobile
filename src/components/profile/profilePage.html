@@ -32,130 +32,129 @@
     </div>
   </div>
   
-  <md-tabs flex md-stretch-tabs="always" md-no-ink-bar="true">
-    <md-tab label="Wall">
-      <md-tab-content class="md-padding" layout="column" class="wall">
-        
-        <md-card class="comment-card add-comment">
-          <md-card-content class="comment">
-            <md-input-container layout="row" md-no-float>
-              <img class="comment-media" src="/images/Bodhi.png" />
-              <div flex layout="column">
-                <h3 class="comment-title">Tess</h3>
-                <textarea ng-model="comment" md-maxlength="500" rows="5"
-                          placeholder="write something amazing..."></textarea>
-              </div>
-            </md-input-container>
-          </md-card-content>
-        </md-card>
-        
-        <md-card class="comment-card">
-          <md-card-content layout="row" class="comment">
+  <md-tabs flex md-dynamic-height="true"
+           md-stretch-tabs="always" md-no-ink-bar="true">
+    <md-tab label="Wall" class="wall">
+      
+      <md-card class="comment-card add-comment">
+        <md-card-content class="comment">
+          <md-input-container layout="row" md-no-float>
             <img class="comment-media" src="/images/Bodhi.png" />
             <div flex layout="column">
               <h3 class="comment-title">Tess</h3>
-              <div class="comment-content">
-                Thanks everyone for the awesome time at WuppDays #7!
-                I'm going to write some mindless stuff here so I can
-                see what long comments would look like. Ones that go
-                over multiple lines, you know?
-              </div>
-              <div class="comment-replies">
-                
-                <div class="comment add-comment">
-                  <md-input-container layout="row" md-no-float>
-                    <img class="comment-media" src="/images/Bodhi.png" />
-                    <div flex layout="column">
-                      <h3 class="comment-title">Tess</h3>
-                      <textarea ng-model="comment" md-maxlength="500" rows="5"
-                                placeholder="comment..."></textarea>
-                    </div>
-                  </md-input-container>
-                </div>
-                
-                <div layout="row" class="comment">
-                  <img class="comment-media" src="/images/Bodhi.png" />
-                  <div flex layout="column">
-                    <h3 class="comment-title">Tess</h3>
-                    <div class="comment-content">
-                      I'm talking to myself for the sake of science~
-                    </div>
-                  </div>
-                </div>
-                
-                <div layout="row" class="comment">
-                  <img class="comment-media" src="/images/Bodhi.png" />
-                  <div flex layout="column">
-                    <h3 class="comment-title">Tess</h3>
-                    <div class="comment-content">
-                      This is how comments might look on a user's wall.
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
+              <textarea ng-model="comment" md-maxlength="500" rows="5"
+                        placeholder="write something amazing..."></textarea>
             </div>
-          </md-card-content>
-        </md-card>
-        
-        <md-card ng-repeat="i in [1,2,3,4,5]" class="comment-card">
-          <md-card-content layout="row" class="comment">
-            <img class="comment-media" src="/images/Bodhi.png" />
-            <div flex layout="column">
-              <h3 class="comment-title">Tess</h3>
-              <div class="comment-content">
-                This comment card will repeat a couple of times to see
-                how things might look with lots of comments.
-              </div>
-              <div class="comment-replies">
-                
-                <div class="comment add-comment">
-                  <md-input-container layout="row" md-no-float>
-                    <img class="comment-media" src="/images/Bodhi.png" />
-                    <div flex layout="column">
-                      <h3 class="comment-title">Tess</h3>
-                      <textarea ng-model="comment" md-maxlength="500" rows="5"
-                                placeholder="comment..."></textarea>
-                    </div>
-                  </md-input-container>
-                </div>
-                
-                <div layout="row" class="comment">
-                  <img class="comment-media" src="/images/Bodhi.png" />
-                  <div flex layout="column">
-                    <h3 class="comment-title">Tess</h3>
-                    <div class="comment-content">
-                      Wow. That's amaaaazing!
-                    </div>
-                  </div>
-                </div>
-                
-                <div layout="row" class="comment">
-                  <img class="comment-media" src="/images/Bodhi.png" />
-                  <div flex layout="column">
-                    <h3 class="comment-title">Tess</h3>
-                    <div class="comment-content">
-                      Incredible.
-                    </div>
-                  </div>
-                </div>
-                
-                <div layout="row" class="comment">
-                  <img class="comment-media" src="/images/Bodhi.png" />
-                  <div flex layout="column">
-                    <h3 class="comment-title">Tess</h3>
-                    <div class="comment-content">
-                      Fabulous!
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
+          </md-input-container>
+        </md-card-content>
+      </md-card>
+      
+      <md-card class="comment-card">
+        <md-card-content layout="row" class="comment">
+          <img class="comment-media" src="/images/Bodhi.png" />
+          <div flex layout="column">
+            <h3 class="comment-title">Tess</h3>
+            <div class="comment-content">
+              Thanks everyone for the awesome time at WuppDays #7!
+              I'm going to write some mindless stuff here so I can
+              see what long comments would look like. Ones that go
+              over multiple lines, you know?
             </div>
-          </md-card-content>
-        </md-card>
-        
-      </md-content>
+            <div class="comment-replies">
+              
+              <div class="comment add-comment">
+                <md-input-container layout="row" md-no-float>
+                  <img class="comment-media" src="/images/Bodhi.png" />
+                  <div flex layout="column">
+                    <h3 class="comment-title">Tess</h3>
+                    <textarea ng-model="comment" md-maxlength="500" rows="5"
+                              placeholder="comment..."></textarea>
+                  </div>
+                </md-input-container>
+              </div>
+              
+              <div layout="row" class="comment">
+                <img class="comment-media" src="/images/Bodhi.png" />
+                <div flex layout="column">
+                  <h3 class="comment-title">Tess</h3>
+                  <div class="comment-content">
+                    I'm talking to myself for the sake of science~
+                  </div>
+                </div>
+              </div>
+              
+              <div layout="row" class="comment">
+                <img class="comment-media" src="/images/Bodhi.png" />
+                <div flex layout="column">
+                  <h3 class="comment-title">Tess</h3>
+                  <div class="comment-content">
+                    This is how comments might look on a user's wall.
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+      
+      <md-card ng-repeat="i in [1,2,3,4,5]" class="comment-card">
+        <md-card-content layout="row" class="comment">
+          <img class="comment-media" src="/images/Bodhi.png" />
+          <div flex layout="column">
+            <h3 class="comment-title">Tess</h3>
+            <div class="comment-content">
+              This comment card will repeat a couple of times to see
+              how things might look with lots of comments.
+            </div>
+            <div class="comment-replies">
+              
+              <div class="comment add-comment">
+                <md-input-container layout="row" md-no-float>
+                  <img class="comment-media" src="/images/Bodhi.png" />
+                  <div flex layout="column">
+                    <h3 class="comment-title">Tess</h3>
+                    <textarea ng-model="comment" md-maxlength="500" rows="5"
+                              placeholder="comment..."></textarea>
+                  </div>
+                </md-input-container>
+              </div>
+              
+              <div layout="row" class="comment">
+                <img class="comment-media" src="/images/Bodhi.png" />
+                <div flex layout="column">
+                  <h3 class="comment-title">Tess</h3>
+                  <div class="comment-content">
+                    Wow. That's amaaaazing!
+                  </div>
+                </div>
+              </div>
+              
+              <div layout="row" class="comment">
+                <img class="comment-media" src="/images/Bodhi.png" />
+                <div flex layout="column">
+                  <h3 class="comment-title">Tess</h3>
+                  <div class="comment-content">
+                    Incredible.
+                  </div>
+                </div>
+              </div>
+              
+              <div layout="row" class="comment">
+                <img class="comment-media" src="/images/Bodhi.png" />
+                <div flex layout="column">
+                  <h3 class="comment-title">Tess</h3>
+                  <div class="comment-content">
+                    Fabulous!
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+      
     </md-tab>
     <md-tab label="Shared by {{ ctrl.user.display_name }}">
       
