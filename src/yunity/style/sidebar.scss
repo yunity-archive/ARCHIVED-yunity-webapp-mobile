@@ -6,20 +6,18 @@
     width: 320px;     // Set content width so items won't be squished when sidebar closes.
   }
   
-  // Applies when sidebar is locked open due to the window being wide enough.
-  &.md-locked-open,
-  &.md-locked-open-remove-active {
-    .logo {
-      display: none;
-    }
-  }
-  
   .logo {
     text-align: center;
     
-    img {
-      margin: 8px;
-    }
+    img { margin: 8px; }
+  }
+  
+  // Applies when sidebar is locked open due to the window being wide enough,
+  // as well as when the opening / closing animation is active.
+  &._md-locked-open,
+  &._md-locked-open-remove-active {
+    transition: none;        // Disable animation.
+    .logo { display: none; } // Hide the logo.
   }
   
   // Menu list items.
