@@ -1,33 +1,36 @@
 $header-height: 160px;
+$header-height-compact: 120px;
 
-.profile-header {
-  color: rgba(255, 255, 255, 0.87);
-  height: $header-height;
+@mixin set-header-height($height) {
+  height: $height;
   
   // Fixes profile header being
   // squished in lightning browser.
-  min-height: $header-height;
+  min-height: $height;
   
-  .profile-avatar {
-    img {
-      width: $header-height;
-      height: $header-height;
-    }
+  .profile-avatar img {
+    width: $height;
+    height: $height;
+  }
+}
+
+.profile-header {
+  color: rgba(255, 255, 255, 0.87);
+  
+  @media(max-width: $layout-breakpoint-sm - 1) {
+    @include set-header-height($header-height-compact);
+  }
+  @media(min-width: $layout-breakpoint-sm) {
+    @include set-header-height($header-height);
   }
   
   .profile-header-info {
     
     > div {
-      &.profile-display-name {
-        background: #124C65;
-      }
-      &.profile-connections {
-        background: #196687;
-      }
+      &.profile-display-name { background: #124C65; }
+      &.profile-connections { background: #196687; }
       
-      md-icon {
-        color: rgba(255, 255, 255, 0.87);
-      }
+      md-icon { color: rgba(255, 255, 255, 0.87); }
     }
     
   }
@@ -36,10 +39,6 @@ $header-height: 160px;
     margin: 8px 16px;
     padding: 0;
   }
-  h1 {
-    font-size: 240%;
-  }
-  h2 {
-    font-size: 120%;
-  }
+  h1 { font-size: 240%; }
+  h2 { font-size: 120%; }
 }
