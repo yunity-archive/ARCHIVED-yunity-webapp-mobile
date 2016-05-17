@@ -9,6 +9,9 @@ var config = {
     filename: 'app.js',
     pathinfo: true
   },
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     loaders: [
       {
