@@ -6,7 +6,7 @@
         <md-button class="md-raised logo" aria-label="Settings" ng-click="ctrl.openSidenav()">
           <img class="png-icon" src="/images/ylogo.png"/>
         </md-button>
-        <h2>
+        <h2 hide show-gt-sm>
           <span>yunity</span>
         </h2>
         <span flex></span>
@@ -41,10 +41,12 @@
       </div>
     </md-toolbar>
   </ui-view>
-
+  
   <div flex layout="row">
-
-    <md-sidenav id="main-sidebar" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+    
+    <md-sidenav id="main-sidebar" layout="column"
+                class="md-sidenav-left md-whiteframe-z2"
+                md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
       <md-toolbar class="logo">
         <a href="/">
           <img src="/images/ylogo.png"/>
@@ -60,11 +62,11 @@
         </md-list>
       </md-content>
     </md-sidenav>
-
+    
     <md-content flex layout="row">
-    <ui-view flex layout="row"></ui-view>
+      <ui-view flex layout="row"></ui-view>
     </md-content>
-
+    
   </div>
-
+  
 </div>
