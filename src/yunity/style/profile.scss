@@ -4,6 +4,10 @@ $header-height: 160px;
   color: rgba(255, 255, 255, 0.87);
   height: $header-height;
   
+  // Fixes profile header being
+  // squished in lightning browser.
+  min-height: $header-height;
+  
   .profile-avatar {
     img {
       width: $header-height;
