@@ -1,5 +1,7 @@
-export default function routeHelperProvider($stateProvider) {
+export default function routeHelperProvider($stateProvider, $locationProvider) {
   'ngInject';
+  
+  $locationProvider.html5Mode(true);
   
   let defaultOptions = {};
   
