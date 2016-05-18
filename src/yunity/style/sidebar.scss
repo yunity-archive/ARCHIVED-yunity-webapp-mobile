@@ -9,7 +9,10 @@
   .logo {
     text-align: center;
     
-    img { margin: 8px; }
+    img {
+      width: 60%;
+      margin: 16px;
+    }
   }
   
   // Applies when sidebar is locked open due to the window being wide enough,
