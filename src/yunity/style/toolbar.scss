@@ -7,7 +7,6 @@
     padding: 0;
     
     md-icon { width: 100%; }
-    }
   }
   
   .tool-button {
@@ -16,26 +15,23 @@
     min-width: 40px;
     line-height: 20px;
     border-radius: 10px;
+    margin: 0 6px;
     padding-left: 8px;
     text-align: left;
-    transition: width 0.4s ease-in;
+    transition: width 0.2s ease-in;
   
-    &.share {
-      background: #81B252;
-    }
+    &.share { background: #81B252; }
     
     span {
       font-weight: bold;
       opacity: 0;
-      transition: opacity 0.4s ease-in;
+      transition: opacity 0.2s ease-in;
     }
     
     @media(min-width: $layout-breakpoint-sm) {
       width: 120px;
       
-      span {
-        opacity: 1;
-      }
+      span { opacity: 1; }
     }
   }
   
