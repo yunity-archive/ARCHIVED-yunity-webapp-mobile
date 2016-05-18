@@ -1,47 +1,6 @@
 <div layout="column" class="wall md-padding">
   
-  <md-input-container ng-if="ctrl.canPost" layout="row"
-                      md-colors="{backgroundColor: 'background-100'}"
-                      md-no-float class="post post-create">
-    <img class="post-media" src="/images/Bodhi.png" />
-    <div flex layout="column">
-      <h3 class="post-title">{{ ctrl.user.display_name }}</h3>
-      <textarea ng-model="comment" md-maxlength="500" rows="5"
-                placeholder="write something amazing..."></textarea>
-    </div>
-  </md-input-container>
-  
-  <div ng-repeat="post in ctrl.posts" layout="column" class="post"
-       md-colors="{backgroundColor: 'background-100'}">
-    <div layout="row">
-      <img class="post-media" src="{{ post.media }}" />
-      <div flex layout="column">
-        <h3 class="post-title">{{ post.title }}</h3>
-        <div class="post-content">{{ post.content }}</div>
-      </div>
-    </div>
-    <div ng-if="post.replies || post.canReply" class="post-replies">
-      
-      <md-input-container ng-if="post.canReply" layout="row"
-                          md-no-float class="post post-create">
-        <img class="post-media" src="/images/Bodhi.png" />
-        <div flex layout="column">
-          <h3 class="post-title">{{ ctrl.user.display_name }}</h3>
-          <textarea ng-model="comment" md-maxlength="500" rows="5"
-                    placeholder="comment..."></textarea>
-        </div>
-      </md-input-container>
-      
-      <div ng-repeat="reply in post.replies"
-          layout="row" class="post">
-        <img class="post-media" src="{{ reply.media }}" />
-        <div flex layout="column">
-          <h3 class="post-title">{{ reply.title }}</h3>
-          <div class="post-content">{{ reply.content }}</div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+  <y-post ng-if="ctrl.canPost" create></y-post>
+  <y-post ng-repeat="post in ctrl.posts" post="post"></y-post>
   
 </div>

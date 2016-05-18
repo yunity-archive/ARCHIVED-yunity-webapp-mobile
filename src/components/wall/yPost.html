@@ -1,0 +1,18 @@
+<div layout="column" class="post"
+     md-colors="{backgroundColor: 'background-100'}">
+  
+  <div layout="row">
+    <img class="post-media" src="{{ post.media }}" />
+    <div flex layout="column">
+      <h3 class="post-title">{{ post.title }}</h3>
+      <div class="post-content">{{ post.content }}</div>
+    </div>
+  </div>
+  
+  <div ng-if="post.replies || post.canReply" class="post-replies">
+    <y-post ng-if="post.canReply" reply create></y-post>
+    <y-post ng-repeat="reply in post.replies" reply post="reply"></y-post>
+  </div>
+  
+</div>
+  
