@@ -1,13 +1,13 @@
 const debug = require('debug')('yunity:signupPageCtrl');
 
 export default class SignupPageCtrl {
-
+  
   constructor($scope, yAPI, yChat, $location) {
     'ngInject';
     Object.assign(this, { $scope, yAPI, yChat, $location });
     this.data = {};
   }
-
+  
   signup() {
     this.yAPI.apiCall({
       uri: '/users',
@@ -26,10 +26,9 @@ export default class SignupPageCtrl {
           debug('login failed', err);
         }
       });
-
     }, (err) => {
       debug('error while signup', err);
     });
   }
-
+  
 }
