@@ -10,7 +10,7 @@
   }
   
   .tool-button {
-    width: 40px;
+    @include set-layout-compact(width, 40px, 120px);
     height: 40px;
     min-width: 40px;
     line-height: 20px;
@@ -24,14 +24,8 @@
     
     span {
       font-weight: bold;
-      opacity: 0;
+      @include set-layout-compact(opacity, 0, 1);
       transition: opacity 0.2s ease-in;
-    }
-    
-    @media(min-width: $layout-breakpoint-sm) {
-      width: 120px;
-      
-      span { opacity: 1; }
     }
   }
   

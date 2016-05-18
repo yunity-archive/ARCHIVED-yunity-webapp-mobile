@@ -1,0 +1,17 @@
+$header-height: 160px;
+$header-height-compact: 120px;
+
+.page-header {
+  
+  @include set-layout-compact(height, $header-height-compact, $header-height);
+  // Fixes profile header being squished in lightning browser.
+  @include set-layout-compact(min-height, $header-height-compact, $header-height);
+  
+  h1 { font-size: 28px; }
+  h2 { font-size: 16px; }
+  h1, h2 {
+    margin: 8px 10px;
+    padding: 0;
+  }
+  
+}

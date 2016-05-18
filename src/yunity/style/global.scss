@@ -1,2 +1,23 @@
+$layout-normal: $layout-breakpoint-sm;
+$layout-wide:   $layout-breakpoint-md;
+
+// Utility mixins to set properties depending on layout.
+@mixin set-layout($property, $compact, $normal, $wide) {
+  #{$property}: $normal;
+  @media (max-width: $layout-normal - 1) { #{$property}: $compact; }
+  @media (min-width: $layout-wide) { #{$property}: $wide; }
+}
+@mixin set-layout-compact($property, $compact, $normal) {
+  #{$property}: $normal;
+  @media (max-width: $layout-normal - 1) { #{$property}: $compact; }
+}
+@mixin set-layout-wide($property, $wide, $normal) {
+  #{$property}: $normal;
+  @media (min-width: $layout-wide) { #{$property}: $wide; }
+}
+
 // Tabs with dynamic height should show all content.
 md-tabs.md-dynamic-height { overflow: visible; }
+
+// Simply use text color for icons.
+md-icon { color: unset; }
