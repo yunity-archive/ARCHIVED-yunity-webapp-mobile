@@ -1,7 +1,7 @@
 import angular from 'angular';
 
-import wallPage from './wallPageDirective';
+import wall from './yWallDirective';
 
 export default angular.module('yunity.wall', [])
-  .directive('wallPage', wallPage)
+  .directive('yWall', wall)
   .name;

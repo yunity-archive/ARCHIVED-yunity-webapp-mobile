@@ -9,6 +9,7 @@ export default function materialConfig($mdThemingProvider) {
       'default': '800'
     })
     .backgroundPalette('grey', {
-      'default': '200'
+      'default': '200',
+      'hue-1': '100'
     });
 }

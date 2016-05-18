@@ -1,12 +1,12 @@
-import wallTemplate from './wallPage.html';
-import wallPageCtrl from './wallPageCtrl';
+import wallTemplate from './yWall.html';
+import wallCtrl from './yWallCtrl';
 
 export default function() {
   return {
     scope: {},
     restrict: 'E',
     templateUrl: wallTemplate,
-    controller: wallPageCtrl,
+    controller: wallCtrl,
     controllerAs: 'ctrl'
   };
 }
