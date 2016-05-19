@@ -12,13 +12,13 @@ export default class MainCtrl {
       profileItems: [],
       
       menuItems: [
-        { title: 'Map'         , href: 'map'    , icon: 'map'         },
-        { title: 'Communities' , href: 'groups' , icon: 'domain'      },
-        { title: 'Stores'      , href: 'stores' , icon: 'store'       },
-        { title: 'Events'      , href: 'events' , icon: 'event'       },
-        { title: 'Bananas'     , href: 'items'  , icon: 'local_offer' },
-        { title: 'Users'       , href: 'users'  , icon: 'people'      },
-        { title: 'About'       , href: 'about'  , icon: 'help'        }
+        { title: 'Map'         , href: '/map'    , icon: 'map'         },
+        { title: 'Communities' , href: '/groups' , icon: 'domain'      },
+        { title: 'Stores'      , href: '/stores' , icon: 'store'       },
+        { title: 'Events'      , href: '/events' , icon: 'event'       },
+        { title: 'Bananas'     , href: '/items'  , icon: 'local_offer' },
+        { title: 'Users'       , href: '/users'  , icon: 'people'      },
+        { title: 'About'       , href: '/about'  , icon: 'help'        }
       ],
       
       categories: [
@@ -37,14 +37,14 @@ export default class MainCtrl {
       let { loggedIn, user } = this.session;
       if (loggedIn) {
         this.profileItems = [
-          { title: 'Profile'  , href: `profile/${user.id}` , icon: 'account_circle' },
-          { title: 'Settings' , href: 'settings'           , icon: 'settings'       },
-          { title: 'Logout'   , href: 'logout'             , icon: 'exit_to_app'    }
+          { title: 'Profile'  , href: `/profile/${user.id}` , icon: 'account_circle' },
+          { title: 'Settings' , href: '/settings'           , icon: 'settings'       },
+          { title: 'Logout'   , href: '/logout'             , icon: 'exit_to_app'    }
         ];
       } else {
         this.profileItems = [
-          { title: 'Login'  , href: 'login'  , icon: 'input'       },
-          { title: 'Signup' , href: 'signup' , icon: 'account_box' }
+          { title: 'Login'  , href: '/login'  , icon: 'input'       },
+          { title: 'Signup' , href: '/signup' , icon: 'account_box' }
         ];
       }
     });
@@ -55,17 +55,15 @@ export default class MainCtrl {
     $mdOpenMenu(ev);
   }
   
-  openSidenav() {
-    this.$mdSidenav('left').open();
+  openSidenav(ev) {
+    if (!this.$mdSidenav('left').isLockedOpen()) {
+      ev.preventDefault();
+      this.$mdSidenav('left').open();
+    }
   }
   
   closeSidenav() {
     this.$mdSidenav('left').close();
-  }
-  
-  go(path) {
-    this.$location.path(path);
-    this.closeSidenav();
   }
   
   showSubCategories(cat) {

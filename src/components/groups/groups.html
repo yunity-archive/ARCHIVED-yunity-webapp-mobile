@@ -2,12 +2,14 @@
   
   <h1>yunity groups</h1>
   
-  <md-button class="md-fab" aria-label="Create a group" href="#/groups/add">
+  <md-button aria-label="Create a group" class="md-fab"
+             ng-href="/groups/add">
     <md-icon md-font-library="material-icons">group_add</md-icon>
   </md-button>
   
   <md-list>
-    <md-list-item class="md-2-line" ng-repeat="group in ctrl.groups" ng-click="ctrl.show(group.id)">
+    <md-list-item ng-repeat="group in ctrl.groups" class="md-2-line"
+                  ng-href="/groups/{{ group.id }}">
       <div class="md-list-item-text" layout="column">
         <h3>{{ group.name }}</h3>
         <p>{{ group.description }}</p>

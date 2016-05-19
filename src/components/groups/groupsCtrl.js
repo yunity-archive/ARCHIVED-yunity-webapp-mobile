@@ -13,8 +13,4 @@ export default class GroupsCtrl {
     });
   }
 
-  show(groupId) {
-    this.$location.path(`/groups/${groupId}`);
-  }
-
 }

@@ -3,41 +3,56 @@
   <ui-view name="header">
     <md-toolbar id="main-toolbar">
       <div class="md-toolbar-tools">
-        <md-button class="md-raised logo md-primary md-hue-2" aria-label="Settings" ng-click="ctrl.openSidenav()">
+        
+        <md-button class="md-raised logo md-primary md-hue-2" aria-label="Settings"
+                   ng-href="/" ng-click="ctrl.openSidenav($event)">
           <md-icon md-svg-src="/images/yunity_logo.svg"></md-icon>
         </md-button>
+        
         <h2 hide show-gt-sm>
           <span>yunity</span>
         </h2>
         <span flex></span>
-        <md-button class="md-raised tool-button md-primary share" aria-label="Share" ng-click="ctrl.go('items/new')" show-logged-in>
+        
+        <md-button aria-label="Share" show-logged-in
+                   class="md-raised tool-button md-primary share"
+                   ng-href="/items/new">
           <md-icon md-font-library="material-icons">add_circle</md-icon>
           <span>Share</span>
         </md-button>
-        <md-button class="md-raised tool-button md-primary md-hue-1" aria-label="Notifications" show-logged-in>
+        
+        <md-button aria-label="Notifications" show-logged-in
+                   class="md-raised tool-button md-primary md-hue-1"
+                   ng-href="/notifications">
           <md-icon md-font-library="material-icons">notifications</md-icon>
           <span>Alerts</span>
         </md-button>
-        <md-button class="md-raised tool-button md-primary md-hue-1" aria-label="Chat" show-logged-in>
+        
+        <md-button aria-label="Chat" show-logged-in
+                   class="md-raised tool-button md-primary md-hue-1"
+                   ng-href="/chat">
           <md-icon md-font-library="material-icons">chat</md-icon>
           <span>Chat</span>
         </md-button>
+        
         <md-menu md-position-mode="target-right target">
-          <md-button class="md-raised tool-button md-primary md-hue-1" aria-label="Profile" ng-click="$mdOpenMenu($event)">
+          <md-button aria-label="Profile"
+                     class="md-raised tool-button md-primary md-hue-1"
+                     ng-href="/profile" ng-click="$mdOpenMenu($event)">
             <md-icon md-font-library="material-icons">account_circle</md-icon>
             <span>Profile</span>
           </md-button>
           <md-menu-content width="3">
             <md-menu-item ng-repeat="profileItem in ctrl.profileItems">
-              <md-button ng-click="ctrl.go(profileItem.href)">
-                <div layout="row" flex>
-                  <p flex>{{ profileItem.title }}</p>
-                  <md-icon md-font-library="material-icons" style="margin: auto 3px auto 0;">{{ profileItem.icon }}</md-icon>
-                </div>
+              <md-button layout="row" ng-href="{{ profileItem.href }}">
+                <p flex>{{ profileItem.title }}</p>
+                <md-icon md-font-library="material-icons"
+                          style="margin: auto 3px auto 0;">{{ profileItem.icon }}</md-icon>
               </md-button>
             </md-menu-item>
           </md-menu-content>
         </md-menu>
+        
       </div>
     </md-toolbar>
   </ui-view>
@@ -47,20 +62,23 @@
     <md-sidenav id="main-sidebar" layout="column"
                 class="md-sidenav-left md-whiteframe-z2"
                 md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+      
       <md-toolbar class="logo md-primary md-hue-2">
-        <a href="/">
+        <a ng-href="/" ng-click="ctrl.closeSidenav()">
           <img src="/images/yunity_logo.svg" />
         </a>
       </md-toolbar>
+      
       <md-content>
         <md-list>
           <md-list-item ng-repeat="menuItem in ctrl.menuItems"
-                        ng-click="ctrl.go(menuItem.href)">
+                        ng-href="{{ menuItem.href }}" ng-click="ctrl.closeSidenav()">
             <md-icon md-font-library="material-icons">{{ menuItem.icon }}</md-icon>
             <div flex class="md-list-item-text">{{ menuItem.title }}</div>
           </md-list-item>
         </md-list>
       </md-content>
+      
     </md-sidenav>
     
     <md-content flex layout="row">

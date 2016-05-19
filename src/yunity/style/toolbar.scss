@@ -1,26 +1,36 @@
+$toolbar-button-size: 38px;
+$toolbar-button-width-normal: 120px;
+$toolbar-icon-size: 24px;
+
+$toolbar-button-padding-compact: ($toolbar-button-size - $toolbar-icon-size) / 2;
+
 #main-toolbar {
   
   .logo {
     width: 80px;
-    height: 40px;
-    border-radius: 20px;
+    height: $toolbar-button-size;
+    border-radius: $toolbar-button-size / 2;
     padding: 0;
     
     md-icon { width: 100%; }
   }
   
   .tool-button {
-    @include set-layout-compact(width, 40px, 120px);
-    height: 40px;
-    min-width: 40px;
-    line-height: 20px;
+    @include set-layout-compact(width, $toolbar-button-size, $toolbar-button-width-normal);
+    min-width: $toolbar-button-size;
+    height: $toolbar-button-size;
+    line-height: $toolbar-button-size;
     border-radius: 10px;
-    margin: 0 6px;
-    padding-left: 8px;
+    margin: 0 4px;
+    @include set-layout-compact(padding, 0 $toolbar-button-padding-compact, 0 10px);
     text-align: left;
-    transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in,
+                padding 0.2s ease-in;
   
-    &.share { background: #81B252; }
+    &.share {
+      background: #81B252;
+      &:hover { background: #619242; }
+    }
     
     span {
       font-weight: bold;
@@ -28,5 +38,9 @@
       transition: opacity 0.2s ease-in;
     }
   }
+  
+  // Fix menu not being correct height, thus misaligning the button.
+  // For some reason with "height: auto;" it wants to be 5px larger.
+  md-menu { height: $toolbar-button-size; }
   
 }

@@ -2,7 +2,7 @@
   
   <div layout="row" class="page-header"
        md-colors="{ backgroundColor: 'accent-700' }">
-    <img class="profile-avatar" src="/images/Bodhi.png" />
+    <img class="profile-avatar" ng-src="/images/Bodhi.png" />
     <div flex layout="column">
       <div flex layout="row">
         <div flex>
@@ -13,7 +13,7 @@
             <md-icon md-font-library="material-icons">person_add</md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="Message"
-                     ng-href="#/chat/{{ ctrl.user.id }}">
+                     ng-click="ctrl.sendMessage()">
             <md-icon md-font-library="material-icons">chat_bubble_outline</md-icon>
           </md-button>
         </div>
