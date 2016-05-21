@@ -48,7 +48,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     }, (profile) => {
       
       profile('show', {
-        url: '/:id',
+        url: '/{id:int}',
         template: makeLayoutFlexElement('profile-page')
       });
       
@@ -65,8 +65,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     }, (chat) => {
       
       chat('show', {
-        url: '/:id',
-        template: makeLayoutFlexElement('y-chat'),
+        url: '/{id:int}',
         access: {
           requiresLogin: true
         }
@@ -108,7 +107,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
       });
       
       items('show', {
-        url: '/:id',
+        url: '/{id:int}',
         template: makeLayoutFlexElement('item-detail-page')
       });
       
@@ -127,7 +126,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
       });
       
       groups('show', {
-        url: '/:id',
+        url: '/{id:int}',
         template: makeLayoutFlexElement('group-page')
       });
       

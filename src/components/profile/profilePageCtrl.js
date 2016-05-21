@@ -12,7 +12,7 @@ export default class ProfilePageCtrl {
         id: $stateParams.id,
         loaded: false
       },
-      ownProfile: ($stateParams.id == yAPI.session.user.id)
+      ownProfile: ($stateParams.id === yAPI.session.user.id)
     });
     
     debug('profile page params', $stateParams);
