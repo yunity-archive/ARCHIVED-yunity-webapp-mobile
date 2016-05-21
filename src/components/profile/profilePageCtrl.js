@@ -1,6 +1,7 @@
 const debug = require('debug')('yunity:profilePage');
 
 export default class ProfilePageCtrl {
+  
   constructor($rootScope, yAPI, yChat, $stateParams, $location) {
     'ngInject';
     Object.assign(this, {
@@ -10,28 +11,22 @@ export default class ProfilePageCtrl {
       user: {
         id: $stateParams.id,
         loaded: false
-      }
+      },
+      ownProfile: ($stateParams.id == yAPI.session.user.id)
     });
-
+    
     debug('profile page params', $stateParams);
-
+    
     yAPI.apiCall('/users/' + this.user.id).then((ret) => {
       this.user = ret.data.users[0];
       this.user.loaded = true;
-      this.ownprofile = false;
-
-      if (this.user.id === this.yAPI.session.user.id) {
-        this.ownprofile = true;
-      }
-
-
     }, () => {
       this.error = true;
       this.errorMessage = 'user not found';
     });
-
+    
   }
-
+  
   sendMessage() {
     let chat = this.yChat.getExistingChat(this.user.id, this.yAPI.session.chats);
     if (chat) {
@@ -40,5 +35,5 @@ export default class ProfilePageCtrl {
       this.$location.path('/chat/new/' + this.user.id );
     }
   }
-
+  
 }
