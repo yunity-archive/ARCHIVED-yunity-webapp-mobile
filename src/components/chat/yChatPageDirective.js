@@ -1,5 +1,5 @@
-import yChatTemplate from './yChat.html';
-import yChatCtrl from './yChatCtrl';
+import yChatPageTemplate from './yChatPage.html';
+import yChatPageCtrl from './yChatPageCtrl';
 
 const debug = require('debug')('y-chat');
 
@@ -8,8 +8,8 @@ export default function() {
   return {
     scope: {},
     restrict: 'E',
-    templateUrl: yChatTemplate,
-    controller: yChatCtrl,
+    templateUrl: yChatPageTemplate,
+    controller: yChatPageCtrl,
     controllerAs: 'ctrl'
   };
 }

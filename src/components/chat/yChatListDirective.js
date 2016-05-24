@@ -1,5 +1,4 @@
 import yChatListTemplate from './yChatList.html';
-
 import yChatListCtrl from './yChatListCtrl';
 
 export default function() {

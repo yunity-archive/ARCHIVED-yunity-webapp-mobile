@@ -18,8 +18,8 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
         if (value === false) continue;
         attrStr += ` ${attr}`;
         if (value !== true) attrStr += `="${value}"`;
-  }
-  
+      }
+    
     return `<${elementName} flex layout="column"${attrStr}></${elementName}>`;
   }
   
@@ -58,10 +58,10 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
         requiresLogin: true
       }
     });
-      
+    
     root('profile/show', {
       url: '/profile/{id:int}',
-        template: makeLayoutFlexElement('profile-page')
+      template: makeLayoutFlexElement('profile-page')
     });
     
     /* chat ----------------------------------------------------------------- */
@@ -72,23 +72,22 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
       access: {
         requiresLogin: true
       }
-    }, (chat) => {
-      
-      chat('show', {
-        url: '/{id:int}',
-        access: {
-          requiresLogin: true
-        }
-      });
-      
-      chat('new', {
-        url: '/new/:userids',
-        template: makeLayoutFlexElement('chat-page'),
-        access: {
-          requiresLogin: true
-        }
-      });
-      
+    });
+    
+    root('chat/show', {
+      url: '/chat/{id:int}',
+      template: makeLayoutFlexElement('y-chat-page'),
+      access: {
+        requiresLogin: true
+      }
+    });
+    
+    root('chat/new', {
+      url: '/chat/new/:userids',
+      template: makeLayoutFlexElement('y-chat-create'),
+      access: {
+        requiresLogin: true
+      }
     });
     
     /* users ---------------------------------------------------------------- */
