@@ -31,11 +31,11 @@ export default class ProfilePageCtrl {
   }
   
   sendMessage() {
-    let chat = this.yChat.getExistingChat($scope.user.id, this.yAPI.session.chats);
+    const chat = this.yChat.getExistingChat(this.$scope.user.id, this.yAPI.session.chats);
     if (chat) {
       this.$location.path('/chat/' + chat.id);
     } else {
-      this.$location.path('/chat/new/' + this.user.id );
+      this.$location.path('/chat/new/' + this.$scope.user.id );
     }
   }
   
