@@ -16,11 +16,5 @@ $layout-wide:   $layout-breakpoint-md;
   @media (min-width: $layout-wide) { #{$property}: $wide; }
 }
 
-// Tabs with dynamic height should show all content.
-md-tabs.md-dynamic-height {
-  overflow-x: hidden;
-  overflow-y: visible;
-}
-
 // Simply use text color for icons.
 md-icon { color: unset; }
