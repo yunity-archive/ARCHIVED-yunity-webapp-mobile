@@ -37,9 +37,9 @@ export default class MainCtrl {
       let { loggedIn, user } = this.session;
       if (loggedIn) {
         this.profileItems = [
-          { title: 'Profile'  , href: `/profile/${user.id}` , icon: 'account_circle' },
-          { title: 'Settings' , href: '/settings'           , icon: 'settings'       },
-          { title: 'Logout'   , href: '/logout'             , icon: 'exit_to_app'    }
+          { title: 'Profile'  , href: '/profile'  , icon: 'account_circle' },
+          { title: 'Settings' , href: '/settings' , icon: 'settings'       },
+          { title: 'Logout'   , href: '/logout'   , icon: 'exit_to_app'    }
         ];
       } else {
         this.profileItems = [
