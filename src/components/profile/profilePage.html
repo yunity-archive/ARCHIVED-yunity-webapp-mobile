@@ -6,7 +6,7 @@
     <div flex layout="column">
       <div flex layout="row">
         <div flex>
-          <h1>{{ ctrl.user.display_name }}</h1>
+          <h1>{{ user.display_name }}</h1>
         </div>
         <div layout="column">
           <md-button class="md-icon-button" aria-label="Connect">
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div layout="row" md-colors="{ backgroundColor: 'accent-500' }">
-        <div flex ng-switch="ctrl.ownProfile">
+        <div flex ng-switch="ownProfile">
           <h2 ng-switch-when="true">(This is you!)</h2>
           <h2 ng-switch-default>0 mutual connections</h2>
         </div>
@@ -37,7 +37,7 @@
     <md-tab label="Wall">
       <y-wall></y-wall>
     </md-tab>
-    <md-tab label="Shared by {{ ctrl.user.display_name }}">
+    <md-tab label="Shared by {{ user.display_name }}">
       
     </md-tab>
   </md-tabs>

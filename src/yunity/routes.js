@@ -53,14 +53,15 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     
     root('profile', {
       url: '/profile',
-      template: makeLayoutFlexElement('ui-view')
-    }, (profile) => {
+      template: makeLayoutFlexElement('profile-page', { own: true }),
+      access: {
+        requiresLogin: true
+      }
+    });
       
-      profile('show', {
-        url: '/{id:int}',
+    root('profile/show', {
+      url: '/profile/{id:int}',
         template: makeLayoutFlexElement('profile-page')
-      });
-      
     });
     
     /* chat ----------------------------------------------------------------- */

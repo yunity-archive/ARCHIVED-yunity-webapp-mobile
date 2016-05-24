@@ -2,33 +2,36 @@ const debug = require('debug')('yunity:profilePage');
 
 export default class ProfilePageCtrl {
   
-  constructor($rootScope, yAPI, yChat, $stateParams, $location) {
+  constructor($scope, $attrs, yAPI, yChat, $stateParams, $location) {
     'ngInject';
     Object.assign(this, {
-      $rootScope, yAPI, yChat, $stateParams, $location,
-      error: false,
-      errorMessage: '',
-      user: {
-        id: $stateParams.id,
-        loaded: false
-      },
-      ownProfile: ($stateParams.id === yAPI.session.user.id)
+      $scope, $location,
+      yAPI, yChat,
+      
+      error: null
     });
     
-    debug('profile page params', $stateParams);
+    const own = ("own" in $attrs);
+    const userID = (own ? yAPI.session.user.id : $stateParams.id);
     
-    yAPI.apiCall('/users/' + this.user.id).then((ret) => {
-      this.user = ret.data.users[0];
-      this.user.loaded = true;
-    }, () => {
-      this.error = true;
-      this.errorMessage = 'user not found';
-    });
+    Object.assign($scope, {
+      user: { id: userID, loaded: false },
+      ownProfile: (userID == yAPI.session.user.id)
+    })
+    
+    yAPI.apiCall('/users/' + userID)
+      .then((ret) => {
+        $scope.user = ret.data.users[0];
+        $scope.user.loaded = true;
+      })
+      .catch((error) => {
+        this.error = 'User not found';
+      });
     
   }
   
   sendMessage() {
-    let chat = this.yChat.getExistingChat(this.user.id, this.yAPI.session.chats);
+    let chat = this.yChat.getExistingChat($scope.user.id, this.yAPI.session.chats);
     if (chat) {
       this.$location.path('/chat/' + chat.id);
     } else {
