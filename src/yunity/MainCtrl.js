@@ -56,10 +56,9 @@ export default class MainCtrl {
   }
   
   openSidenav(ev) {
-    if (!this.$mdSidenav('left').isLockedOpen()) {
-      ev.preventDefault();
-      this.$mdSidenav('left').open();
-    }
+    if (this.$mdSidenav('left').isLockedOpen()) return;
+    ev.preventDefault();
+    this.$mdSidenav('left').open();
   }
   
   closeSidenav() {

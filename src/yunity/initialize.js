@@ -14,8 +14,8 @@ export default function initialize($rootScope, yAPI) {
       debug('start');
     },
     requestComplete: () => {
-      debug('complete');
       $rootScope.loading = false;
+      debug('complete');
     }
   });
 
