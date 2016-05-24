@@ -10,8 +10,17 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     return yAPI.resolve();
   }
   
-  function makeLayoutFlexElement(elementName) {
-    return `<${elementName} flex layout="column"></${elementName}>`;
+  function makeLayoutFlexElement(elementName, attributes) {
+    let attrStr = "";
+    if (attributes)
+      for (const attr in attributes) {
+        const value = attributes[attr];
+        if (value === false) continue;
+        attrStr += ` ${attr}`;
+        if (value !== true) attrStr += `="${value}"`;
+  }
+  
+    return `<${elementName} flex layout="column"${attrStr}></${elementName}>`;
   }
   
   routeHelperProvider.setDefaultOptions({
