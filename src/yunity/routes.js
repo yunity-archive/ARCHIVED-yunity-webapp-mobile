@@ -84,7 +84,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     
     root('conversation/create', {
       url: '/conversation/create/:userids',
-      template: makeLayoutFlexElement('conversation', { create: true }),
+      template: makeLayoutFlexElement('conversation'),
       access: {
         requiresLogin: true
       }
@@ -92,7 +92,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     
     root('chat/show', {
       url: '/chat/{userid:int}',
-      template: makeLayoutFlexElement('conversation', { user: true }),
+      template: makeLayoutFlexElement('conversation'),
       access: {
         requiresLogin: true
       }
