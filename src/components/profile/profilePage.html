@@ -8,12 +8,12 @@
         <div flex>
           <h1>{{ user.display_name }}</h1>
         </div>
-        <div layout="column">
+        <div layout="column" ng-if="!ownProfile">
           <md-button class="md-icon-button" aria-label="Connect">
             <md-icon md-font-library="material-icons">person_add</md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="Message"
-                     ng-click="ctrl.sendMessage()">
+                     ng-href="/chat/{{ user.id }}">
             <md-icon md-font-library="material-icons">chat_bubble_outline</md-icon>
           </md-button>
         </div>
@@ -24,7 +24,8 @@
           <h2 ng-switch-default>0 mutual connections</h2>
         </div>
         <div>
-          <md-button class="md-icon-button" aria-label="Information">
+          <md-button class="md-icon-button" aria-label="Connections"
+                     ng-href="/profile/{{ user.id }}/connections">
             <md-icon md-font-library="material-icons">info_outline</md-icon>
           </md-button>
         </div>

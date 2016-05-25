@@ -7,6 +7,7 @@
 @import "style/posts.scss";
 
 @import "style/profile.scss";
+@import "style/conversation.scss";
 
 #lightbulb {
   font-size: 100px;
@@ -303,81 +304,4 @@ a.bg-primary:focus {
 
 .map-container {
 
-}
-
-
-/* CHAT */
-
-#chat-container {
-  padding: 1em;
-  height: calc(100% - 5em);
-}
-
-.chat-bubble {
-  padding: 1em 1.25em;
-  position: relative;
-}
-
-.chat-bubble:last-of-type {
-  margin: 0;
-}
-
-.chat-avatar {
-  width: 2.5em;
-  border: .25em solid white;
-  border-radius: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.chat-bubble:nth-child(odd) .chat-avatar {
-  left: 0;
-}
-
-.chat-bubble:nth-child(even) .chat-avatar {
-  left: auto;
-  right: 0;
-}
-
-.chat-message {
-  background-color: rgb(57, 148, 204);
-  border-radius: .25em;
-  color: white;
-  padding: .5em 1.5em;
-  font-size: 1em;
-  font-weight: 700;
-}
-
-#chat-form {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  padding: .5em;
-}
-
-#chat-form .form-group, #chat-form fieldset {
-  width: 100%;
-}
-
-#chat-form .form-group {
-  display: table;
-  position: relative;
-}
-
-#chat-form input {
-  display: table-cell;
-  position: relative;
-}
-
-#chat-form input[type="text"] {
-  font-size: 1em;
-  height: auto;
-}
-
-#chat-form button[type="submit"] {
-  font-size: 1em;
-  background: transparent;
-  border: none;
 }

@@ -2,10 +2,10 @@ const debug = require('debug')('yunity:component:groupPageCtrl');
 
 export default class GroupPageCtrl {
 
-  constructor($rootScope, yAPI, yChat, $stateParams) {
+  constructor($rootScope, yAPI, $stateParams) {
     'ngInject';
     Object.assign(this, {
-      $rootScope, yAPI, yChat, $stateParams,
+      $rootScope, yAPI, $stateParams,
       group: {
         id: $stateParams.id,
         loaded: false

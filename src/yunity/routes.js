@@ -66,25 +66,33 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     
     /* chat ----------------------------------------------------------------- */
     
-    root('chat', {
-      url: '/chat',
-      template: makeLayoutFlexElement('y-chat-list'),
+    root('conversation', {
+      url: '/conversations',
+      template: makeLayoutFlexElement('conversation-list'),
+      access: {
+        requiresLogin: true
+      }
+    });
+    
+    root('conversation/show', {
+      url: '/conversation/{id:int}',
+      template: makeLayoutFlexElement('conversation'),
+      access: {
+        requiresLogin: true
+      }
+    });
+    
+    root('conversation/create', {
+      url: '/conversation/create/:userids',
+      template: makeLayoutFlexElement('conversation', { create: true }),
       access: {
         requiresLogin: true
       }
     });
     
     root('chat/show', {
-      url: '/chat/{id:int}',
-      template: makeLayoutFlexElement('y-chat-page'),
-      access: {
-        requiresLogin: true
-      }
-    });
-    
-    root('chat/new', {
-      url: '/chat/new/:userids',
-      template: makeLayoutFlexElement('y-chat-create'),
+      url: '/chat/{userid:int}',
+      template: makeLayoutFlexElement('conversation', { user: true }),
       access: {
         requiresLogin: true
       }

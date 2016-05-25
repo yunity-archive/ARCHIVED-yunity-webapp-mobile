@@ -1,0 +1,15 @@
+<div layout="column" class="conversation md-padding"
+     ng-class="{ 'one-on-one': (conversation.type === 'ONE_ON_ONE') }">
+  
+  <h1>Conversation</h1>
+  <h2>{{ conversation.title }}</h2>
+  
+  <y-post ng-repeat="message in conversation.messages" post="message"></y-post>
+  
+  <form layout="row" class="md-padding"
+        id="conversation-send-form" ng-submit='ctrl.send()'>
+    <input flex type="text" ng-model="ctrl.newMessage" placeholder="Message">
+    <button type="submit">Send</button>
+  </form>
+  
+</div>

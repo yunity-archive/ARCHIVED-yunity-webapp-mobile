@@ -1,10 +1,11 @@
 <div layout="column" class="post"
-     md-colors="{backgroundColor: 'background-100'}">
+     ng-class="{ 'own-post': (post.user && post.user.isSelf) }"
+     md-colors="{ backgroundColor: 'background-100' }">
   
   <div layout="row">
     <img class="post-media" ng-src="{{ post.media }}" />
     <div flex layout="column">
-      <h3 class="post-title">{{ post.title }}</h3>
+      <h3 ng-if="post-title" class="post-title">{{ post.title }}</h3>
       <div class="post-content">{{ post.content }}</div>
     </div>
   </div>

@@ -9,14 +9,14 @@ import 'angular-messages';
 import ngMaterial from 'angular-material';
 
 import yAPI from '../yunity.yAPI';
-import yChat from '../yunity.yChat';
+import yConversation from '../yunity.yConversation';
 import yMap from '../yunity.yMap';
 
 import showLoggedInDirective from './showLoggedInDirective';
 import hideLoggedInDirective from './hideLoggedInDirective';
 
 import groups from '../components/groups';
-import chat from '../components/chat';
+import conversation from '../components/conversation';
 import item from '../components/item';
 import login from '../components/login';
 import logout from '../components/logout';
@@ -41,8 +41,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 export default angular.module('yunity', [
   ngMaterial, uiRouter,
-  yAPI, yChat, yMap,
-  groups, chat, item, login, logout, map, profile, signup, wall
+  yAPI, yConversation, yMap,
+  groups, conversation, item, login, logout, map, profile, signup, wall
 ])
   .provider('routeHelper', routeHelperProvider)
   .config(routes)
