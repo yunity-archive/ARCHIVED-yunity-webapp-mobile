@@ -1,27 +1,27 @@
-.post {
+.message {
   padding: 8px;
   margin: 4px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
               0px 1px 1px 0px rgba(0, 0, 0, 0.14),
               0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   
-  .post-media {
+  .message-media {
     height: 48px;
     padding-right: 8px;
   }
   
-  .post-title { margin: 0; }
+  .message-title { margin: 0; }
   
-  .post-content {  }
+  .message-content {  }
   
-  .post-replies {
+  .message-replies {
     padding-top: 8px;
     padding-left: 32px;
     font-size: 90%;
     
-    .post-media { height: 40px; }
+    .message-media { height: 40px; }
     
-    .post {
+    .message {
       padding: 6px;
       box-shadow: none;
       
@@ -30,25 +30,25 @@
     }
   }
   
-  &.post-create {
+  &.message-create {
     // Unsure why the input has this. Without it,
     // the errors spacer appears before the input.
     .md-input { order: unset; }
     
-    .post-media,
-    .post-title { opacity: 0.5; }
+    .message-media,
+    .message-title { opacity: 0.5; }
     
     // Only display media (avatar), title (name) and error
     // spacer (also holds max. characters information) if
     // input is focused or something was already typed in.
     &.md-input-focused,
     &.md-input-has-value {
-      .post-media,
-      .post-title,
+      .message-media,
+      .message-title,
       .md-errors-spacer { display: block; }
     }
-    .post-media,
-    .post-title,
+    .message-media,
+    .message-title,
     .md-errors-spacer { display: none; }
   }
 }

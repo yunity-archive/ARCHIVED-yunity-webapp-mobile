@@ -1,6 +1,18 @@
 <div layout="column" class="wall md-padding">
   
-  <y-post ng-if="ctrl.canPost" create></y-post>
-  <y-post ng-repeat="post in ctrl.posts" post="post"></y-post>
+  <y-message ng-if="ctrl.canPost" type="post" create
+             placeholder="write something amazing..."></y-message>
+  <y-message ng-repeat="post in ctrl.posts"
+             type="post" message="post">
+    
+    <div ng-if="post.replies || post.canReply" class="message-replies">
+      <y-message ng-if="post.canReply"
+                type="post-comment" create
+                placeholder="comment..."></y-message>
+      <y-message ng-repeat="reply in post.replies"
+                type="post-comment" message="reply"></y-message>
+    </div>
+    
+  </y-message>
   
 </div>

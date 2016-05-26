@@ -24,6 +24,7 @@ import map from '../components/map';
 import profile from '../components/profile';
 import signup from '../components/signup';
 import wall from '../components/wall';
+import message from '../components/message';
 
 import initialize from './initialize';
 import routes from './routes';
@@ -42,7 +43,7 @@ if (process.env.NODE_ENV !== 'production') {
 export default angular.module('yunity', [
   ngMaterial, uiRouter,
   yAPI, yConversation, yMap,
-  groups, conversation, item, login, logout, map, profile, signup, wall
+  groups, conversation, item, login, logout, map, profile, signup, wall, message
 ])
   .provider('routeHelper', routeHelperProvider)
   .config(routes)
