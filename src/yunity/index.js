@@ -8,24 +8,30 @@ import 'angular-animate';
 import 'angular-messages';
 import ngMaterial from 'angular-material';
 
+// Services
 import yAPI from '../yunity.yAPI';
 import yConversation from '../yunity.yConversation';
 import yMap from '../yunity.yMap';
 
-import showLoggedInDirective from './showLoggedInDirective';
-import hideLoggedInDirective from './hideLoggedInDirective';
+// Component directives
+import yMessage from '../components/message';
+import yWall from '../components/wall';
 
+// Route related directives
+import login from '../components/login';
+import logout from '../components/logout';
+import signup from '../components/signup';
+import profile from '../components/profile';
 import groups from '../components/groups';
 import conversation from '../components/conversation';
 import item from '../components/item';
-import login from '../components/login';
-import logout from '../components/logout';
 import map from '../components/map';
-import profile from '../components/profile';
-import signup from '../components/signup';
-import wall from '../components/wall';
-import message from '../components/message';
 
+// Misc directives
+import showLoggedInDirective from './showLoggedInDirective';
+import hideLoggedInDirective from './hideLoggedInDirective';
+
+// Initialization / configuration
 import initialize from './initialize';
 import routes from './routes';
 import materialConfig from './materialConfig';
@@ -43,7 +49,11 @@ if (process.env.NODE_ENV !== 'production') {
 export default angular.module('yunity', [
   ngMaterial, uiRouter,
   yAPI, yConversation, yMap,
-  groups, conversation, item, login, logout, map, profile, signup, wall, message
+  yMessage, yWall,
+  
+  login, logout, signup,
+  profile, groups, conversation,
+  item, map
 ])
   .provider('routeHelper', routeHelperProvider)
   .config(routes)
