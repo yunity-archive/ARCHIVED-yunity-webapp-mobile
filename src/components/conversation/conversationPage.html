@@ -4,12 +4,15 @@
   <h1>Conversation</h1>
   <h2>{{ conversation.title }}</h2>
   
-  <y-post ng-repeat="message in conversation.messages" post="message"></y-post>
+  <i ng-if="!created" class="md-padding">
+    <b>Hint:</b>
+    The {{ (conversation.type === 'ONE_ON_ONE') ? 'chat' : 'conversation' }}
+    will be created once you send the first message.
+  </i>
   
-  <form layout="row" class="md-padding"
-        id="conversation-send-form" ng-submit='ctrl.send()'>
-    <input flex type="text" ng-model="ctrl.newMessage" placeholder="Message">
-    <button type="submit">Send</button>
-  </form>
+  <y-message ng-repeat="message in conversation.messages"
+             type="conversation" message="message"></y-message>
+  <y-message type="conversation" create
+             placeholder="{{ placeholder }}"></y-message>
   
 </div>

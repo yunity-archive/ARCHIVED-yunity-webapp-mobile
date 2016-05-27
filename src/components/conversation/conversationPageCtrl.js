@@ -38,6 +38,7 @@ export default class ConversationPageCtrl {
       
       $scope.loaded  = true;
       $scope.created = false;
+      $scope.placeholder  = 'send message to create conversation...';
       $scope.conversation = {
         type: 'MULTICHAT',
         participants: [ ownID, ...userIDs ]
@@ -66,6 +67,7 @@ export default class ConversationPageCtrl {
         .catch((error) => {
           // TODO: Check if the custom error code is the correct one.
           $scope.loaded = true;
+          $scope.placeholder = 'send message to create one-on-one chat...';
           debug('No existing ONE_ON_ONE chat found, starting new one');
         });
       
@@ -97,18 +99,11 @@ export default class ConversationPageCtrl {
       
     }
     
-    /*
-    $scope.conversation = {
-      id: 1,
-      type: 'ONE_ON_ONE',
-      topic: '',
-      participants: [ 1, 2 ],
-      messages: [
-        { content: "Hey", time: new Date() }
-      ],
-      get title() { return this.topic; }
-    };
-    */
+    // Testing code
+    
+    $scope.loaded  = true;
+    $scope.created = false;
+    $scope.placeholder = 'send message to create conversation...';
     
     $scope.conversation = {
       id: 2,
