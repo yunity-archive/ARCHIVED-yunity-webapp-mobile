@@ -1,5 +1,5 @@
 import './loginPageCtrl.spec';
 import './yAPI.spec';
 import './ySocket.spec';
-import './yChat.spec';
+import './yConversation.spec';
 import './yunity.spec';
