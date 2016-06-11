@@ -15,7 +15,7 @@ export default class YSocket {
       deferreds: [],
       currentSessionId: $cookies.get(SESSION_COOKIE_NAME),
 
-      socket: socketIOClient('http://' + location.host, {
+      socket: socketIOClient(location.protocol + '//' + location.host, {
         path: '/socket'
       })
 
