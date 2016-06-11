@@ -11,6 +11,6 @@ general:
     - public
 deployment:
   dev:
-    branch: deploy
+    branch: master
     commands:
       - ./deploy.sh
