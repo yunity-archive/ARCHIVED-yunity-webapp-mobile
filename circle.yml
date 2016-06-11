@@ -9,3 +9,8 @@ dependencies:
 general:
   artifacts:
     - public
+deployment:
+  dev:
+    branch: deploy
+    commands:
+      - ./deploy.sh
