@@ -6,6 +6,9 @@ dependencies:
     # only set NODE_ENV for this command
     # otherwise npm install does not install dev deps
     - NODE_ENV=production webpack
+test:
+  pre:
+    - eslint src
 general:
   artifacts:
     - public
