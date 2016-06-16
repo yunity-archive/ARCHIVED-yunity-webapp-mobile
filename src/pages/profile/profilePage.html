@@ -1,0 +1,19 @@
+<div flex layout="column" class="profile">
+
+  <div layout="row" class="page-header">
+    <div flex layout="column">
+      <div flex layout="row">
+        <div flex>
+          <h1>{{ user.display_name }}</h1>
+        </div>
+        <div layout="column" ng-if="!ownProfile">
+          <md-button class="md-icon-button" aria-label="Message"
+                     ng-href="/chat/{{ user.id }}">
+            <md-icon md-font-library="material-icons">chat_bubble_outline</md-icon>
+          </md-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,22 @@
+<md-content layout-padding>
+  <form ng-submit='ctrl.login()'>
+
+    <md-input-container class="md-block">
+      <label>Email</label>
+      <input required type="email" name="Email" ng-model="ctrl.data.email"
+               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+    </md-input-container>
+
+    <md-input-container class="md-block">
+        <label>Password</label>
+        <input type="password" required name="password" ng-model="ctrl.data.password">
+    </md-input-container>
+
+    <md-switch class="md-primary" md-no-ink aria-label="Remember Me" ng-model="ctrl.data.rememberMe">
+    Remember Me
+ </md-switch>
+
+    <md-button class="md-raised" type="submit">Login</md-button>
+  </form>
+
+</md-content>
