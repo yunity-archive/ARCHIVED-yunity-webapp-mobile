@@ -36,14 +36,15 @@ var config = {
         exclude: /node_modules/
       }, {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!sass'),
+        //loader: ExtractTextPlugin.extract('style', 'css!sass'),
+        loaders: ['style', 'css', 'sass'],
         exclude: /node_modules/
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin('app.css')
-  ]
+  //plugins: [
+  //  new ExtractTextPlugin('app.css')
+  //]
 };
 
 if (process.env.NODE_ENV === 'production') {

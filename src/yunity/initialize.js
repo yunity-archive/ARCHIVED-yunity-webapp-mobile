@@ -8,7 +8,7 @@ export default function initialize($rootScope, yAPI) {
   */
   yAPI.config({
     url: '/api',
-    urlSuffix: '',
+    urlSuffix: '/',
     requestStart: () => {
       $rootScope.loading = true;
       debug('start');

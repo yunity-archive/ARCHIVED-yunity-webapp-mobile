@@ -11,21 +11,16 @@ import ngMaterial from 'angular-material';
 // Services
 import yAPI from '../yunity.yAPI';
 import yConversation from '../yunity.yConversation';
-import yMap from '../yunity.yMap';
 
 // Component directives
-import yMessage from '../components/message';
-import yWall from '../components/wall';
+import yMessage from '../pages/message';
 
 // Route related directives
-import login from '../components/login';
-import logout from '../components/logout';
-import signup from '../components/signup';
-import profile from '../components/profile';
-import groups from '../components/groups';
-import conversation from '../components/conversation';
-import item from '../components/item';
-import map from '../components/map';
+import login from '../pages/login';
+import logout from '../pages/logout';
+import signup from '../pages/signup';
+import profile from '../pages/profile';
+import conversation from '../pages/conversation';
 
 // Misc directives
 import showLoggedInDirective from './showLoggedInDirective';
@@ -47,13 +42,9 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default angular.module('yunity', [
-  ngMaterial, uiRouter,
-  yAPI, yConversation, yMap,
-  yMessage, yWall,
-  
-  login, logout, signup,
-  profile, groups, conversation,
-  item, map
+  ngMaterial, uiRouter, yAPI, yConversation, yMessage,
+
+  login, logout, signup,  profile, conversation
 ])
   .provider('routeHelper', routeHelperProvider)
   .config(routes)

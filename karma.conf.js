@@ -19,11 +19,11 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-      'spec/main.js'
+      'test/main.js'
     ],
     exclude: [],
     preprocessors: {
-      'spec/main.js': ['webpack']
+      'test/main.js': ['webpack']
     },
     webpack: {
       module: {

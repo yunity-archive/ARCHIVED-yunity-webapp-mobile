@@ -1,9 +1,8 @@
-@import "~angular-material/angular-material.scss";
+@import "~angular-material/modules/scss/angular-material.scss";
 
 @import "style/global.scss";
 @import "style/header.scss";
 @import "style/toolbar.scss";
-@import "style/sidebar.scss";
 @import "style/messages.scss";
 
 @import "style/profile.scss";
@@ -298,10 +297,4 @@ a.bg-primary:focus {
 .list-group-item.active:hover {
     background-color: #FF5A5F;
     border-color: #FF5A5F;
-}
-
-/* MAP STUFF */
-
-.map-container {
-
 }
