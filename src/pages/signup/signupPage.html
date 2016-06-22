@@ -1,34 +1,19 @@
-<md-content layout-padding>
-  <form ng-submit='ctrl.signup()'>
-    <md-input-container class="md-block">
-      <label>Email</label>
-      <input required type="email" name="Email" ng-model="ctrl.data.email"
-               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+<md-content layout-padding flex>
+  <form ng-submit='ctrl.signup()' flex layout='column'>
+    <md-input-container>
+      <label>Mail</label>
+      <input required type="email" name="email" ng-model="ctrl.data.email"
+               minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
     </md-input-container>
 
-    <md-input-container class="md-block">
-        <label>First Name</label>
-        <input required name="firstname" ng-model="ctrl.data.first_name">
+    <md-input-container>
+        <label>Name</label>
+        <input required name="name" ng-model="ctrl.data.display_name">
     </md-input-container>
 
-    <md-input-container class="md-block">
-        <label>Surname</label>
-        <input required name="surname" ng-model="ctrl.data.last_name">
-    </md-input-container>
-
-    <md-input-container class="md-block">
-        <label>Displayname</label>
-        <input required name="Displayname" ng-model="ctrl.data.display_name">
-    </md-input-container>
-
-    <md-input-container class="md-block">
+    <md-input-container>
         <label>Password</label>
-        <input type="password" required name="password" ng-model="ctrl.data.password">
-    </md-input-container>
-
-    <md-input-container class="md-block">
-        <label>retype Password</label>
-        <input type="password" required name="password" ng-model="ctrl.data.password2">
+        <input required type="password" name="password" ng-model="ctrl.data.password">
     </md-input-container>
 
     <md-button class="md-raised" type="submit">Signup</md-button>

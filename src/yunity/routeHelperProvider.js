@@ -14,7 +14,7 @@ export default function routeHelperProvider($stateProvider, $locationProvider) {
       let dottedName = nextPath.join('.');
       $stateProvider.state(dottedName, Object.assign({}, defaultOptions, options));
 
-      // this is the magic:
+      // this is the magic
       if (callback) return callback(createRouteHelper(nextPath));
     };
   };

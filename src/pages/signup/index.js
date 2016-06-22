@@ -1,7 +1,16 @@
 import angular from 'angular';
+import yUser from '../../yunity.yUser';
+import yAuth from '../../yunity.yAuth';
+import yConversation from '../../yunity.yConversation';
 
-import signupPage from './signupPageDirective';
+import signupTemplate from './signupPage.html';
 
-export default angular.module('yunity.signup', [])
-  .directive('signupPage', signupPage)
+import signupPageCtrl from './signupPageCtrl';
+
+export default angular.module('yunity.signup', [yUser, yAuth, yConversation])
+  .component('signupPage', {
+    templateUrl: signupTemplate,
+    controller: signupPageCtrl,
+    controllerAs: 'ctrl'
+  })
   .name;

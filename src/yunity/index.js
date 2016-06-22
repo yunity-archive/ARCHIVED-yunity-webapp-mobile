@@ -9,22 +9,15 @@ import 'angular-messages';
 import ngMaterial from 'angular-material';
 
 // Services
+import ySession from '../yunity.ySession';
 import yAPI from '../yunity.yAPI';
-import yConversation from '../yunity.yConversation';
 
-// Component directives
-import yMessage from '../pages/message';
-
-// Route related directives
+// Components
 import login from '../pages/login';
-import logout from '../pages/logout';
 import signup from '../pages/signup';
 import profile from '../pages/profile';
 import conversation from '../pages/conversation';
-
-// Misc directives
-import showLoggedInDirective from './showLoggedInDirective';
-import hideLoggedInDirective from './hideLoggedInDirective';
+import message from '../pages/message';
 
 // Initialization / configuration
 import initialize from './initialize';
@@ -42,16 +35,15 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default angular.module('yunity', [
-  ngMaterial, uiRouter, yAPI, yConversation, yMessage,
+  ngMaterial, uiRouter,
+  ySession, yAPI,
 
-  login, logout, signup,  profile, conversation
+  login, signup, profile, conversation, message
 ])
   .provider('routeHelper', routeHelperProvider)
   .config(routes)
   .config(materialConfig)
   .config(exceptionConfig)
   .controller('MainCtrl', MainCtrl)
-  .directive('showLoggedIn', showLoggedInDirective)
-  .directive('hideLoggedIn', hideLoggedInDirective)
   .run(initialize)
   .name;

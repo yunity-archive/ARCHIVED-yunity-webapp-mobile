@@ -1,26 +1,25 @@
 export default class ProfilePageCtrl {
 
-  constructor($scope, $attrs, yAPI, $stateParams, $location) {
+  constructor($scope, $attrs, yUser, ySession, $stateParams) {
     'ngInject';
     Object.assign(this, {
-      $scope, $location,
-      yAPI,
+      $scope,
+      yUser, ySession,
 
       error: null
     });
 
     const own = ('own' in $attrs);
-    const userID = (own ? yAPI.session.user.id : $stateParams.id);
+    const userID = (own ? this.ySession.getSession().user.id : $stateParams.id);
 
     Object.assign($scope, {
       user: { id: userID, loaded: false },
-      ownProfile: (userID === yAPI.session.user.id)
+      ownProfile: (userID === this.ySession.getSession().user.id)
     });
 
-    yAPI.apiCall('/users/' + userID)
+    this.$scope.user = this.yUser.getProfilePage(userID)
       .then((ret) => {
-        $scope.user = ret.data;
-        $scope.user.loaded = true;
+        return ret.data;
       })
       .catch(() => {
         this.error = 'User not found';

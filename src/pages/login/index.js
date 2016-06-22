@@ -1,7 +1,15 @@
 import angular from 'angular';
 
-import loginPage from './loginPageDirective';
+import yAuth from '../../yunity.yAuth';
+import yConversation from '../../yunity.yConversation';
 
-export default angular.module('yunity.login', [])
-  .directive('loginPage', loginPage)
+import loginTemplate from './loginPage.html';
+import loginPageCtrl from './loginPageCtrl';
+
+export default angular.module('yunity.login', [yAuth, yConversation])
+  .component('loginPage', {
+    templateUrl: loginTemplate,
+    controller: loginPageCtrl,
+    controllerAs: 'ctrl'
+  })
   .name;

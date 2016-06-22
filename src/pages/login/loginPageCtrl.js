@@ -2,29 +2,29 @@ const debug = require('debug')('yunity:component:loginPage');
 
 export default class LoginPageCtrl {
 
-  constructor(yAPI, yConversation, $location) {
+  constructor(yAuth, yConversation, $location) {
     'ngInject';
     Object.assign(this, {
-      yAPI, yConversation, $location,
+      yAuth, yConversation, $location,
       data: {
         email: '',
         password: ''
       }
     });
-
   }
 
   login() {
-    return this.yAPI.authenticate(Object.assign({
-      success: (res) => {
-        debug('login success');
-        this.$location.path('/profile/' + res.data.id);
-        this.yConversation.initChats();
-      },
-      error: (err) => {
-        debug('login failed', err);
-      }
-    }, this.data));
+    debug('start login');
+
+    this.yAuth.authenticate(this.data)
+    .then((res) => {
+      debug('login success', res);
+      this.$location.path('/profile/' + res.data.id);
+      this.yConversation.initChats();
+    })
+    .catch((err) => {
+      debug('login failed', err);
+    });
   }
 
 }

@@ -3,9 +3,6 @@ const debug = require('debug')('yunity:initialize');
 export default function initialize($rootScope, yAPI) {
   'ngInject';
 
-  /*
-  * API Configuration
-  */
   yAPI.config({
     url: '/api',
     urlSuffix: '/',

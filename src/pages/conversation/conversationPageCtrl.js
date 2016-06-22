@@ -2,11 +2,11 @@ const debug = require('debug')('yunity:component:conversationPageCtrl');
 
 export default class ConversationPageCtrl {
 
-  constructor($scope, $stateParams, yAPI, yConversation) {
+  constructor($scope, $stateParams, ySession, yConversation) {
     'ngInject';
     Object.assign(this, {
       $scope, $stateParams,
-      yAPI, yConversation,
+      ySession, yConversation,
       error: null
     });
 
@@ -19,7 +19,7 @@ export default class ConversationPageCtrl {
       debug('User is starting a new MULTICHAT conversation');
 
       const validationSet = new Set();
-      const ownID   = yAPI.session.user.id;
+      const ownID   = this.ySession.getSession().user.id;
       const userIDs = $stateParams.userids.split(',').map((userID) => {
         userID = Number(userID);
         if (!Number.isSafeInteger(userID) ||
@@ -56,7 +56,7 @@ export default class ConversationPageCtrl {
         type: 'ONE_ON_ONE'
       };
 
-      yConversation.getChatForUser(userID)
+      this.yConversation.getChatForUser(userID)
         .then((conversation) => {
           $scope.loaded  = true;
           $scope.created = true;
@@ -79,7 +79,7 @@ export default class ConversationPageCtrl {
       $scope.loaded  = false;
       $scope.created = false;
 
-      yConversation.get(chatID)
+      this.yConversation.get(chatID)
         .then((conversation) => {
           $scope.loaded  = true;
           $scope.created = true;

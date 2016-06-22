@@ -1,26 +1,25 @@
 const debug = require('debug')('yunity:signupPageCtrl');
 
 export default class SignupPageCtrl {
-  
-  constructor($scope, yAPI, yChat, $location) {
+
+  constructor($scope, yUser, yAuth, yConversation, $location) {
     'ngInject';
-    Object.assign(this, { $scope, yAPI, yChat, $location });
+    Object.assign(this, {
+      $scope, yUser, yAuth, yConversation, $location
+    });
     this.data = {};
   }
-  
+
   signup() {
-    this.yAPI.apiCall({
-      uri: '/users',
-      method: 'POST',
-      data: this.data
-    }).then((res) => {
+    this.yUser.createUser(this.data)
+    .then((res) => {
       let { email, password } = this.data;
-      this.yAPI.authenticate({
+      this.yAuth.authenticate({
         email, password,
         success: () => {
-          debug('login success');
-          this.$location.path('/profile/' + res.data.id);
-          this.yChat.initChats();
+          debug('login success', res);
+          this.$location.path('/');
+          this.yConversation.initChats();
         },
         error: (err) => {
           debug('login failed', err);
@@ -30,5 +29,5 @@ export default class SignupPageCtrl {
       debug('error while signup', err);
     });
   }
-  
+
 }

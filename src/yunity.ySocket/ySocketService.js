@@ -6,10 +6,11 @@ const debug = require('debug')('yunity:ySocket');
 
 export default class YSocket {
 
-  constructor($q, $cookies) {
+  constructor($cookies, ySession) {
     'ngInject';
     Object.assign(this, {
-      $q, $cookies,
+      $cookies,
+      ySession,
 
       listeners: [],
       deferreds: [],
@@ -36,6 +37,7 @@ export default class YSocket {
       this.listeners.forEach((fn) => fn(data));
     });
 
+    debug('ySocket service initialized');
   }
 
   listen(fn) {
@@ -57,7 +59,8 @@ export default class YSocket {
   }
 
   clearSession() {
-    debug('would clear session');
+    this.ySession.clearSession();
+    debug('cleared session');
   }
 
   ensureConnected() {

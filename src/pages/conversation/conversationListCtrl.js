@@ -2,17 +2,17 @@ const debug = require('debug')('yunity:component:conversationListCtrl');
 
 export default class ConversationListCtrl {
 
-  constructor($scope, yAPI, yConversation) {
+  constructor($scope, yConversation) {
     'ngInject';
     Object.assign(this, {
       $scope,
-      yAPI, yConversation
+      yConversation
     });
 
     debug('Getting all conversations...');
-    yConversation.getAll().then((conversations) => {
+    this.yConversation.getAll().then((conversations) => {
       debug('Got conversations:', conversations);
-      $scope.conversations = conversations;
+      this.$scope.conversations = conversations;
     });
 
 

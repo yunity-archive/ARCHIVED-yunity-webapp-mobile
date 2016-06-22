@@ -1,17 +1,22 @@
+const debug = require('debug')('yunity:MainCtrl');
+
 export default class MainCtrl {
 
-  constructor($rootScope, $location, yAPI) {
+  constructor($rootScope, ySession, yAPI) {
     'ngInject';
     Object.assign(this, {
-      $rootScope, $location, yAPI,
+      $rootScope, ySession, yAPI,
 
-      session: {},
-      profileItems: []
+      profileItems: [
+        { title: 'Profile'  , href: '/profile'  , icon: 'account_circle' },
+        { title: 'Logout'   , href: '/logout'   , icon: 'exit_to_app'    }
+      ]
     });
 
-    $rootScope.$watch('session', (session) => {
-      this.session = session || {};
-      let { loggedIn } = this.session;
+    $rootScope.$watch('', (session) => {
+      debug('listener fired', session);
+      session = session || {};
+      let { loggedIn } = session;
       if (loggedIn) {
         this.profileItems = [
           { title: 'Profile'  , href: '/profile'  , icon: 'account_circle' },

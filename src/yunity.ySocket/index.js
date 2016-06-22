@@ -1,5 +1,6 @@
 import angular from 'angular';
 import ngCookies from 'angular-cookies';
+import ySession from '../yunity.ySession';
 
 import ySocketService from './ySocketService';
 
@@ -20,7 +21,7 @@ function httpConfig($httpProvider) {
   $httpProvider.interceptors.push(httpInterceptor);
 }
 
-export default angular.module('yunity.ySocket', [ngCookies])
+export default angular.module('yunity.ySocket', [ngCookies, ySession])
   .service('ySocket', ySocketService)
   .config(httpConfig)
   .name;

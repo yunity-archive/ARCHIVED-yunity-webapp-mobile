@@ -1,4 +1,4 @@
-const debug = require('debug')('yunity:yChat');
+const debug = require('debug')('yunity:yConversation');
 
 
 class Conversation {
@@ -25,7 +25,7 @@ class Message {
 
   constructor(conversation, data) {
     Object.defineProperties(this, {
-      
+
       // Non-enumerable, non-configurable properties.
       conversation: { value: conversation }
     });
@@ -40,10 +40,10 @@ class Message {
 
 export default class YConversation {
 
-  constructor($q, $http, ySocket, yAPI) {
+  constructor(ySocket, yAPI) {
     'ngInject';
     Object.assign(this, {
-      $q, $http, ySocket, yAPI,
+      ySocket, yAPI,
 
       chatListeners: {}, // chatid -> [array, of listener functions]
       allListeners: [] // [array, of, listener, functions, for, all, chats]
@@ -64,7 +64,7 @@ export default class YConversation {
       }
 
     });
-
+    debug('yConversation service initialized');
   }
 
 

@@ -68,7 +68,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
     root('conversation', {
       url: '/conversation',
-      template: makeLayoutFlexElement('conversation-list'),
+      template: makeLayoutFlexElement('conversation-list-page'),
       access: {
         requiresLogin: true
       }
@@ -76,7 +76,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
       conversation('show', {
         url: '/conversation/{id:int}',
-        template: makeLayoutFlexElement('conversation'),
+        template: makeLayoutFlexElement('conversation-page'),
         access: {
           requiresLogin: true
         }
@@ -84,7 +84,7 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
 
       conversation('create', {
         url: '/conversation/create/:userids',
-        template: makeLayoutFlexElement('conversation'),
+        template: makeLayoutFlexElement('conversation-page'),
         access: {
           requiresLogin: true
         }
@@ -92,14 +92,19 @@ export default function(routeHelperProvider, $stateProvider, $urlRouterProvider)
     }
   );
 
-    /* users ---------------------------------------------------------------- */
+    /* store ---------------------------------------------------------------- */
 
-    root('users', {
-      url: '/users',
-      template: makeLayoutFlexElement('list-users-page'),
+    root('store', {
+      url: '/store',
+      template: makeLayoutFlexElement('store-list-page'),
       access: {
         requiresLogin: true
       }
+    }, (store) => {
+      store('show', {
+        url: '/profile/{id:int}',
+        template: makeLayoutFlexElement('store-page')
+      });
     });
 
   });

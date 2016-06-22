@@ -4,7 +4,8 @@
     <md-toolbar id="main-toolbar">
       <div class="md-toolbar-tools">
 
-        <md-button class="md-raised logo md-primary md-hue-2" ng-href="/" aria-label="yunity">
+        <md-button class="md-raised logo md-primary md-hue-2"
+                  ng-href="/" aria-label="yunity">
           <md-icon md-svg-src="/images/yunity_logo.svg"></md-icon>
         </md-button>
 
@@ -43,13 +44,18 @@
     </md-toolbar>
   </ui-view>
 
-  <div flex layout="row" layout-xs="column">
+  <div flex>
+    <p>test</p>
 
     <md-content>
-      <p>cool content!</p>
-    </md-content>
-    <md-content>
-      <ui-view flex></ui-view>
+      <ui-view flex layout="column">
+        <login-page ng-if="!ctrl.session.loggedIn"></login-page>
+        <conversation-list-page></conversation-list-page>
+        <message-page></message-page>
+        <profile-page></profile-page>
+        <list-users-page></list-users-page>
+        <signup-page></signup-page>
+      </ui-view>
     </md-content>
 
   </div>

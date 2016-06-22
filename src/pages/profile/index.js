@@ -1,9 +1,23 @@
 import angular from 'angular';
 
-import profilePage from './profilePageDirective';
-import listUsersPage from './listUsersPageDirective';
+import yUser from '../../yunity.yUser';
+import ySession from '../../yunity.ySession';
 
-export default angular.module('yunity.profile', [])
-  .directive('profilePage', profilePage)
-  .directive('listUsersPage', listUsersPage)
+import profileTemplate from './profilePage.html';
+import profilePageCtrl from './profilePageCtrl';
+
+import listUsersTemplate from './listUsersPage.html';
+import listUsersPageCtrl from './listUsersPageCtrl';
+
+export default angular.module('yunity.profile', [yUser, ySession])
+  .component('profilePage', {
+    templateUrl: profileTemplate,
+    controller: profilePageCtrl,
+    controllerAs: 'ctrl'
+  })
+  .component('listUsersPage', {
+    templateUrl: listUsersTemplate,
+    controller: listUsersPageCtrl,
+    controllerAs: 'ctrl'
+  })
   .name;
